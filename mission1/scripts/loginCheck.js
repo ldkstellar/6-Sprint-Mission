@@ -7,27 +7,28 @@ export function emailError(input, errorMessage) {
     clearError(errorMessage, input);
   }
 }
-export function pwError(input, errorMessage2) {
-  if (input.value.length < 8) {
-    showError("비밀번호를 8자 이상 입력해주세요", errorMessage2, input);
+
+const length = 8;
+export function pwError(input, element) {
+  if (input.value.length < length) {
+    showError("비밀번호를 8자 이상 입력해주세요", element, input);
   } else {
-    clearError(errorMessage2, input);
+    clearError(element, input);
   }
 }
 
-export function showError(message, div, input) {
+export function showError(message, element, input) {
+  element.textContent = message;
   input.classList.add("error-border");
-  div.textContent = message;
 }
 
-export function clearError(div, input) {
+export function clearError(element, input) {
   input.classList.remove("error-border");
-  div.textContent = "";
+  element.textContent = "";
 }
-
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export function isValidEmail(email) {
   // 이메일 형식을 정규표현식을 사용하여 검사
-  let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
+  return emailRegex.test(emailRegex);
 }
 
