@@ -1,0 +1,14 @@
+.bestList {
+  display: flex;
+  gap: 16px;
+}
+.product {
+  width: 362px;
+  height: 362px;
+}
+
+.product img {
+  width: 282px;
+  height: 282px;
+}
+

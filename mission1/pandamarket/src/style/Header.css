@@ -1,0 +1,35 @@
+.navi {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 1px #dfdfdf solid;
+}
+
+.leftBtn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.leftBtn * {
+  margin-right: 50px;
+}
+.leftBtn a {
+  font-weight: 700;
+  font-size: 18px;
+  color: #4b5563;
+}
+#presentPage {
+  color: #3692ff;
+}
+.loginBtn {
+  border: 1px solid;
+  width: 88px;
+  height: 42px;
+  border-radius: 8px;
+  background-color: #3692ff;
+  color: #ffffff;
+  font-size: 16px;
+}
+
