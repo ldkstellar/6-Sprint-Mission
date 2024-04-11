@@ -1,3 +1,8 @@
+#title {
+  color: #111827;
+  font-weight: 700;
+  font-size: 20px;
+}
 .bestList {
   display: flex;
   gap: 16px;
@@ -8,7 +13,26 @@
 }
 
 .product img {
+  border-radius: 16px;
   width: 282px;
   height: 282px;
+}
+.product .description {
+  font-weight: 500;
+  font-size: 14px;
+  color: #1f2937;
+}
+.product .price {
+  color: #1f2937;
+  font-size: 14px;
+}
+.product .favorites {
+  width: 13.4px;
+  height: 11.65px;
+  color: #4b5563;
+}
+.product .favoriteCount {
+  color: #4b5563;
+  font-size: 12px;
 }
 
