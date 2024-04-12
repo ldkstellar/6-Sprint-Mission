@@ -12,7 +12,8 @@ const useData = () => {
         setValue(result.list);
       });
   }, []);
-  const [value, setValue] = useState(undefined);
+
+  const [value, setValue] = useState([]);
   return { value, setValue };
 };
 

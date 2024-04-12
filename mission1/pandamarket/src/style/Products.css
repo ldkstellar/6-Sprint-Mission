@@ -4,3 +4,9 @@
   height: 1154px;
 }
 
+.totalList .page {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+

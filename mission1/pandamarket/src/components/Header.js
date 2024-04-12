@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <div className="navi">
       <div className="leftBtn">
-        <img src={logo} />
+        <img className="logo" src={logo} />
         <p>자유게시판</p>
         <p id="presentPage">중고마켓</p>
       </div>

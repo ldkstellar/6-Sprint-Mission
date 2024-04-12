@@ -15,7 +15,11 @@
 .leftBtn * {
   margin-right: 50px;
 }
+.leftBtn .logo {
+  cursor: pointer;
+}
 .leftBtn p {
+  cursor: pointer;
   font-weight: 700;
   font-size: 18px;
   color: #4b5563;
@@ -24,6 +28,7 @@
   color: #3692ff;
 }
 .loginBtn {
+  cursor: pointer;
   border: 1px solid;
   width: 88px;
   height: 42px;

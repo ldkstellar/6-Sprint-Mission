@@ -4,11 +4,10 @@ import heart from "./../img/heart.png";
 const BestProduct = ({ value = [] }) => {
   const list = value
     .slice()
-    .sort((next, prev) => {
-      return prev.favoriteCount - next.favoriteCount;
+    .sort((prev, next) => {
+      return next.favoriteCount - prev.favoriteCount;
     })
     .slice(0, 4);
-  console.log(value);
   return (
     <div>
       <p id="title">베스트 상품</p>
@@ -16,7 +15,7 @@ const BestProduct = ({ value = [] }) => {
         {list.map((element, i) => {
           return (
             <div key={i} className="product">
-              <img src={element.images} alt={`이미지$}`} />
+              <img src={element.images} alt={`이미지`} />
               <p className="description">{element.description}</p>
               <p className="price">{element.price}원</p>
               <p className="favoriteCount">
