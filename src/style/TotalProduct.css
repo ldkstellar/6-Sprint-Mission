@@ -2,6 +2,7 @@
   margin-top: 30px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .totalProduct .title {
@@ -84,5 +85,51 @@
   margin-top: 5px;
   color: #4b5563;
   font-size: 12px;
+}
+
+@media (max-width: 1199px) {
+  .container {
+    margin: 20px;
+  }
+  #title {
+  }
+  .totalProduct {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .productList {
+    margin-top: 30px;
+    display: grid;
+    place-items: center;
+    gap: 16px;
+    grid-template-rows: repeat(
+      2,
+      1fr
+    ); /* 5개의 행을 각각 1fr의 비율로 생성합니다. */
+    grid-template-columns: repeat(
+      3,
+      1fr
+    ); /* 2개의 열을 각각 1fr의 비율로 생성합니다. */
+  }
+}
+
+@media (max-width: 767px) {
+  .productList {
+    margin-top: 30px;
+    display: grid;
+    place-items: center;
+    gap: 16px;
+    grid-template-rows: repeat(
+      2,
+      1fr
+    ); /* 5개의 행을 각각 1fr의 비율로 생성합니다. */
+    grid-template-columns: repeat(
+      2,
+      1fr
+    ); /* 2개의 열을 각각 1fr의 비율로 생성합니다. */
+  }
 }
 

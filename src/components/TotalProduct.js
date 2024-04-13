@@ -2,11 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useNavigation, useSearchParams } from "react-router-dom";
 import heart from "../img/heart.png";
 import "../style/TotalProduct.css";
-const TotalProduct = ({ value, setValue }) => {
+const TotalProduct = ({ value, setValue, windowWidth }) => {
   const navigation = useNavigate();
   const register = () => {
     navigation("/addItem");
   };
+
+  let list = undefined;
+  if (windowWidth < 1199 && windowWidth > 767) {
+    list = value.slice(0, 6);
+  } else if (windowWidth < 767) {
+    list = value.slice(0, 4);
+  }
   const compare = (prev, next) => {
     const prevDate = new Date(prev.createdAt).getTime();
     const nextDate = new Date(next.createdAt).getTime();
@@ -26,7 +33,7 @@ const TotalProduct = ({ value, setValue }) => {
   };
 
   return (
-    <div>
+    <div className="container">
       <div className="totalProduct">
         <p className="title">전체 상품</p>
         <div className="buttons">
@@ -44,7 +51,23 @@ const TotalProduct = ({ value, setValue }) => {
         </div>
       </div>
       <div className="productList">
-        {value.map((element) => {
+        {!list &&
+          value.map((element) => {
+            return (
+              <div className="product" key={element.id}>
+                <img src={element.images[0]} />
+                <p className="name">{element.name}</p>
+                <p className="price">{element.price}원</p>
+                <p className="favoriteCount">
+                  {" "}
+                  <img className="favorites" src={heart} />{" "}
+                  {element.favoriteCount}
+                </p>
+              </div>
+            );
+          })}
+
+        {list?.map((element) => {
           return (
             <div className="product" key={element.id}>
               <img src={element.images[0]} />
