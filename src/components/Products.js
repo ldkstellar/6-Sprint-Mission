@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useData from "../hooks/useData";
 import "../style/Products.css";
 import BestProduct from "./BestProduct";
 import TotalProduct from "./TotalProduct";
 import Button from "./Button";
 const Products = ({ params }) => {
-  const { value, setValue } = useData();
+  const { value, setValue } = useData(undefined);
+  // 미디어 쿼리의 일치 여부를 상태로 관리
 
   return (
     <div className="totalList">
