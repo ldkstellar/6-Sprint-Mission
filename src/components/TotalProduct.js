@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useNavigation, useSearchParams } from "react-router-dom";
-import heart from "./../img/heart.png";
+import heart from "../img/heart.png";
 import "../style/TotalProduct.css";
 const TotalProduct = ({ value, setValue }) => {
   const navigation = useNavigate();

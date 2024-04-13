@@ -1,6 +1,6 @@
 import React from "react";
 import "../style/BestProduct.css";
-import heart from "./../img/heart.png";
+import heart from "../img/heart.png";
 const BestProduct = ({ value = [] }) => {
   const list = value
     .slice()
