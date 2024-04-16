@@ -5,12 +5,10 @@ import Header from "../components/Header";
 import Products from "../components/Products";
 
 const Item = () => {
-  const params = useParams();
-
   return (
     <div>
       <Header />
-      <Products params={params} />
+      <Products />
     </div>
   );
 };

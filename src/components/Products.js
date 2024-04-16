@@ -4,7 +4,9 @@ import "../style/Products.css";
 import BestProduct from "./BestProduct";
 import TotalProduct from "./TotalProduct";
 import Button from "./Button";
-const Products = ({ params }) => {
+import { useParams } from "react-router-dom";
+const Products = () => {
+  const params = useParams();
   const { value, setValue } = useData();
   // 미디어 쿼리의 일치 여부를 상태로 관리
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
