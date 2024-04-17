@@ -42,7 +42,7 @@ const Products = () => {
     };
   }, []);
   return (
-    <div className="totalList">
+    <div className="products">
       <BestProduct value={value} windowWidth={windowWidth} />
       <TotalProduct
         value={value}

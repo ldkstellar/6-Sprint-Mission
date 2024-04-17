@@ -1,18 +1,19 @@
-.totalList {
+.products {
   margin: 20px auto;
   width: 1201px;
   height: 1154px;
 }
 
-.totalList .page {
+.products .page {
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
 @media (max-width: 1199px) {
-  .totalList {
+  .products {
     width: 100%;
     height: 100%;
   }
 }
+
