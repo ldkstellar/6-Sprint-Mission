@@ -4,7 +4,7 @@ import logo from "../img/panda.png";
 
 const Header = () => {
   return (
-    <div className="navi">
+    <div className="nav">
       <div className="leftBtn">
         <img className="logo" src={logo} />
         <p>자유게시판</p>

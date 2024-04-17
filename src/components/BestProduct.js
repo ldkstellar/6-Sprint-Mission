@@ -2,24 +2,24 @@ import React from "react";
 import "../style/BestProduct.css";
 import heart from "../img/heart.png";
 import { useState, useEffect } from "react";
-const BestProduct = ({ value = [], windowWidth }) => {
-  let list;
+const BestProducts = ({ bestProducts = [], windowWidth }) => {
+  let goodProducts;
   if (windowWidth < 1199 && windowWidth > 767) {
-    list = value
+    goodProducts = bestProducts
       .slice()
       .sort((prev, next) => {
         return next.favoriteCount - prev.favoriteCount;
       })
       .slice(0, 2);
   } else if (windowWidth < 767) {
-    list = value
+    goodProducts = bestProducts
       .slice()
       .sort((prev, next) => {
         return next.favoriteCount - prev.favoriteCount;
       })
       .slice(0, 1);
   } else {
-    list = value
+    goodProducts = bestProducts
       .slice()
       .sort((prev, next) => {
         return next.favoriteCount - prev.favoriteCount;
@@ -30,7 +30,7 @@ const BestProduct = ({ value = [], windowWidth }) => {
     <div className="container">
       <p id="title">베스트 상품</p>
       <div className="bestList">
-        {list.map((element, i) => {
+        {goodProducts.map((element, i) => {
           return (
             <div key={i} className="product">
               <img className="image" src={element.images} alt={`이미지`} />
@@ -48,5 +48,5 @@ const BestProduct = ({ value = [], windowWidth }) => {
   );
 };
 
-export default BestProduct;
+export default BestProducts;
 
