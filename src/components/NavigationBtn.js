@@ -1,6 +1,6 @@
 import React from "react";
-import { useNavigate, useNavigation } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
+import "../style/NavigationBtn.css";
 const NavigationBtn = ({ children, params, type = "default" }) => {
   const navigation = useNavigate();
   const handleClick = (e) => {
@@ -21,17 +21,11 @@ const NavigationBtn = ({ children, params, type = "default" }) => {
   };
   return (
     <button
+      className={
+        params.id === children ? ["navBtn", " clicked"].join("") : "navBtn"
+      }
       name={children}
       onClick={handleClick}
-      style={{
-        backgroundColor: params?.id === children ? "#2F80ED" : "#FFFFFF",
-        cursor: "pointer",
-        width: "40px",
-        height: "40px",
-        borderRadius: "40px",
-        border: "1px solid #E5E7EB",
-        color: params?.id === children ? "#FFFFFFFF" : "#6B7280",
-      }}
     >
       {children}
     </button>
