@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import useData from "../hooks/useData";
 import "../style/Products.css";
 import BestProduct from "./BestProduct";
 import TotalProduct from "./TotalProduct";
@@ -7,9 +6,30 @@ import Button from "./Button";
 import { useParams } from "react-router-dom";
 const Products = () => {
   const params = useParams();
-  const { value, setValue } = useData();
-  // 미디어 쿼리의 일치 여부를 상태로 관리
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [value, setValue] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const getData = async () => {
+    try {
+      setIsLoading(true);
+      const response = await fetch(
+        "https://panda-market-api.vercel.app/products",
+        {
+          method: "GET",
+        }
+      );
+      const result = await response.json();
+      setValue(result.list);
+    } catch (error) {
+      window.alert("불러오기 실패");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   const handleResize = () => {
     setWindowWidth(window.innerWidth);
