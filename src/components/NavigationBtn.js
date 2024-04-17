@@ -1,20 +1,28 @@
 import React from "react";
 import { useNavigate, useNavigation } from "react-router-dom";
 
-const NavigationBtn = ({ children, params }) => {
+const NavigationBtn = ({ children, params, type = "default" }) => {
   const navigation = useNavigate();
-  const Click = () => {
-    if (children === "<") {
-      navigation(`/items/${parseInt(params.id) - 1}`);
-    } else if (children === ">") {
-      navigation(`/items/${parseInt(params.id) + 1}`);
-    } else {
-      navigation(`/items/${children}`);
+  const handleClick = (e) => {
+    if (type === "default") {
+      const id = e.target.name;
+      navigation(`/items/${id}`);
+    } else if (type === "move") {
+      if (e.target.name === "<") {
+        if (params.id > 1) {
+          const id = parseInt(params.id) - 1;
+          navigation(`/items/${id}`);
+        }
+      } else if (e.target.name === ">") {
+        const id = parseInt(params.id) + 1;
+        navigation(`/items/${id}`);
+      }
     }
   };
   return (
     <button
-      onClick={Click}
+      name={children}
+      onClick={handleClick}
       style={{
         backgroundColor: params?.id === children ? "#2F80ED" : "#FFFFFF",
         cursor: "pointer",

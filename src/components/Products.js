@@ -51,12 +51,16 @@ const Products = () => {
         windowWidth={windowWidth}
       />
       <div className="page">
-        <NavigationBtn params={params}>{"<"}</NavigationBtn>
+        <NavigationBtn type="move" params={params}>
+          {"<"}
+        </NavigationBtn>
         <NavigationBtn params={params}>{"1"}</NavigationBtn>
         <NavigationBtn params={params}>{"2"}</NavigationBtn>
         <NavigationBtn params={params}>{"3"}</NavigationBtn>
         <NavigationBtn params={params}>{"4"}</NavigationBtn>
-        <NavigationBtn params={params}>{">"}</NavigationBtn>
+        <NavigationBtn type="move" params={params}>
+          {">"}
+        </NavigationBtn>
       </div>
     </div>
   );
