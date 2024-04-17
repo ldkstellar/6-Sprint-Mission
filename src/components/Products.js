@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import "../style/Products.css";
 import BestProduct from "./BestProduct";
 import TotalProduct from "./TotalProduct";
-import Button from "./Button";
+import Button from "./NavigationBtn";
 import { useParams } from "react-router-dom";
+import NavigationBtn from "./NavigationBtn";
 const Products = () => {
   const params = useParams();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -50,12 +51,12 @@ const Products = () => {
         windowWidth={windowWidth}
       />
       <div className="page">
-        <Button params={params}>{"<"}</Button>
-        <Button params={params}>{"1"}</Button>
-        <Button params={params}>{"2"}</Button>
-        <Button params={params}>{"3"}</Button>
-        <Button params={params}>{"4"}</Button>
-        <Button params={params}>{">"}</Button>
+        <NavigationBtn params={params}>{"<"}</NavigationBtn>
+        <NavigationBtn params={params}>{"1"}</NavigationBtn>
+        <NavigationBtn params={params}>{"2"}</NavigationBtn>
+        <NavigationBtn params={params}>{"3"}</NavigationBtn>
+        <NavigationBtn params={params}>{"4"}</NavigationBtn>
+        <NavigationBtn params={params}>{">"}</NavigationBtn>
       </div>
     </div>
   );

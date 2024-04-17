@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate, useNavigation } from "react-router-dom";
 
-const Button = ({ children, params }) => {
+const NavigationBtn = ({ children, params }) => {
   const navigation = useNavigate();
   const Click = () => {
     if (children === "<") {
@@ -29,5 +29,5 @@ const Button = ({ children, params }) => {
     </button>
   );
 };
-export default Button;
+export default NavigationBtn;
 
