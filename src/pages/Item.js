@@ -6,7 +6,6 @@ import Products from "../components/Products";
 const Item = () => {
   return (
     <div>
-      <Header />
       <Products />
     </div>
   );

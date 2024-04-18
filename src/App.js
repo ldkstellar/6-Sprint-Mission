@@ -1,10 +1,16 @@
 import "./style/App.css";
-import {} from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Item from "./pages/Item";
 import AddItem from "./pages/AddItem";
+import Header from "./components/Header";
 
 function App() {
-  return <div className="App"> 메인페이지 공사중...</div>;
+  return (
+    <div className="App">
+      <Header />
+      <Outlet />
+    </div>
+  );
 }
 
 export default App;
