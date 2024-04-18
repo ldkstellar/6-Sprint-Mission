@@ -1,0 +1,14 @@
+.btn {
+  width: 88px;
+  height: 42px;
+  border-radius: 8px;
+  border: 1px solid #ffffffff;
+  color: #ffffffff;
+}
+.none {
+  background-color: #9ca3af;
+}
+.fill {
+  background-color: #3692ff;
+}
+

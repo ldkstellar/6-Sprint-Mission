@@ -1,0 +1,15 @@
+.container {
+  margin: 20px 360px 0px;
+}
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1f2937;
+}
+

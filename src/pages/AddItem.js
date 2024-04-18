@@ -1,7 +1,13 @@
 import React from "react";
+import RegisterForm from "../components/RegisterForm";
 
 const AddItem = () => {
-  return <div>빈페이지 입니다.</div>;
+  return (
+    <>
+      <RegisterForm />
+    </>
+  );
 };
 
 export default AddItem;
+
