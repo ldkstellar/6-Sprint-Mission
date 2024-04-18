@@ -28,6 +28,10 @@
 #presentPage {
   color: #3692ff;
 }
+.rightBtn {
+  display: flex;
+  gap: 12px;
+}
 .loginBtn {
   cursor: pointer;
   border: 1px solid;

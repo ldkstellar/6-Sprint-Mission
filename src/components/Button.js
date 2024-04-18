@@ -1,10 +1,19 @@
 import React from "react";
 import "../style/Button.css";
 
-const Button = ({ children, type = "default", onClick }) => {
+const Button = ({ children, type = "", width, height, onClick }) => {
   return (
     <button
       onClick={onClick}
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        border: "none",
+        backgroundColor: "#FFFFFFFF",
+        width: width,
+        height: height,
+      }}
       className={
         type === "default"
           ? ["btn", " none"].join("")
