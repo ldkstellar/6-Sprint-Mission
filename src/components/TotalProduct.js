@@ -1,9 +1,9 @@
 import React from "react";
 import heart from "../img/heart.png";
-const OriginalTotalProduct = ({ element }) => {
+const TotalProduct = ({ element }) => {
   return (
-    <div className="product" key={element.id}>
-      <img src={element.images[0]} />
+    <div className="gridComponent" key={element.id}>
+      <img className="productImage" src={element.images[0]} />
       <p className="name">{element.name}</p>
       <p className="price">{element.price}원</p>
       <p className="favoriteCount">
@@ -14,5 +14,5 @@ const OriginalTotalProduct = ({ element }) => {
   );
 };
 
-export default OriginalTotalProduct;
+export default TotalProduct;
 

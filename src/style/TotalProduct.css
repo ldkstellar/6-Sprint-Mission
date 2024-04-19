@@ -1,3 +1,9 @@
+.totalProductContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .totalProduct {
   margin-top: 30px;
   display: flex;
@@ -15,11 +21,11 @@
 .titleAndSearch .title {
   font-weight: 700;
   font-size: 20px;
-  color: #111827;
+  color: var(--fontColor);
 }
 
 .titleAndSearch .search {
-  background: #f3f4f6;
+  background: var(--white);
   border: 1px solid #f3f4f6;
   border-radius: 12px;
   width: 315px;
@@ -35,7 +41,7 @@
 }
 
 .search::placeholder {
-  color: #9ca3af;
+  color: var(--placeHoldColor);
   font-size: 16px;
 }
 
@@ -48,8 +54,8 @@
   width: 133px;
   height: 42px;
   border-radius: 8px;
-  background-color: #3692ff;
-  border: 1px #3692ff solid;
+  background-color: var(--sky);
+  border: 1px var(--sky) solid;
   color: #ffffff;
   font-size: 16px;
 }
@@ -59,7 +65,8 @@
   border-radius: 12px;
   width: 120px;
   height: 42px;
-  color: #1f2937;
+  color: var(--fontColor);
+
   font-size: 16px;
 }
 
@@ -78,26 +85,27 @@
   ); /* 2개의 열을 각각 1fr의 비율로 생성합니다. */
 }
 
-.product {
-  width: 221px;
+.gridComponent {
+  width: 100%;
   height: 301px;
 }
 
-.product img {
+.gridComponent .productImage {
+  border-radius: 12px;
   width: 221px;
   height: 221px;
 }
 
-.product .price {
+.gridComponent .price {
   margin-top: 5px;
   color: #1f2937;
   font-size: 14px;
   font-weight: 700;
 }
 
-.product .favoriteCount {
+.gridComponent .favoriteCount {
   margin-top: 5px;
-  color: #4b5563;
+  color: var(--placeHoldColor);
   font-size: 12px;
 }
 
@@ -109,6 +117,9 @@
   .totalProduct {
     margin-top: 30px;
   }
+  .titleAndSearch {
+    width: 400px;
+  }
   .titleAndSearch .search {
     width: 242px;
   }
@@ -116,7 +127,6 @@
   .productList {
     margin-top: 30px;
     display: grid;
-    place-items: center;
     gap: 16px;
     grid-template-rows: repeat(
       2,
@@ -131,10 +141,6 @@
 
 @media (max-width: 767px) {
   .productList {
-    margin-top: 30px;
-    display: grid;
-    place-items: center;
-    gap: 16px;
     grid-template-rows: repeat(
       2,
       1fr
@@ -146,10 +152,10 @@
   }
 
   .titleAndSearch {
+    width: 300px;
     margin-top: 18px;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
     gap: 12px;
   }
 
@@ -162,10 +168,6 @@
     flex-direction: column;
     align-items: flex-end;
     justify-content: center;
-  }
-
-  .buttons .filter {
-    height: 42px;
   }
 }
 

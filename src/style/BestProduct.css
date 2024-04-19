@@ -1,3 +1,8 @@
+.bestContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 #title {
   color: #111827;
   font-weight: 700;
@@ -7,74 +12,103 @@
   display: flex;
   gap: 16px;
 }
-.product {
-  width: 362px;
+.bestProduct {
+  width: 272px;
   height: 362px;
 }
 
-.product img {
+.bestProduct img {
   border-radius: 16px;
-  width: 282px;
+  width: 272px;
   height: 282px;
 }
-.product .description {
+.bestProduct .description {
   margin-top: 5px;
   font-weight: 500;
   font-size: 14px;
   color: #1f2937;
 }
-.product .price {
+.bestProduct .price {
   margin-top: 5px;
   color: #1f2937;
   font-size: 14px;
   font-weight: 700;
 }
-.product .favorites {
+.bestProduct .favorites {
   width: 13.4px;
   height: 11.65px;
   color: #4b5563;
 }
-.product .favoriteCount {
+.bestProduct .favoriteCount {
   margin-top: 5px;
   color: #4b5563;
   font-size: 12px;
 }
 
 @media (max-width: 1199px) {
-  .container {
-    margin: 20px;
-  }
   .bestList {
-    gap: 24px;
+    gap: 10px;
     justify-content: center;
   }
 
-  .bestList .product {
+  .bestList .bestProduct {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 696px;
+    width: 300px;
     height: 460px;
   }
-  .product .image {
-    width: 336px;
-    height: 336px;
+
+  .bestProduct .image {
+    width: 300px;
+    height: 326px;
   }
-  .product .description {
-    width: 336px;
+  .bestProduct .description {
+    width: 300px;
     font-weight: 500;
     font-size: 14x;
   }
-  .product .price {
-    width: 336px;
+  .bestProduct .price {
+    width: 300px;
     margin-top: 5px;
     color: #1f2937;
     font-size: 16px;
     font-weight: 700;
   }
 
-  .product .favoriteCount {
-    width: 336px;
+  .bestProduct .favoriteCount {
+    width: 300px;
+  }
+}
+
+@media (max-width: 767px) {
+  .bestList .bestProduct {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    height: 400px;
+  }
+
+  .bestProduct .image {
+    width: 300px;
+    height: 300px;
+  }
+  .bestProduct .description {
+    width: 300px;
+    font-weight: 500;
+    font-size: 14x;
+  }
+  .bestProduct .price {
+    width: 300px;
+    margin-top: 5px;
+    color: #1f2937;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .bestProduct .favoriteCount {
+    width: 300px;
   }
 }
 

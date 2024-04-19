@@ -1,5 +1,5 @@
-.container {
-  margin: 20px 20px 0px;
+.formContainer {
+  margin: 20px 360px 0px;
 }
 .header {
   width: 100%;
@@ -10,6 +10,37 @@
 .header h2 {
   font-size: 28px;
   font-weight: 700;
-  color: #1f2937;
+  color: var(--fontColor);
+}
+.productImage p {
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--fontColor);
+}
+.imageRegister {
+  margin-top: 10px;
+  width: 282px;
+  height: 282px;
+  border-radius: 12px;
+  background-color: #f3f4f6;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.imageRegister :first-child {
+  font-size: 48px;
+  color: var(--placeHoldColor);
+}
+.imageRegister :last-child {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--placeHoldColor);
+}
+
+.productName p {
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--fontColor);
 }
 

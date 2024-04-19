@@ -10,7 +10,6 @@ const Button = ({ children, type = "", width, height, onClick }) => {
         justifyContent: "center",
         alignItems: "center",
         border: "none",
-        backgroundColor: "#FFFFFFFF",
         width: width,
         height: height,
       }}

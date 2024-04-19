@@ -1,28 +1,38 @@
 import React, { useEffect, useState } from "react";
 import "../style/Products.css";
-import BestProducts from "./BestProduct";
+import BestProducts from "./BestProducts";
 import TotalProducts from "./TotalProducts";
 import { useParams } from "react-router-dom";
 import NavigationBtn from "./NavigationBtn";
+import { getData } from "../api/api";
 
 const Products = () => {
   const params = useParams();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [bestProduct, setBestProduct] = useState([]);
   const [products, setProducts] = useState([]);
+  const [orderBy, setOrderBy] = useState("recent");
   const [isLoading, setIsLoading] = useState(false);
-  const getData = async () => {
+  const [selectValue, setSelectValue] = useState("1");
+  const getProductsData = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch(
-        "https://panda-market-api.vercel.app/products",
-        {
-          method: "GET",
-        }
-      );
-      const result = await response.json();
+      const result = await getData(params.id, 10, orderBy);
       setProducts(result.list);
     } catch (error) {
-      window.alert("불러오기 실패");
+      window.alert(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const getBestProductsData = async () => {
+    try {
+      setIsLoading(true);
+      const result = await getData(1, 10, "favorite");
+      setBestProduct(result.list);
+    } catch (error) {
+      window.alert(error.message);
     } finally {
       setIsLoading(false);
     }
@@ -31,21 +41,26 @@ const Products = () => {
   const handleResize = () => {
     setWindowWidth(window.innerWidth);
   };
-
   useEffect(() => {
-    getData();
+    getBestProductsData();
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize); // 언마운트시 이벤트 리스너 삭제[
     };
   }, []);
+
+  useEffect(() => {
+    getProductsData();
+  }, [params.id, orderBy]);
   if (!isLoading) {
     return (
       <div className="products">
-        <BestProducts bestProducts={products} windowWidth={windowWidth} />
+        <BestProducts bestProducts={bestProduct} windowWidth={windowWidth} />
         <TotalProducts
+          setOrderBy={setOrderBy}
           totalProducts={products}
-          setTotalProducts={setProducts}
+          selectValue={selectValue}
+          setSelectValue={setSelectValue}
           windowWidth={windowWidth}
         />
         <div className="page">
@@ -54,8 +69,6 @@ const Products = () => {
           </NavigationBtn>
           <NavigationBtn params={params}>{"1"}</NavigationBtn>
           <NavigationBtn params={params}>{"2"}</NavigationBtn>
-          <NavigationBtn params={params}>{"3"}</NavigationBtn>
-          <NavigationBtn params={params}>{"4"}</NavigationBtn>
           <NavigationBtn type="move" params={params}>
             {">"}
           </NavigationBtn>
