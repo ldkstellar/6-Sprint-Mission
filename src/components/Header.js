@@ -1,8 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import "../style/Header.css";
-import logo from "../img/panda.png";
-import Button from "./Button";
-import profile from "../img/profile.png";
 import { LoginContext } from "../context/LoginContext";
 import NavigationBar from "./NavigationBar";
 

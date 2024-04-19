@@ -1,31 +1,34 @@
 import React from "react";
 import "../style/BestProduct.css";
-import heart from "../img/heart.png";
+
 import BestProduct from "./BestProduct";
 
 const BestProducts = ({ bestProducts = [], windowWidth }) => {
   let goodProducts;
   if (windowWidth < 1199 && windowWidth > 767) {
-    goodProducts = bestProducts
-      .slice()
-      .sort((prev, next) => {
-        return next.favoriteCount - prev.favoriteCount;
-      })
-      .slice(0, 2);
+    goodProducts = [
+      ...bestProducts
+        .sort((prev, next) => {
+          return next.favoriteCount - prev.favoriteCount;
+        })
+        .slice(0, 2),
+    ];
   } else if (windowWidth < 767) {
-    goodProducts = bestProducts
-      .slice()
-      .sort((prev, next) => {
-        return next.favoriteCount - prev.favoriteCount;
-      })
-      .slice(0, 1);
+    goodProducts = [
+      ...bestProducts
+        .sort((prev, next) => {
+          return next.favoriteCount - prev.favoriteCount;
+        })
+        .slice(0, 1),
+    ];
   } else {
-    goodProducts = bestProducts
-      .slice()
-      .sort((prev, next) => {
-        return next.favoriteCount - prev.favoriteCount;
-      })
-      .slice(0, 4);
+    goodProducts = [
+      ...bestProducts
+        .sort((prev, next) => {
+          return next.favoriteCount - prev.favoriteCount;
+        })
+        .slice(0, 4),
+    ];
   }
   return (
     <div className="bestContainer">

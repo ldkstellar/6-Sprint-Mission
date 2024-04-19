@@ -1,22 +1,28 @@
 .formContainer {
-  margin: 20px 360px 0px;
+  margin: 20px 360px 360px;
 }
+
 .header {
-  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.header h2 {
+
+.header :first-child {
   font-size: 28px;
   font-weight: 700;
   color: var(--fontColor);
 }
-.productImage p {
+
+.productImage {
+  margin-top: 10px;
+}
+.productImage :first-child {
   font-weight: 700;
   font-size: 18px;
   color: var(--fontColor);
 }
+
 .imageRegister {
   margin-top: 10px;
   width: 282px;
@@ -28,19 +34,95 @@
   justify-content: center;
   align-items: center;
 }
+
 .imageRegister :first-child {
   font-size: 48px;
   color: var(--placeHoldColor);
 }
+
 .imageRegister :last-child {
   font-size: 16px;
   font-weight: 400;
   color: var(--placeHoldColor);
 }
 
-.productName p {
+.productName {
+  margin-top: 10px;
+}
+.productName :first-child {
   font-weight: 700;
   font-size: 18px;
   color: var(--fontColor);
+}
+.productName :last-child {
+  margin-top: 10px;
+  border: 1px solid #f3f4f6;
+  border-radius: 12px;
+  background-color: #f3f4f6;
+  width: 100%;
+  height: 56px;
+}
+
+.productName :last-child::placeholder {
+  color: var(--placeHoldColor);
+}
+.productIntroduce {
+  margin-top: 10px;
+}
+.productIntroduce :first-child {
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--fontColor);
+}
+
+.productIntroduce :first-child {
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--fontColor);
+}
+
+.productIntroduce :last-child {
+  margin-top: 10px;
+  border: 1px solid #f3f4f6;
+  border-radius: 12px;
+  background-color: #f3f4f6;
+  height: 56px;
+  width: 100%;
+  color: var(--placeHoldColor);
+}
+
+.productIntroduce :last-child::placeholder {
+  color: var(--placeHoldColor);
+}
+.productPrice {
+  margin-top: 10px;
+}
+.productPrice :first-child {
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--fontColor);
+}
+
+.productPrice :last-child {
+  margin-top: 10px;
+  border-radius: 12px;
+  border: 1px solid #f3f4f6;
+  width: 100%;
+  height: 200px;
+  background-color: #f3f4f6;
+}
+.productTag :first-child {
+  margin-top: 10px;
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--fontColor);
+}
+.productTag :last-child {
+  margin-top: 10px;
+  border-radius: 12px;
+  border: 1px solid #f3f4f6;
+  width: 100%;
+  height: 56px;
+  background-color: #f3f4f6;
 }
 

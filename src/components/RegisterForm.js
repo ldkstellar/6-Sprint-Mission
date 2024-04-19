@@ -23,6 +23,18 @@ const RegisterForm = () => {
           <p>상품명</p>
           <input placeholder="상품명을 입력해주세요"></input>
         </div>
+        <div className="productIntroduce">
+          <p>상품 소개</p>
+          <input placeholder="상품소개를 입력해주세요"></input>
+        </div>
+        <div className="productPrice">
+          <p>판매가격</p>
+          <input placeholder="판매 가격을 입력해주세요"></input>
+        </div>
+        <div className="productTag">
+          <p>태그</p>
+          <input placeholder="태그를 입력해주세요"></input>
+        </div>
       </form>
     </>
   );
