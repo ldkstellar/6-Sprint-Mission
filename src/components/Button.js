@@ -13,14 +13,13 @@ const Button = ({ children, type = "", width, height, onClick }) => {
         border: "none",
         width: width,
         height: height,
-        backgroundColor: "#FFFFFFFF",
       }}
       className={
         type === "default"
           ? ["btn", " none"].join("")
           : type === "fill"
           ? ["btn", " fill"].join("")
-          : ""
+          : "btn"
       }
     >
       {children}

@@ -1,12 +1,7 @@
-import React from "react";
-import RegisterForm from "../components/RegisterForm";
+import RegisterItem from "../components/RegisterItem";
 
 const AddItem = () => {
-  return (
-    <>
-      <RegisterForm />
-    </>
-  );
+  return <RegisterItem />;
 };
 
 export default AddItem;
