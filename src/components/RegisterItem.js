@@ -48,17 +48,15 @@ const RegisterItem = () => {
     setProductData((prev) => ({ ...prev, ["productTag"]: value }));
   };
   return (
-    <>
-      <RegisterForm
-        formData={productData}
-        isFillInput={isFillInput}
-        onChangeImage={onChangeImage}
-        onChangeProductIntroduce={onChangeProductIntroduce}
-        onChangeProductName={onChangeProductName}
-        onChangeProductPrice={onChangeProductPrice}
-        onChangeProductTag={onChangeProductTag}
-      />
-    </>
+    <RegisterForm
+      formData={productData}
+      isFillInput={isFillInput}
+      onChangeImage={onChangeImage}
+      onChangeProductIntroduce={onChangeProductIntroduce}
+      onChangeProductName={onChangeProductName}
+      onChangeProductPrice={onChangeProductPrice}
+      onChangeProductTag={onChangeProductTag}
+    />
   );
 };
 

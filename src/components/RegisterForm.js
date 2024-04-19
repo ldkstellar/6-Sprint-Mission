@@ -33,6 +33,7 @@ const RegisterForm = ({
             value={formData.image}
             onChange={onChangeImage}
           ></input>
+          {formData.image && <img src={{}}></img>}
         </div>
         <div className="productName">
           <p>상품명</p>
