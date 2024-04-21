@@ -19,6 +19,8 @@ const Button = ({ children, type = "", width, height, onClick }) => {
           ? ["btn", " none"].join("")
           : type === "fill"
           ? ["btn", " fill"].join("")
+          : type === "cancel"
+          ? ["btn", " cancel"].join("")
           : "btn"
       }
     >

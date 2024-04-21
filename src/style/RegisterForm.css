@@ -13,16 +13,34 @@
   font-weight: 700;
   color: var(--fontColor);
 }
+.submitBtn {
+  width: 88px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid var(--white);
+  color: var(--white);
+}
+.submitBtn.off {
+  background-color: var(--placeHoldColor);
+}
+.submitBtn.on {
+  cursor: pointer;
+  background-color: var(--sky);
+}
 
 .productImage {
   margin-top: 10px;
 }
-.productImage :first-child {
+
+.productImageTitle {
   font-weight: 700;
   font-size: 18px;
   color: var(--fontColor);
 }
-
+.filePreview {
+  display: flex;
+  gap: 30px;
+}
 .imageRegister {
   cursor: pointer;
   margin-top: 10px;
@@ -35,16 +53,33 @@
   justify-content: center;
   align-items: center;
 }
-
 .imageRegister :first-child {
   font-size: 48px;
   color: var(--placeHoldColor);
 }
-
 .imageRegister :last-child {
   font-size: 16px;
   font-weight: 400;
   color: var(--placeHoldColor);
+}
+.previewImageBox {
+  border: 1px solid var(--white);
+  border-radius: 12px;
+  position: relative;
+  width: 282px;
+  height: 282px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.previewImageBox .previewImage {
+  width: 282px;
+  height: 282px;
+}
+.previewImageBox :first-child {
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
 .productName {
@@ -87,7 +122,8 @@
   border: 1px solid #f3f4f6;
   border-radius: 12px;
   background-color: #f3f4f6;
-  height: 56px;
+  padding-top: 28px;
+  padding-bottom: 172px;
   width: 100%;
 }
 
@@ -108,8 +144,7 @@
   border-radius: 12px;
   border: 1px solid #f3f4f6;
   width: 100%;
-  padding-top: 28px;
-  padding-bottom: 172px;
+  height: 56px;
   background-color: #f3f4f6;
 }
 .productPrice :last-child::placeholder {
@@ -132,5 +167,37 @@
 
 .productTag :last-child::placeholder {
   color: var(--placeHoldColor);
+}
+
+.tagList {
+  display: flex;
+  gap: 10px;
+}
+
+.tagFrame {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+  height: 48px;
+  border-radius: 26px;
+  background-color: #f9fafb;
+  border: 1px solid #f9fafb;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--fontColor);
+}
+
+.tagFrame .tagCancel {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #9ca3af;
+  border: 1px solid #f9fafb;
+  color: var(--white);
+  border-radius: 26px;
 }
 

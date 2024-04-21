@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Button from "./Button";
 import "../style/RegisterForm.css";
+import Tag from "./Tag";
 const RegisterForm = ({
+  removeTagItems,
+  tagList,
+  registerTag,
+  removeImage,
+  previewImage,
+  setPreviewImage,
   formData,
   isFillInput,
   onChangeImage,
@@ -10,34 +17,61 @@ const RegisterForm = ({
   onChangeProductPrice,
   onChangeProductTag,
 }) => {
+  const fileRef = useRef();
+
+  useEffect(() => {
+    if (!formData.image) return;
+    const nextPreview = URL.createObjectURL(formData.image);
+    setPreviewImage(nextPreview);
+    return () => {
+      setPreviewImage(null);
+      URL.revokeObjectURL(nextPreview);
+    };
+  }, [formData.image]);
   return (
     <>
       <form className="formContainer">
         <div className="header">
           <h2>상품등록하기</h2>
-          {isFillInput && (
-            <Button type="fill" width={88} height={42}>
-              등록
-            </Button>
-          )}
+          <button
+            disabled={!isFillInput}
+            className={isFillInput ? "submitBtn on" : "submitBtn off"}
+          >
+            등록
+          </button>
         </div>
         <div className="productImage">
-          <p>상품 이미지</p>
-          <label htmlFor="fileInput" className="imageRegister">
-            <p>+</p>
-            <p>이미지등록</p>
-          </label>
-          <input
-            type={"file"}
-            id="fileInput"
-            value={formData.image}
-            onChange={onChangeImage}
-          ></input>
-          {formData.image && <img src={{}}></img>}
+          <p className="productImageTitle">상품 이미지</p>
+          <div className="filePreview">
+            <label htmlFor="fileInput" className="imageRegister">
+              <p>+</p>
+              <p>이미지등록</p>
+            </label>
+            <input
+              type={"file"}
+              id="fileInput"
+              ref={fileRef}
+              onChange={onChangeImage}
+            ></input>
+            {previewImage && (
+              <div className="previewImageBox">
+                <Button
+                  width={20}
+                  height={20}
+                  type="cancel"
+                  onClick={removeImage}
+                >
+                  X
+                </Button>
+                <img className="previewImage" src={previewImage} />
+              </div>
+            )}
+          </div>
         </div>
         <div className="productName">
           <p>상품명</p>
           <input
+            type={"text"}
             placeholder="상품명을 입력해주세요"
             value={formData.productName}
             onChange={onChangeProductName}
@@ -46,6 +80,7 @@ const RegisterForm = ({
         <div className="productIntroduce">
           <p>상품 소개</p>
           <input
+            type={"text"}
             placeholder="상품소개를 입력해주세요"
             onChange={onChangeProductIntroduce}
             value={formData.productIntroduce}
@@ -54,6 +89,7 @@ const RegisterForm = ({
         <div className="productPrice">
           <p>판매가격</p>
           <input
+            type="number"
             placeholder="판매 가격을 입력해주세요"
             value={formData.productPrice}
             onChange={onChangeProductPrice}
@@ -65,7 +101,18 @@ const RegisterForm = ({
             placeholder="태그를 입력해주세요"
             value={formData.productTag}
             onChange={onChangeProductTag}
+            onKeyUp={registerTag}
           ></input>
+        </div>
+        <div className="tagList">
+          {tagList.map((element) => (
+            <Tag
+              key={element.tagId}
+              name={element.name}
+              tagId={element.tagId}
+              onclick={removeTagItems}
+            />
+          ))}
         </div>
       </form>
     </>
