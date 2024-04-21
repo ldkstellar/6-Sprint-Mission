@@ -1,3 +1,4 @@
+
 import RegisterItem from "../components/RegisterItem";
 
 const AddItem = () => {
@@ -5,4 +6,5 @@ const AddItem = () => {
 };
 
 export default AddItem;
+
 

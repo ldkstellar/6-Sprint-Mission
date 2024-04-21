@@ -1,4 +1,5 @@
 import React from "react";
+
 import heart from "../img/heart.png";
 const BestProduct = ({ element }) => {
   return (
@@ -9,6 +10,7 @@ const BestProduct = ({ element }) => {
       <p className="favoriteCount">
         <img className="favorites" src={heart} /> {element.favoriteCount}
       </p>
+
     </div>
   );
 };

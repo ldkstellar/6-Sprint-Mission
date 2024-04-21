@@ -1,8 +1,10 @@
+
 .bestContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 #title {
   color: #111827;
   font-weight: 700;
@@ -12,6 +14,7 @@
   display: flex;
   gap: 16px;
 }
+
 .bestProduct {
   width: 272px;
   height: 362px;
@@ -35,17 +38,21 @@
   font-weight: 700;
 }
 .bestProduct .favorites {
+
   width: 13.4px;
   height: 11.65px;
   color: #4b5563;
 }
+
 .bestProduct .favoriteCount {
+
   margin-top: 5px;
   color: #4b5563;
   font-size: 12px;
 }
 
 @media (max-width: 1199px) {
+
   .bestList {
     gap: 10px;
     justify-content: center;
@@ -70,11 +77,13 @@
   }
   .bestProduct .price {
     width: 300px;
+
     margin-top: 5px;
     color: #1f2937;
     font-size: 16px;
     font-weight: 700;
   }
+
 
   .bestProduct .favoriteCount {
     width: 300px;
@@ -109,6 +118,7 @@
 
   .bestProduct .favoriteCount {
     width: 300px;
+
   }
 }
 

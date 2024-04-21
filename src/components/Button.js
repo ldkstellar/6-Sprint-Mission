@@ -1,4 +1,5 @@
 import React from "react";
+
 import "../style/Button.css";
 
 const Button = ({ children, type = "", width, height, onClick }) => {
@@ -23,6 +24,7 @@ const Button = ({ children, type = "", width, height, onClick }) => {
           ? ["btn", " cancel"].join("")
           : "btn"
       }
+
     >
       {children}
     </button>

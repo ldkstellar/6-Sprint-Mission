@@ -1,3 +1,4 @@
+
 import React from "react";
 import heart from "../img/heart.png";
 const TotalProduct = ({ element }) => {
@@ -10,6 +11,7 @@ const TotalProduct = ({ element }) => {
         {" "}
         <img className="favorites" src={heart} /> {element.favoriteCount}
       </p>
+
     </div>
   );
 };

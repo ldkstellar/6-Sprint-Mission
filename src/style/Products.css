@@ -1,10 +1,14 @@
+
 .products {
   margin: 20px auto;
 }
 
 .products .page {
+
   width: 100%;
   display: flex;
   justify-content: center;
 }
+
+
 

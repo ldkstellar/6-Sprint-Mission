@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import "../style/Products.css";
 import BestProducts from "./BestProducts";
 import TotalProducts from "./TotalProducts";
@@ -38,16 +39,20 @@ const Products = () => {
     }
   };
 
+
   const handleResize = () => {
     setWindowWidth(window.innerWidth);
   };
+
   useEffect(() => {
     getBestProductsData();
     window.addEventListener("resize", handleResize);
+
     return () => {
       window.removeEventListener("resize", handleResize); // 언마운트시 이벤트 리스너 삭제[
     };
   }, []);
+
 
   useEffect(() => {
     getProductsData();
@@ -77,6 +82,7 @@ const Products = () => {
     );
   }
   return <div>로딩중</div>;
+
 };
 
 export default Products;
