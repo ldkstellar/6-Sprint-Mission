@@ -26,7 +26,7 @@ const RegisterItem = () => {
       return setIsFillInput(true);
     }
     setIsFillInput(false);
-  }, [productData]);
+  }, [productData, tagList]);
 
   const onChangeImage = (e) => {
     const value = e.target.files[0];

@@ -18,7 +18,11 @@ const RegisterForm = ({
   onChangeProductTag,
 }) => {
   const fileRef = useRef();
-
+  const handleKeydown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+    }
+  };
   useEffect(() => {
     if (!formData.image) return;
     const nextPreview = URL.createObjectURL(formData.image);
@@ -30,11 +34,12 @@ const RegisterForm = ({
   }, [formData.image]);
   return (
     <>
-      <form className="formContainer">
+      <form className="formContainer" onKeyDown={handleKeydown}>
         <div className="header">
           <h2>상품등록하기</h2>
           <button
             disabled={!isFillInput}
+            onClick={() => console.log("등록완료")}
             className={isFillInput ? "submitBtn on" : "submitBtn off"}
           >
             등록
