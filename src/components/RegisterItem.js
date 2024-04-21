@@ -27,11 +27,7 @@ const RegisterItem = () => {
     }
     setIsFillInput(false);
   }, [productData]);
-  const removeTagItems = (id) => {
-    const remainList = tagList.filter((element) => element.tagId !== id);
-    console.log(remainList);
-    setTagList(remainList);
-  };
+
   const onChangeImage = (e) => {
     const value = e.target.files[0];
     setProductData((prev) => ({ ...prev, ["image"]: value }));
@@ -75,6 +71,11 @@ const RegisterItem = () => {
   const removeImage = () => {
     setProductData((prev) => ({ ...prev, ["image"]: null }));
     setPreviewImage(InitialValue.image);
+  };
+
+  const removeTagItems = (id) => {
+    const remainList = tagList.filter((element) => element.tagId !== id);
+    setTagList(remainList);
   };
 
   return (
