@@ -1,3 +1,4 @@
+import { useSearchParams } from "react-router-dom";
 export const getData = async (page, pageSize, orderBy = "recent") => {
   const query = `?page=${page}&pageSize=${pageSize}&orderBy=${orderBy}`;
   const response = await fetch(

@@ -8,6 +8,7 @@ import Item from "./pages/Item";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Main from "./pages/Main";
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -21,5 +22,4 @@ const router = createBrowserRouter([
 ]);
 
 root.render(<RouterProvider router={router} />);
-
 
