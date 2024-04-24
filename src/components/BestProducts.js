@@ -4,31 +4,14 @@ import "../style/BestProduct.css";
 import BestProduct from "./BestProduct";
 
 const BestProducts = ({ bestProducts = [], windowWidth }) => {
-  let goodProducts;
+  let goodProducts = [];
+
   if (windowWidth < 1199 && windowWidth > 767) {
-    goodProducts = [
-      ...bestProducts
-        .sort((prev, next) => {
-          return next.favoriteCount - prev.favoriteCount;
-        })
-        .slice(0, 2),
-    ];
+    goodProducts = [...bestProducts.slice(0, 2)];
   } else if (windowWidth < 767) {
-    goodProducts = [
-      ...bestProducts
-        .sort((prev, next) => {
-          return next.favoriteCount - prev.favoriteCount;
-        })
-        .slice(0, 1),
-    ];
+    goodProducts = [...bestProducts.slice(0, 1)];
   } else {
-    goodProducts = [
-      ...bestProducts
-        .sort((prev, next) => {
-          return next.favoriteCount - prev.favoriteCount;
-        })
-        .slice(0, 4),
-    ];
+    goodProducts = [...bestProducts.slice(0, 4)];
   }
   return (
     <div className="bestContainer">

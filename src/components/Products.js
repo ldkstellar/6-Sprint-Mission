@@ -31,7 +31,7 @@ const Products = () => {
   const getBestProductsData = async () => {
     try {
       setIsLoading(true);
-      const query = `?pages=${params}&pagesize=${10}&orderby=${orderBy}`;
+      const query = `?pages=${params}&pagesize=${10}&orderby=favorite}`;
       const result = await getProducts(query);
       setBestProduct(result.list);
     } catch (error) {
