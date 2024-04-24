@@ -104,6 +104,7 @@ const RegisterForm = ({}) => {
             등록
           </button>
         </div>
+
         <div className="productImage">
           <p className="productImageTitle">상품 이미지</p>
           <div className="filePreview">
@@ -127,6 +128,7 @@ const RegisterForm = ({}) => {
             )}
           </div>
         </div>
+
         <div className="productName">
           <p>상품명</p>
           <input
@@ -134,8 +136,9 @@ const RegisterForm = ({}) => {
             placeholder="상품명을 입력해주세요"
             value={productData.productName}
             onChange={onChangeProductName}
-          ></input>
+          />
         </div>
+
         <div className="productIntroduce">
           <p>상품 소개</p>
           <input
@@ -143,8 +146,9 @@ const RegisterForm = ({}) => {
             placeholder="상품소개를 입력해주세요"
             onChange={onChangeProductIntroduce}
             value={productData.productIntroduce}
-          ></input>
+          />
         </div>
+
         <div className="productPrice">
           <p>판매가격</p>
           <input
@@ -152,8 +156,9 @@ const RegisterForm = ({}) => {
             placeholder="판매 가격을 입력해주세요"
             value={productData.productPrice}
             onChange={onChangeProductPrice}
-          ></input>
+          />
         </div>
+
         <div className="productTag">
           <p>태그</p>
           <input
@@ -161,8 +166,9 @@ const RegisterForm = ({}) => {
             value={productData.productTag}
             onChange={onChangeProductTag}
             onKeyUp={registerTag}
-          ></input>
+          />
         </div>
+
         <div className="tagList">
           {tagList.map((element) => (
             <Tag
