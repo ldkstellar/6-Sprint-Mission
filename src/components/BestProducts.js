@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../style/BestProduct.css";
-
 import BestProduct from "./BestProduct";
-
-const BestProducts = ({ bestProducts = [], windowWidth }) => {
+import { getProducts } from "../api/api";
+const BestProducts = ({ windowWidth }) => {
+  const [bestProducts, setBestProduct] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const getBestProductsData = async () => {
+    try {
+      setIsLoading(true);
+      const query = `?orderBy=favorite`;
+      const result = await getProducts(query);
+      setBestProduct(result);
+    } catch (error) {
+      window.alert(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  useEffect(() => {
+    getBestProductsData();
+  }, []);
   let goodProducts = [];
 
   if (windowWidth < 1199 && windowWidth > 767) {
@@ -12,6 +28,9 @@ const BestProducts = ({ bestProducts = [], windowWidth }) => {
     goodProducts = [...bestProducts.slice(0, 1)];
   } else {
     goodProducts = [...bestProducts.slice(0, 4)];
+  }
+  if (isLoading) {
+    return <div>로딩중</div>;
   }
   return (
     <div className="bestContainer">
