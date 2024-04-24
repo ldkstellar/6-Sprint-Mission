@@ -5,7 +5,7 @@ import BestProducts from "./BestProducts";
 import TotalProducts from "./TotalProducts";
 import { useParams } from "react-router-dom";
 import NavigationBtn from "./NavigationBtn";
-import { getData } from "../api/api";
+import { getProducts } from "../api/api";
 
 const Products = () => {
   const params = useParams();
@@ -15,10 +15,11 @@ const Products = () => {
   const [orderBy, setOrderBy] = useState("recent");
   const [isLoading, setIsLoading] = useState(false);
   const [selectValue, setSelectValue] = useState("1");
+
   const getProductsData = async () => {
     try {
       setIsLoading(true);
-      const result = await getData(params.id, 10, orderBy);
+      const result = await getProducts();
       setProducts(result.list);
     } catch (error) {
       window.alert(error.message);
@@ -30,7 +31,8 @@ const Products = () => {
   const getBestProductsData = async () => {
     try {
       setIsLoading(true);
-      const result = await getData(1, 10, "favorite");
+      const query = `?pages=${params}&pagesize=${10}&orderby=${orderBy}`;
+      const result = await getProducts(query);
       setBestProduct(result.list);
     } catch (error) {
       window.alert(error.message);
@@ -38,7 +40,6 @@ const Products = () => {
       setIsLoading(false);
     }
   };
-
 
   const handleResize = () => {
     setWindowWidth(window.innerWidth);
@@ -52,7 +53,6 @@ const Products = () => {
       window.removeEventListener("resize", handleResize); // 언마운트시 이벤트 리스너 삭제[
     };
   }, []);
-
 
   useEffect(() => {
     getProductsData();
@@ -82,7 +82,6 @@ const Products = () => {
     );
   }
   return <div>로딩중</div>;
-
 };
 
 export default Products;

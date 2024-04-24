@@ -36,7 +36,7 @@ const BestProducts = ({ bestProducts = [], windowWidth }) => {
 
       <div className="bestList">
         {goodProducts.map((element) => {
-          return <BestProduct element={element} />;
+          return <BestProduct key={element.id} element={element} />;
         })}
       </div>
     </div>
