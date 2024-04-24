@@ -1,46 +1,105 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Button from "./Button";
 import "../style/RegisterForm.css";
 import Tag from "./Tag";
-const RegisterForm = ({
-  removeTagItems,
-  tagList,
-  registerTag,
-  removeImage,
-  previewImage,
-  setPreviewImage,
-  formData,
-  isFillInput,
-  onChangeImage,
-  onChangeProductIntroduce,
-  onChangeProductName,
-  onChangeProductPrice,
-  onChangeProductTag,
-}) => {
-  const fileRef = useRef();
-  const handleKeydown = (e) => {
+const RegisterForm = ({}) => {
+  const InitialValue = {
+    image: null,
+    productName: "",
+    productIntroduce: "",
+    productPrice: 0,
+    productTag: "",
+  };
+  const [productData, setProductData] = useState(InitialValue);
+  const [isFormFilled, setIsFillInput] = useState(false);
+  const [previewImage, setPreviewImage] = useState(null);
+  const [tagList, setTagList] = useState([]);
+  const tagId = useRef(0);
+
+  useEffect(() => {
+    if (
+      productData.productIntroduce &&
+      productData.productName &&
+      productData.productPrice &&
+      tagList
+    ) {
+      return setIsFillInput(true);
+    }
+    setIsFillInput(false);
+  }, [productData, tagList]);
+
+  const onChangeImage = (e) => {
+    const value = e.target.files[0];
+    setProductData((prev) => ({ ...prev, ["image"]: value }));
+    setPreviewImage(value);
+  };
+  const onChangeProductName = (e) => {
+    const value = e.target.value;
+    setProductData((prev) => ({ ...prev, ["productName"]: value }));
+  };
+  const onChangeProductIntroduce = (e) => {
+    const value = e.target.value;
+    setProductData((prev) => ({ ...prev, ["productIntroduce"]: value }));
+  };
+  const onChangeProductPrice = (e) => {
+    const value = e.target.value;
+    setProductData((prev) => ({ ...prev, ["productPrice"]: value }));
+  };
+  const onChangeProductTag = (e) => {
+    const value = e.target.value;
+    setProductData((prev) => ({ ...prev, ["productTag"]: value }));
+  };
+
+  const registerTag = (e) => {
+    if (e.key === "Enter" && productData.productTag !== "") {
+      e.preventDefault();
+      setTagList((prev) => [
+        ...prev,
+        { name: productData.productTag, tagId: tagId.current },
+      ]);
+      tagId.current += 1;
+      setProductData((prev) => ({
+        ...prev,
+        ["productTag"]: InitialValue.productTag,
+      }));
+    }
+  };
+
+  const removeImage = () => {
+    setProductData((prev) => ({ ...prev, ["image"]: null }));
+    setPreviewImage(InitialValue.image);
+  };
+
+  const removeTagItems = (id) => {
+    const remainList = tagList.filter((element) => element.tagId !== id);
+    setTagList(remainList);
+  };
+
+  const handleSubmit = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
     }
   };
+
   useEffect(() => {
-    if (!formData.image) return;
-    const nextPreview = URL.createObjectURL(formData.image);
+    if (!productData.image) return;
+    const nextPreview = URL.createObjectURL(productData.image);
     setPreviewImage(nextPreview);
     return () => {
       setPreviewImage(null);
       URL.revokeObjectURL(nextPreview);
     };
-  }, [formData.image]);
+  }, [productData.image]);
+
   return (
     <>
-      <form className="formContainer" onKeyDown={handleKeydown}>
+      <form className="formContainer" onSubmit={handleSubmit}>
         <div className="header">
           <h2>상품등록하기</h2>
           <button
-            disabled={!isFillInput}
-            onClick={() => console.log("등록완료")}
-            className={isFillInput ? "submitBtn on" : "submitBtn off"}
+            disabled={!isFormFilled}
+            type="submit"
+            className={`submitBtn ${isFormFilled ? "on" : "off"}`}
           >
             등록
           </button>
@@ -52,12 +111,7 @@ const RegisterForm = ({
               <p>+</p>
               <p>이미지등록</p>
             </label>
-            <input
-              type={"file"}
-              id="fileInput"
-              ref={fileRef}
-              onChange={onChangeImage}
-            ></input>
+            <input type="file" id="fileInput" onChange={onChangeImage}></input>
             {previewImage && (
               <div className="previewImageBox">
                 <Button
@@ -76,19 +130,19 @@ const RegisterForm = ({
         <div className="productName">
           <p>상품명</p>
           <input
-            type={"text"}
+            type="text"
             placeholder="상품명을 입력해주세요"
-            value={formData.productName}
+            value={productData.productName}
             onChange={onChangeProductName}
           ></input>
         </div>
         <div className="productIntroduce">
           <p>상품 소개</p>
           <input
-            type={"text"}
+            type="text"
             placeholder="상품소개를 입력해주세요"
             onChange={onChangeProductIntroduce}
-            value={formData.productIntroduce}
+            value={productData.productIntroduce}
           ></input>
         </div>
         <div className="productPrice">
@@ -96,7 +150,7 @@ const RegisterForm = ({
           <input
             type="number"
             placeholder="판매 가격을 입력해주세요"
-            value={formData.productPrice}
+            value={productData.productPrice}
             onChange={onChangeProductPrice}
           ></input>
         </div>
@@ -104,7 +158,7 @@ const RegisterForm = ({
           <p>태그</p>
           <input
             placeholder="태그를 입력해주세요"
-            value={formData.productTag}
+            value={productData.productTag}
             onChange={onChangeProductTag}
             onKeyUp={registerTag}
           ></input>

@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useRef, useEffect } from "react";
 import RegisterForm from "../components/RegisterForm";
+
 const InitialValue = {
   image: null,
   productName: "",
@@ -25,6 +26,7 @@ const RegisterItem = () => {
     ) {
       return setIsFillInput(true);
     }
+
     setIsFillInput(false);
   }, [productData, tagList]);
 
