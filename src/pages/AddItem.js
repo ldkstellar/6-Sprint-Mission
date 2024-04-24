@@ -1,10 +1,7 @@
-
-import RegisterItem from "../components/RegisterItem";
-
+import RegisterForm from "../components/RegisterForm";
 const AddItem = () => {
-  return <RegisterItem />;
+  return <RegisterForm />;
 };
 
 export default AddItem;
-
 

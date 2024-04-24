@@ -2,15 +2,16 @@ import React, { useEffect, useState, useRef } from "react";
 import Button from "./Button";
 import "../style/RegisterForm.css";
 import Tag from "./Tag";
-const RegisterForm = ({}) => {
-  const InitialValue = {
+import { Form } from "react-router-dom";
+const RegisterForm = () => {
+  const INITIAL_VALUE = {
     image: null,
     productName: "",
     productIntroduce: "",
     productPrice: 0,
     productTag: "",
   };
-  const [productData, setProductData] = useState(InitialValue);
+  const [productData, setProductData] = useState(INITIAL_VALUE);
   const [isFormFilled, setIsFillInput] = useState(false);
   const [previewImage, setPreviewImage] = useState(null);
   const [tagList, setTagList] = useState([]);
@@ -60,25 +61,33 @@ const RegisterForm = ({}) => {
       tagId.current += 1;
       setProductData((prev) => ({
         ...prev,
-        ["productTag"]: InitialValue.productTag,
+        ["productTag"]: INITIAL_VALUE.productTag,
       }));
     }
   };
 
   const removeImage = () => {
     setProductData((prev) => ({ ...prev, ["image"]: null }));
-    setPreviewImage(InitialValue.image);
+    setPreviewImage(INITIAL_VALUE.image);
   };
 
   const removeTagItems = (id) => {
     const remainList = tagList.filter((element) => element.tagId !== id);
     setTagList(remainList);
   };
-
-  const handleSubmit = (e) => {
+  const handleKey = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
     }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = new FormData();
+    for (const key in productData) {
+      data.append(key, productData[key]);
+    }
+    console.log(data);
   };
 
   useEffect(() => {
@@ -93,7 +102,11 @@ const RegisterForm = ({}) => {
 
   return (
     <>
-      <form className="formContainer" onSubmit={handleSubmit}>
+      <form
+        className="formContainer"
+        onSubmit={handleSubmit}
+        onKeyDown={handleKey}
+      >
         <div className="header">
           <h2>상품등록하기</h2>
           <button
