@@ -20,7 +20,8 @@ const BestProducts = ({ windowWidth }) => {
   useEffect(() => {
     getBestProductsData();
   }, []);
-  let goodProducts = [];
+
+  const goodProducts = [];
 
   if (windowWidth < 1199 && windowWidth > 767) {
     goodProducts = [...bestProducts.slice(0, 2)];
@@ -29,6 +30,7 @@ const BestProducts = ({ windowWidth }) => {
   } else {
     goodProducts = [...bestProducts.slice(0, 4)];
   }
+
   if (isLoading) {
     return <div>로딩중</div>;
   }

@@ -1,6 +1,6 @@
 import React from "react";
 
-import heart from "../img/heart.png";
+import heart from "../img/smallHeart.png";
 const BestProduct = ({ element }) => {
   return (
     <div className="bestProduct">

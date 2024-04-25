@@ -1,6 +1,5 @@
-
 import React from "react";
-import heart from "../img/heart.png";
+import heart from "../img/smallHeart.png";
 const TotalProduct = ({ element }) => {
   return (
     <div className="gridComponent" key={element.id}>
@@ -11,7 +10,6 @@ const TotalProduct = ({ element }) => {
         {" "}
         <img className="favorites" src={heart} /> {element.favoriteCount}
       </p>
-
     </div>
   );
 };

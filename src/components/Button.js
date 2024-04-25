@@ -1,5 +1,4 @@
 import React from "react";
-
 import "../style/Button.css";
 
 const Button = ({ children, type = "", width, height, onClick }) => {
