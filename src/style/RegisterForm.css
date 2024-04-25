@@ -1,5 +1,5 @@
 .formContainer {
-  margin: 20px 360px 360px;
+  margin: 20px 360px 100px;
 }
 
 .header {
@@ -7,7 +7,6 @@
   justify-content: space-between;
   align-items: center;
 }
-
 .header :first-child {
   font-size: 28px;
   font-weight: 700;
@@ -200,5 +199,23 @@
   border: 1px solid #f9fafb;
   color: var(--white);
   border-radius: 26px;
+}
+
+@media (max-width: 1199px) {
+  .formContainer {
+    margin: 20px 20px 100px;
+  }
+  .imageRegister {
+    width: 162px;
+    height: 162px;
+  }
+  .previewImageBox {
+    width: 162px;
+    height: 162px;
+  }
+  .previewImageBox .previewImage {
+    width: 162px;
+    height: 162px;
+  }
 }
 

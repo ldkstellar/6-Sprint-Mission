@@ -12,6 +12,7 @@ const Products = () => {
     pageSize: 10,
     orderBy: "recent",
   });
+
   const handleResize = () => {
     setWindowWidth(window.innerWidth);
   };
