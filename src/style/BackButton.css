@@ -1,0 +1,25 @@
+.backBtnContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.backBtnContainer-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-top: 50px;
+  width: 240px;
+  height: 48px;
+  border-radius: 40px;
+  background-color: var(--sky);
+  border: 1px solid var(--white);
+  color: var(--white);
+}
+
+.backBtnContainer-image {
+  margin-left: 10px;
+  width: 24px;
+  height: 24px;
+}
+

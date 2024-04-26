@@ -1,0 +1,39 @@
+.commentContainer {
+  height: 110px;
+  margin-top: 30px;
+  border-bottom: 1px solid #e5e7eb;
+}
+.commentContainer-comment {
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--fontColor);
+}
+.commentContainer-profile {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+}
+.commentContainer-profile :first-child {
+  width: 40px;
+  height: 40px;
+}
+
+.commentContainer-info {
+  width: 61px;
+  height: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.commentContainer-info :first-child {
+  color: #4b5563;
+  font-weight: 400;
+  font-size: 14px;
+}
+.commentContainer-info :last-child {
+  color: #9ca3af;
+  font-weight: 400;
+  font-size: 12px;
+}
+

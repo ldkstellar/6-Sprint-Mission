@@ -40,7 +40,6 @@ export const getComments = async (searchParams = "") => {
     console.error(response.text());
   }
   const result = await response.json();
-  console.log(result);
-  return;
+  return result.list;
 };
 

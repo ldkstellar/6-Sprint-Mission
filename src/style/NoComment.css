@@ -1,0 +1,18 @@
+.noComment {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.noComment-image {
+  width: 200px;
+  height: 200px;
+}
+
+.noComment-p {
+  color: var(--placeHoldColor);
+  font-weight: 400;
+  font-size: 16px;
+}
+

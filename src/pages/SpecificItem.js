@@ -11,7 +11,6 @@ const SpecificItem = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams({
     limit: 5,
-    nextCursor: null,
   });
 
   const getSpecificProduct = async () => {
@@ -36,7 +35,7 @@ const SpecificItem = () => {
   }
   return (
     <div className="itemContainer">
-      <ItemIntroduce specificItem={specificItem} />
+      <ItemIntroduce specificItem={specificItem} inquiryList={inquiryList} />
     </div>
   );
 };

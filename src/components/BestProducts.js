@@ -21,7 +21,7 @@ const BestProducts = ({ windowWidth }) => {
     getBestProductsData();
   }, []);
 
-  const goodProducts = [];
+  let goodProducts = [];
 
   if (windowWidth < 1199 && windowWidth > 767) {
     goodProducts = [...bestProducts.slice(0, 2)];

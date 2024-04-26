@@ -1,5 +1,4 @@
 import React from "react";
-import dummy from "../img/dummy.png";
 import moreImg from "../img/moreBtn.png";
 import mediumHeart from "../img/mediumHeart.png";
 const IntroduceContainer = ({ specificItem }) => {
