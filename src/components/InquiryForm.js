@@ -19,7 +19,11 @@ const InquiryForm = () => {
         value={inquiry}
         onChange={textChangeHandler}
       ></input>
-      <button type="submit" className="inquiryForm--btn">
+      <button
+        type="submit"
+        disabled={!inquiry}
+        className={`inquiryForm__btn ${inquiry ? "inquiryForm__btn--on" : ""}`}
+      >
         등록
       </button>
     </form>
