@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { getComments } from "../api/api";
+import React from "react";
 import NoInquire from "./NoInquire";
 import Comments from "./Comments";
 import "../style/BackButton.css";
@@ -8,6 +7,9 @@ import { useNavigate } from "react-router-dom";
 const InquiryContainer = ({ inquiryList }) => {
   const now = new Date();
   const navigation = useNavigate();
+  const backButtonHandler = () => {
+    navigation("/items");
+  };
   if (inquiryList.length === 0) {
     return <NoInquire />;
   }
@@ -21,7 +23,7 @@ const InquiryContainer = ({ inquiryList }) => {
         ))
       )}
       <div className="backBtnContainer">
-        <button className="backBtnContainer-btn">
+        <button className="backBtnContainer-btn" onClick={backButtonHandler}>
           목록으로 돌아가기
           <img
             className="backBtnContainer-image"
