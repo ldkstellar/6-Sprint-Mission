@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "../style/TotalProduct.css";
 import TotalProduct from "./TotalProduct";
 import { getProducts } from "../api/api";

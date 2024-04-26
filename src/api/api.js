@@ -40,7 +40,7 @@ export const getComments = async (searchParams = "") => {
     console.error(response.text());
   }
   const result = await response.json();
-
-  return result?.list;
+  console.log(result);
+  return;
 };
 

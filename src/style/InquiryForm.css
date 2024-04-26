@@ -1,0 +1,35 @@
+.inquiryForm {
+  margin-top: 30px;
+  height: 197px;
+  display: flex;
+  flex-direction: column;
+}
+.inquiryForm-input {
+  margin-top: 30px;
+  border-radius: 12px;
+  border: 1px solid var(--white);
+  background-color: #f3f4f6;
+  padding-top: 10px;
+  padding-bottom: 94px;
+}
+.inquiryForm-input ::placeholder {
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--placeHoldColor);
+}
+
+.inquiryForm--btn {
+  align-self: end;
+  cursor: pointer;
+  box-sizing: border-box;
+  width: 74px;
+  padding: 11.25px 0px;
+  margin-top: 30px;
+  border: 1px solid var(--placeHoldColor);
+  border-radius: 8px;
+  background-color: var(--placeHoldColor);
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 600;
+}
+
