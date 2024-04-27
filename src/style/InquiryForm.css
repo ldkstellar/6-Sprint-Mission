@@ -4,15 +4,17 @@
   display: flex;
   flex-direction: column;
 }
-.inquiryForm-input {
+.inquiryForm__input {
   margin-top: 30px;
   border-radius: 12px;
   border: 1px solid var(--white);
   background-color: #f3f4f6;
   padding-top: 10px;
   padding-bottom: 94px;
+  overflow: hidden;
+  resize: none;
 }
-.inquiryForm-input ::placeholder {
+.inquiryForm__input ::placeholder {
   font-weight: 400;
   font-size: 14px;
   color: var(--placeHoldColor);
@@ -35,5 +37,17 @@
 
 .inquiryForm__btn--on {
   background-color: var(--sky);
+}
+
+@media (max-width: 1199px) {
+  .inquiryForm > * {
+    margin: auto 20px;
+  }
+  .inquiryForm__btn {
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 767px) {
 }
 

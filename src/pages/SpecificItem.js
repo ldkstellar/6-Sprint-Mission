@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import ItemIntroduce from "../components/ItemIntroduce";
-import "../style/item.css";
-import { getComments, getProduct } from "../api/api";
-import { useParams, useSearchParams } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import ItemIntroduce from '../components/ItemIntroduce';
+import '../style/item.css';
+import { getComments, getProduct } from '../api/api';
+import { useParams, useSearchParams } from 'react-router-dom';
 
 const SpecificItem = () => {
   const { id } = useParams();
@@ -27,15 +27,20 @@ const SpecificItem = () => {
       setIsLoading(false);
     }
   };
+
   useEffect(() => {
     getSpecificProduct();
   }, [id]);
+
   if (!specificItem) {
     return <div>상품이 없습니다</div>;
   }
+
   return (
-    <div className="itemContainer">
-      <ItemIntroduce specificItem={specificItem} inquiryList={inquiryList} />
+    <div className='itemContainer'>
+      {isLoading || (
+        <ItemIntroduce specificItem={specificItem} inquiryList={inquiryList} />
+      )}
     </div>
   );
 };

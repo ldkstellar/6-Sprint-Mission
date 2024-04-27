@@ -2,7 +2,6 @@ import React from 'react';
 import moreImg from '../img/moreBtn.png';
 import mediumHeart from '../img/mediumHeart.png';
 const IntroduceContainer = ({ specificItem }) => {
-  const a = 'dada';
   return (
     <div className='productContainer'>
       <img id='itemImage' src={specificItem?.images} alt='물품상세이미지' />
