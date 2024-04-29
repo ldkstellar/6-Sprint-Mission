@@ -1,14 +1,14 @@
-import "./style/App.css";
+import './style/App.css';
 
-import { Outlet } from "react-router-dom";
-import Header from "./components/Header";
-import { useState } from "react";
-import { LoginContext } from "./context/LoginContext";
+import { Outlet } from 'react-router-dom';
+import Header from './components/Header';
+import { useState } from 'react';
+import { LoginContext } from './context/LoginContext';
 
 function App({ token }) {
   return (
     <LoginContext.Provider value={token}>
-      <div className="App">
+      <div className='App'>
         <Header />
         <Outlet />
       </div>

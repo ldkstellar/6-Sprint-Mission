@@ -8,7 +8,12 @@
   color: #6b7280;
 }
 .clicked {
+<<<<<<< HEAD
   background-color: var(--sky);
   color: var(--white);
+=======
+  background-color: #2f80ed;
+  color: #ffffffff;
+>>>>>>> React-이동규
 }
 

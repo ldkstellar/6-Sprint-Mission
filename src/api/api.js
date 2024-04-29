@@ -1,10 +1,10 @@
 const URL = `https://panda-market-api.vercel.app/products/`;
-export const getProducts = async (searchParams = "") => {
+export const getProducts = async (searchParams = '') => {
   const response = await fetch(`${URL}${searchParams}`, {
-    method: "GET",
+    method: 'GET',
   });
   if (!response.ok) {
-    if (response.status === "") {
+    if (response.status === '') {
       return console.error(response.status);
     }
     console.error(response.text());
@@ -14,12 +14,12 @@ export const getProducts = async (searchParams = "") => {
   return result.list;
 };
 
-export const getProduct = async (searchParams = "") => {
+export const getProduct = async (searchParams = '') => {
   const response = await fetch(`${URL}${searchParams}`, {
-    method: "GET",
+    method: 'GET',
   });
   if (!response.ok) {
-    if (response.statusText === "") {
+    if (response.statusText === '') {
       return console.error(response.status);
     }
     console.error(response.text());
@@ -29,12 +29,12 @@ export const getProduct = async (searchParams = "") => {
   return result;
 };
 
-export const getComments = async (searchParams = "") => {
+export const getComments = async (searchParams = '') => {
   const response = await fetch(`${URL}${searchParams}`, {
-    method: "GET",
+    method: 'GET',
   });
   if (!response.ok) {
-    if (response.statusText === "") {
+    if (response.statusText === '') {
       return console.error(response.status);
     }
     console.error(response.text());

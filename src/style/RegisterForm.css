@@ -1,5 +1,9 @@
 .formContainer {
+<<<<<<< HEAD
   margin: 20px 360px 100px;
+=======
+  margin: 20px 360px 360px;
+>>>>>>> React-이동규
 }
 
 .header {
@@ -7,6 +11,10 @@
   justify-content: space-between;
   align-items: center;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> React-이동규
 .header :first-child {
   font-size: 28px;
   font-weight: 700;
@@ -201,6 +209,7 @@
   border-radius: 26px;
 }
 
+<<<<<<< HEAD
 @media (max-width: 1199px) {
   .formContainer {
     margin: 20px 20px 100px;
@@ -219,3 +228,5 @@
   }
 }
 
+=======
+>>>>>>> React-이동규
