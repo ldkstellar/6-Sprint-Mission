@@ -22,6 +22,7 @@ const Products = () => {
 
   useEffect(() => {
     window.addEventListener('resize', handleResize);
+
     return () => {
       window.removeEventListener('resize', handleResize); // 언마운트시 이벤트 리스너 삭제[
     };
@@ -30,7 +31,11 @@ const Products = () => {
   return (
     <div className='products'>
       <BestProducts windowWidth={windowWidth} />
-      <TotalProducts searchParams={searchParams} windowWidth={windowWidth} />
+      <TotalProducts
+        searchParams={searchParams}
+        windowWidth={windowWidth}
+        setSearchParams={setSearchParams}
+      />
       <div className='page'>
         <PageNationBtn
           searchParams={searchParams}

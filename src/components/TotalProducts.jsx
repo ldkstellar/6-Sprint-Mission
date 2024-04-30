@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import '../style/TotalProduct.css';
 import TotalProduct from './TotalProduct';
 import { getProducts } from '../api/api';
-const TotalProducts = ({ windowWidth, searchParams }) => {
+const TotalProducts = ({ windowWidth, searchParams, setSearchParams }) => {
   const location = useLocation();
   const params = location.search;
   const [orderBy, setOrderBy] = useState('recent');
   const [selectValue, setSelectValue] = useState('1');
   const [totalProducts, setTotalProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState();
-  const navigation = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
+  const navigation = useNavigate();
   const registerClick = () => {
     navigation('/addItem');
   };
@@ -28,14 +28,6 @@ const TotalProducts = ({ windowWidth, searchParams }) => {
       setIsLoading(false);
     }
   };
-
-  if (windowWidth < 1199 && windowWidth > 767) {
-    products = totalProducts.slice(0, 6);
-  } else if (windowWidth < 767) {
-    products = totalProducts.slice(0, 4);
-  } else {
-    products = totalProducts;
-  }
 
   const newOption = (e) => {
     if (e.target.value === '1') {
@@ -55,6 +47,25 @@ const TotalProducts = ({ windowWidth, searchParams }) => {
       setOrderBy('favorite');
     }
   };
+
+  useEffect(() => {
+    if (windowWidth > 1200) {
+      if (totalProducts.length !== 10) {
+        searchParams.set('pageSize', 10);
+        getProductsData();
+      }
+    } else if (windowWidth <= 1200 && windowWidth > 767) {
+      if (totalProducts.length !== 6) {
+        searchParams.set('pageSize', 6);
+        getProductsData();
+      }
+    } else if (windowWidth <= 767) {
+      if (totalProducts.length !== 4) {
+        searchParams.set('pageSize', 4);
+        getProductsData();
+      }
+    }
+  }, [windowWidth]);
 
   useEffect(() => {
     getProductsData();
@@ -82,7 +93,7 @@ const TotalProducts = ({ windowWidth, searchParams }) => {
         </div>
       </div>
       <div className='productList'>
-        {products?.map((element) => {
+        {totalProducts.map((element) => {
           return <TotalProduct key={element.id} element={element} />;
         })}
       </div>
