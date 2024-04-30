@@ -1,0 +1,194 @@
+
+.totalProductContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.totalProduct {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.titleAndSearch {
+  width: 900px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.titleAndSearch .title {
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--fontColor);
+}
+
+.titleAndSearch .search {
+  background: var(--white);
+  border: 1px solid #f3f4f6;
+  border-radius: 12px;
+  width: 315px;
+  height: 42px;
+  padding-left: 10px;
+}
+
+.totalProduct .buttons {
+  margin-left: 12px;
+
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+
+.search::placeholder {
+  color: var(--placeHoldColor);
+  font-size: 16px;
+}
+
+
+.search:focus {
+  outline: none;
+}
+
+.buttons .submit {
+  cursor: pointer;
+  width: 133px;
+  height: 42px;
+  border-radius: 8px;
+  background-color: var(--sky);
+  border: 1px var(--sky) solid;
+
+  color: #ffffff;
+  font-size: 16px;
+}
+
+.buttons .filter {
+  padding-left: 10px;
+  border-radius: 12px;
+  width: 120px;
+  height: 42px;
+
+  color: var(--fontColor);
+
+  font-size: 16px;
+}
+
+
+.productList {
+  margin-top: 30px;
+  display: grid;
+
+  gap: 16px;
+  grid-template-rows: repeat(
+    2,
+    1fr
+  ); /* 5개의 행을 각각 1fr의 비율로 생성합니다. */
+  grid-template-columns: repeat(
+    5,
+    1fr
+  ); /* 2개의 열을 각각 1fr의 비율로 생성합니다. */
+}
+
+
+.gridComponent {
+  width: 100%;
+  height: 301px;
+}
+
+.gridComponent .productImage {
+  border-radius: 12px;
+  width: 221px;
+  height: 221px;
+}
+
+.gridComponent .price {
+
+  margin-top: 5px;
+  color: #1f2937;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+
+.gridComponent .favoriteCount {
+  margin-top: 5px;
+  color: var(--placeHoldColor);
+
+  font-size: 12px;
+}
+
+@media (max-width: 1199px) {
+  .container {
+    margin: 20px;
+  }
+
+
+  .totalProduct {
+    margin-top: 30px;
+  }
+  .titleAndSearch {
+    width: 400px;
+  }
+  .titleAndSearch .search {
+    width: 242px;
+
+  }
+
+  .productList {
+    margin-top: 30px;
+    display: grid;
+
+
+    gap: 16px;
+    grid-template-rows: repeat(
+      2,
+      1fr
+    ); /* 5개의 행을 각각 1fr의 비율로 생성합니다. */
+    grid-template-columns: repeat(
+      3,
+      1fr
+    ); /* 2개의 열을 각각 1fr의 비율로 생성합니다. */
+  }
+}
+
+@media (max-width: 767px) {
+  .productList {
+
+
+    grid-template-rows: repeat(
+      2,
+      1fr
+    ); /* 5개의 행을 각각 1fr의 비율로 생성합니다. */
+    grid-template-columns: repeat(
+      2,
+      1fr
+    ); /* 2개의 열을 각각 1fr의 비율로 생성합니다. */
+  }
+
+
+  .titleAndSearch {
+    width: 300px;
+    margin-top: 18px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .titleAndSearch .search {
+    width: 294px;
+    height: 42px;
+  }
+
+  .totalProduct .buttons {
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+}
+

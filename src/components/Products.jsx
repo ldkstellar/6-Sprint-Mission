@@ -11,7 +11,7 @@ const Products = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [searchParams, setSearchParams] = useSearchParams({
     page: 1,
-    pageSize: 3,
+    pageSize: 10,
     orderBy: 'recent',
     group: 1,
   });

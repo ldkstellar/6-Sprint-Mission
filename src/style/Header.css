@@ -1,0 +1,48 @@
+
+.nav {
+
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 1px #dfdfdf solid;
+}
+
+.leftBtn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.leftBtn * {
+  margin-right: 30px;
+}
+.leftBtn .logo {
+  cursor: pointer;
+}
+.leftBtn p {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 18px;
+  color: #4b5563;
+}
+#presentPage {
+  color: #3692ff;
+}
+
+.rightBtn {
+  display: flex;
+  gap: 12px;
+}
+
+.loginBtn {
+  cursor: pointer;
+  border: 1px solid;
+  width: 88px;
+  height: 42px;
+  border-radius: 8px;
+  background-color: #3692ff;
+  color: #ffffff;
+  font-size: 16px;
+}
+

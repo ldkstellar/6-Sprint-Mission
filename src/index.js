@@ -1,5 +1,5 @@
 import React from 'react';
-
+import ReactDOM from 'react-dom/client';
 import App from './App';
 import AddItem from './pages/AddItem';
 import Items from './pages/Items';
@@ -7,8 +7,6 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Main from './pages/Main';
 import SpecificItem from './pages/SpecificItem';
 
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Main from './pages/Main';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const router = createBrowserRouter([
