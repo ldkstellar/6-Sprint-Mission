@@ -28,7 +28,7 @@ const TotalProducts = ({ windowWidth, searchParams }) => {
       setIsLoading(false);
     }
   };
-  console.log(totalProducts);
+
   if (windowWidth < 1199 && windowWidth > 767) {
     products = totalProducts.slice(0, 6);
   } else if (windowWidth < 767) {
@@ -42,7 +42,7 @@ const TotalProducts = ({ windowWidth, searchParams }) => {
       setSelectValue('1');
       const value = 'recent';
       searchParams.set('orderBy', value);
-      console.log(params);
+
       navigation(`/items${params}`);
 
       setOrderBy('recent');
@@ -50,7 +50,7 @@ const TotalProducts = ({ windowWidth, searchParams }) => {
       setSelectValue('2');
       const value = 'favorite';
       searchParams.set('orderBy', value);
-      console.log(params);
+
       navigation(`/items?${searchParams.toString()}`);
       setOrderBy('favorite');
     }

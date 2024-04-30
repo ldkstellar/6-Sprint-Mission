@@ -10,7 +10,7 @@ export const getProducts = async (searchParams = '') => {
     console.error(response.text());
   }
   const result = await response.json();
-  console.log(result);
+
   return result.list;
 };
 
