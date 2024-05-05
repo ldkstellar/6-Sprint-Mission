@@ -23,9 +23,10 @@ const TotalProducts = ({ windowWidth, searchParams, setSearchParams }) => {
       const result = await getProducts(query);
       setTotalProducts(result);
     } catch (error) {
-      window.alert(error.message);
+      if (error.name === 'httpError') {
+        window.alert(error.message);
+      }
     } finally {
-      setIsLoading(false);
     }
   };
 

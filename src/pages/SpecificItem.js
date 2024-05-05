@@ -16,13 +16,16 @@ const SpecificItem = () => {
   const getSpecificProduct = async () => {
     try {
       setIsLoading(true);
-      const productInfo = await getProduct(id);
-      const productComment = await getComments(
-        `${id}/comments/?${searchParams.toString()}`
-      );
+      const [productInfo, productComment] = await Promise.all([
+        getProduct(id),
+        getComments(`${id}/comments/?${searchParams.toString()}`),
+      ]);
       setInquiryList(productComment);
       setSpecificItem(productInfo);
     } catch (error) {
+      if (error.name === 'httpError') {
+        window.alert(error.message);
+      }
     } finally {
       setIsLoading(false);
     }

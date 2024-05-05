@@ -1,45 +1,66 @@
 const URL = `https://panda-market-api.vercel.app/products/`;
-export const getProducts = async (searchParams = '') => {
-  const response = await fetch(`${URL}?${searchParams}`, {
-    method: 'GET',
-  });
+
+const getProducts = async (searchParams = '') => {
+  let response;
+  try {
+    response = await fetch(`${URL}?${searchParams}`, {
+      method: 'GET',
+    });
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
   if (!response.ok) {
-    if (response.status === '') {
-      return console.error(response.status);
-    }
-    console.error(response.text());
+    const error = new Error();
+    error.name = `httpError`;
+    error.message = `httpCode:${response.status}`;
+
+    throw error;
   }
   const result = await response.json();
-
   return result.list;
 };
 
-export const getProduct = async (searchParams = '') => {
-  const response = await fetch(`${URL}${searchParams}`, {
-    method: 'GET',
-  });
+const getProduct = async (searchParams = '') => {
+  let response;
+  try {
+    response = await fetch(`${URL}${searchParams}`, {
+      method: 'GET',
+    });
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+
   if (!response.ok) {
-    if (response.statusText === '') {
-      return console.error(response.status);
-    }
-    console.error(response.text());
+    const error = new Error();
+    error.name = `httpError`;
+    error.message = `httpCode:${response.status}`;
+    throw error;
   }
   const result = await response.json();
-
   return result;
 };
 
-export const getComments = async (searchParams = '') => {
-  const response = await fetch(`${URL}${searchParams}`, {
-    method: 'GET',
-  });
+const getComments = async (searchParams = '') => {
+  let response;
+  try {
+    response = await fetch(`${URL}${searchParams}`, {
+      method: 'GET',
+    });
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
   if (!response.ok) {
-    if (response.statusText === '') {
-      return console.error(response.status);
-    }
-    console.error(response.text());
+    const error = new Error();
+    error.name = `httpError`;
+    error.message = `httpCode:${response.status}`;
+    throw error;
   }
   const result = await response.json();
   return result.list;
 };
+
+export { getProduct, getProducts, getComments };
 
