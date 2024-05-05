@@ -6,7 +6,7 @@ import { getProducts } from '../api/api';
 const TotalProducts = ({ windowWidth, searchParams, setSearchParams }) => {
   const location = useLocation();
   const params = location.search;
-  const [orderBy, setOrderBy] = useState('recent');
+
   const [selectValue, setSelectValue] = useState('1');
   const [totalProducts, setTotalProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -19,7 +19,7 @@ const TotalProducts = ({ windowWidth, searchParams, setSearchParams }) => {
   const getProductsData = async () => {
     try {
       setIsLoading(true);
-      const query = `?${searchParams.toString()}`;
+      const query = `${searchParams.toString()}`;
       const result = await getProducts(query);
       setTotalProducts(result);
     } catch (error) {
@@ -36,15 +36,12 @@ const TotalProducts = ({ windowWidth, searchParams, setSearchParams }) => {
       searchParams.set('orderBy', value);
 
       navigation(`/items${params}`);
-
-      setOrderBy('recent');
     } else if (e.target.value === '2') {
       setSelectValue('2');
       const value = 'favorite';
       searchParams.set('orderBy', value);
 
       navigation(`/items?${searchParams.toString()}`);
-      setOrderBy('favorite');
     }
   };
 
