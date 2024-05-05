@@ -2,19 +2,9 @@ import React from 'react';
 import profile from '../img/profileBig.png';
 import '../style/Comments.css';
 import moreBtn from '../img/moreBtn.png';
-
-const Comments = ({ now, element }) => {
-  const createdTime = () => {
-    const before = new Date(element.createdAt);
-    const time = now - before;
-    const timeDifferenceInSeconds = Math.floor(time / 1000);
-    // 초를 시, 분, 초로 변환
-    const hours = Math.floor((timeDifferenceInSeconds % 86400) / 3600);
-    const day = Math.floor(timeDifferenceInSeconds / 86400);
-    return { day: day, hours: hours };
-  };
-
-  const { day, hours } = createdTime();
+import { getCreatedTime } from '../util/getCreatedTime';
+const Comments = ({ element }) => {
+  const { day, hours } = getCreatedTime(element);
 
   return (
     <div className='commentContainer'>

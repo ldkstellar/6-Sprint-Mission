@@ -14,7 +14,6 @@ const getProducts = async (searchParams = '') => {
     const error = new Error();
     error.name = `httpError`;
     error.message = `httpCode:${response.status}`;
-
     throw error;
   }
   const result = await response.json();
