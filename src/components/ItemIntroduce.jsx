@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
-import InquiryContainer from "./InquiryContainer";
-import InquiryForm from "./InquiryForm";
-import IntroduceContainer from "./IntroduceContainer";
+import React, { useEffect, useState } from 'react';
+import InquiryContainer from './CommentsContainer';
+import InquiryForm from './InquiryForm';
+import InquiryFormContainer from './InquiryFormContainer';
+import Introduce from './Introduce';
 
 const ItemIntroduce = ({ specificItem, inquiryList }) => {
   return (
     <>
-      <IntroduceContainer specificItem={specificItem} />
-      <InquiryForm />
+      <Introduce specificItem={specificItem} />
+      <InquiryFormContainer />
       <InquiryContainer inquiryList={inquiryList} />
     </>
   );

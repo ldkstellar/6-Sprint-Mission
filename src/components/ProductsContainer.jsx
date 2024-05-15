@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../style/Products.css';
-import BestProducts from './BestProducts';
-import TotalProducts from './TotalProducts';
+import BestProductsContainer from './BestProductsContainer';
+import TotalProductsContainer from './TotalProductsContainer';
 import PageNationBtn from './PageNationBtn';
 import { useSearchParams } from 'react-router-dom';
 
-const Products = () => {
+const ProductsContainer = () => {
   const [pageGroup, setPageGroup] = useState(1);
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -30,8 +30,8 @@ const Products = () => {
 
   return (
     <div className='products'>
-      <BestProducts windowWidth={windowWidth} />
-      <TotalProducts
+      <BestProductsContainer windowWidth={windowWidth} />
+      <TotalProductsContainer
         searchParams={searchParams}
         windowWidth={windowWidth}
         setSearchParams={setSearchParams}
@@ -68,5 +68,5 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default ProductsContainer;
 

@@ -4,11 +4,12 @@ import Comments from './Comments';
 import '../style/BackButton.css';
 import backImage from '../img/backImage.png';
 import { useNavigate } from 'react-router-dom';
-const InquiryContainer = ({ inquiryList }) => {
+const CommentsContainer = ({ inquiryList }) => {
   const navigation = useNavigate();
   const backButtonHandler = () => {
     navigation('/items');
   };
+
   if (inquiryList.length === 0) {
     return <NoInquire />;
   }
@@ -35,5 +36,5 @@ const InquiryContainer = ({ inquiryList }) => {
   );
 };
 
-export default InquiryContainer;
+export default CommentsContainer;
 

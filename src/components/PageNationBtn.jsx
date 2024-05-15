@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../style/NavigationBtn.css';
 
 const ROOT_PATH = `/items?`;

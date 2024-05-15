@@ -1,21 +1,22 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import '../style/TotalProduct.css';
 import TotalProduct from './TotalProduct';
 import { getProducts } from '../api/api';
-const TotalProducts = ({ windowWidth, searchParams, setSearchParams }) => {
+import SearchBar from './SearchBar';
+
+const TotalProductsContainer = ({ windowWidth, searchParams }) => {
   const location = useLocation();
   const params = location.search;
-
   const [selectValue, setSelectValue] = useState('1');
   const [totalProducts, setTotalProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
   const navigation = useNavigate();
+
   const registerClick = () => {
     navigation('/addItem');
   };
-  let products = [];
+
   const getProductsData = async () => {
     try {
       setIsLoading(true);
@@ -27,6 +28,7 @@ const TotalProducts = ({ windowWidth, searchParams, setSearchParams }) => {
         window.alert(error.message);
       }
     } finally {
+      setIsLoading(false);
     }
   };
 
@@ -41,7 +43,6 @@ const TotalProducts = ({ windowWidth, searchParams, setSearchParams }) => {
       setSelectValue('2');
       const value = 'favorite';
       searchParams.set('orderBy', value);
-
       navigation(`/items?${searchParams.toString()}`);
     }
   };
@@ -68,36 +69,24 @@ const TotalProducts = ({ windowWidth, searchParams, setSearchParams }) => {
   useEffect(() => {
     getProductsData();
   }, [location]);
-  return (
+  return !isLoading ? (
     <div className='totalProductContainer'>
-      <div className='totalProduct'>
-        <div className='titleAndSearch'>
-          <p className='title'>
-            {windowWidth < 1999 ? '판매 중인 상품' : '전체 상품'}
-          </p>
-          <input
-            className='search'
-            placeholder='검색할 상품을 입력해주세요'
-          ></input>
-        </div>
-        <div className='buttons'>
-          <button onClick={registerClick} className='submit'>
-            상품 등록하기
-          </button>
-          <select onChange={newOption} value={selectValue} className='filter'>
-            <option value={'1'}>최신순</option>
-            <option value={'2'}>좋아요순</option>
-          </select>
-        </div>
-      </div>
+      <SearchBar
+        windowWidth={windowWidth}
+        registerClick={registerClick}
+        newOption={newOption}
+        selectValue={selectValue}
+      />
       <div className='productList'>
         {totalProducts.map((element) => {
           return <TotalProduct key={element.id} element={element} />;
         })}
       </div>
     </div>
+  ) : (
+    <div>전체 상품 로딩중</div>
   );
 };
 
-export default TotalProducts;
+export default TotalProductsContainer;
 

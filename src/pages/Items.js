@@ -1,8 +1,8 @@
-import React from "react";
-import Products from "../components/Products";
+import React from 'react';
+import ProductsContainer from '../components/ProductsContainer';
 
 const Items = () => {
-  return <Products />;
+  return <ProductsContainer />;
 };
 
 export default Items;

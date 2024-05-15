@@ -1,5 +1,4 @@
 import React from 'react';
-import profile from '../img/profileBig.png';
 import '../style/Comments.css';
 import moreBtn from '../img/moreBtn.png';
 import { getCreatedTime } from '../util/getCreatedTime';
