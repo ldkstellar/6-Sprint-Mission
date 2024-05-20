@@ -14,11 +14,12 @@ const Header = () => {
         <p id='presentPage'>중고마켓</p>
       </div>
       <div className='rightBtn'>
-        {isLogin || <button className='loginBtn'>로그인</button>}
-        {isLogin && (
+        {isLogin ? (
           <Button width={40} height={40}>
             <img src={profile} alt='profile'></img>
           </Button>
+        ) : (
+          <button className='loginBtn'>로그인</button>
         )}
       </div>
     </div>
