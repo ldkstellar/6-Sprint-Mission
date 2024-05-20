@@ -1,24 +1,24 @@
 import React from 'react';
-import NoInquire from './NoInquire';
+import NoInquiry from './NoInquiry';
 import Comments from './Comments';
 import '../style/BackButton.css';
 import backImage from '../img/backImage.png';
 import { useNavigate } from 'react-router-dom';
-const CommentsContainer = ({ inquiryList }) => {
+const CommentsContainer = ({ inquiries }) => {
   const navigation = useNavigate();
   const backButtonHandler = () => {
     navigation('/items');
   };
 
-  if (inquiryList.length === 0) {
-    return <NoInquire />;
+  if (inquiries.length === 0) {
+    return <NoInquiry />;
   }
   return (
     <div>
-      {inquiryList.length === 0 ? (
-        <NoInquire />
+      {inquiries.length === 0 ? (
+        <NoInquiry />
       ) : (
-        inquiryList.map((element) => (
+        inquiries.map((element) => (
           <Comments key={element.id} element={element} />
         ))
       )}

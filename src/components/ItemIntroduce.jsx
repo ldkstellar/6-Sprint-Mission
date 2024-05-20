@@ -4,12 +4,12 @@ import InquiryForm from './InquiryForm';
 import InquiryFormContainer from './InquiryFormContainer';
 import Introduce from './Introduce';
 
-const ItemIntroduce = ({ specificItem, inquiryList }) => {
+const ItemIntroduce = ({ specificItem, inquiries }) => {
   return (
     <>
       <Introduce specificItem={specificItem} />
       <InquiryFormContainer />
-      <InquiryContainer inquiryList={inquiryList} />
+      <InquiryContainer inquiries={inquiries} />
     </>
   );
 };

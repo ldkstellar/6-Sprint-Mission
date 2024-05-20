@@ -5,7 +5,7 @@ import AddItem from './pages/AddItem';
 import Items from './pages/Items';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Main from './pages/Main';
-import SpecificItem from './pages/SpecificItem';
+import ItemDetail from './pages/ItemDetail';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -20,7 +20,7 @@ const router = createBrowserRouter([
         path: 'items',
         element: <Items />,
       },
-      { path: 'items/:id', element: <SpecificItem /> },
+      { path: 'items/:id', element: <ItemDetail /> },
 
       { path: 'addItem', element: <AddItem /> },
     ],

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const SearchBar = ({ windowWidth, registerClick, newOption, selectValue }) => {
   return (
@@ -13,9 +14,9 @@ const SearchBar = ({ windowWidth, registerClick, newOption, selectValue }) => {
         ></input>
       </div>
       <div className='buttons'>
-        <button onClick={registerClick} className='submit'>
+        <Link to={'/addItem'} className='submit'>
           상품 등록하기
-        </button>
+        </Link>
         <select onChange={newOption} value={selectValue} className='filter'>
           <option value={'1'}>최신순</option>
           <option value={'2'}>좋아요순</option>

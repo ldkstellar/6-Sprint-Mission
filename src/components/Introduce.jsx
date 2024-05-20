@@ -4,12 +4,12 @@ import mediumHeart from '../img/mediumHeart.png';
 const Introduce = ({ specificItem }) => {
   return (
     <div className='productContainer'>
-      <img id='itemImage' src={specificItem?.images} alt='물품상세이미지' />
+      <img id='itemImage' src={specificItem.images} alt='물품상세이미지' />
       <div className='informationContainer'>
         <div className='info'>
           <div>
-            <p className='titleInfo'>{specificItem?.name}</p>
-            <p className='priceInfo'>{specificItem?.price}원</p>
+            <p className='titleInfo'>{specificItem.name}</p>
+            <p className='priceInfo'>{specificItem.price}원</p>
           </div>
           <button className='moreBtn'>
             <img src={moreImg} alt='더보기버튼' />
@@ -29,7 +29,7 @@ const Introduce = ({ specificItem }) => {
           <button className='likeBtn'>
             <img className='likeImg' src={mediumHeart} />
           </button>
-          {specificItem?.favoriteCount}
+          {specificItem.favoriteCount}
         </div>
       </div>
     </div>
