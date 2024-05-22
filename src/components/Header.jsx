@@ -4,8 +4,10 @@ import { LoginContext } from '../context/LoginContext';
 import logo from '../img/panda.png';
 import Button from './Button';
 import profile from '../img/profile.png';
+import { useNavigate } from 'react-router-dom';
 const Header = () => {
   const isLogin = useContext(LoginContext);
+  const navigation = useNavigate();
   return (
     <div className='nav'>
       <div className='leftBtn'>
@@ -19,7 +21,9 @@ const Header = () => {
             <img src={profile} alt='profile'></img>
           </Button>
         ) : (
-          <button className='loginBtn'>로그인</button>
+          <button className='loginBtn' onClick={() => navigation('/login')}>
+            로그인
+          </button>
         )}
       </div>
     </div>
