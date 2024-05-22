@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import '../style/Products.css';
 import BestProductsContainer from './BestProductsContainer';
 import TotalProductsContainer from './TotalProductsContainer';
-import PageNationBtn from './PageNationBtn';
 import { useSearchParams } from 'react-router-dom';
+import PageNation from './Pagination';
+import PageNationItem from './PageNationItem';
+import PageNationPrevious from './PageNationPrevious';
+import PageNationNext from './PageNationNext';
 
 const ProductsContainer = () => {
+  const scrollRef = useRef(null);
+  const [scrollPosition, setScrollPosition] = useState(0);
   const [pageGroup, setPageGroup] = useState(1);
-
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [searchParams, setSearchParams] = useSearchParams({
     page: 1,
@@ -16,10 +20,18 @@ const ProductsContainer = () => {
     group: 1,
   });
 
+  const scrollView = () => {
+    setScrollPosition(scrollRef.current.offsetTop);
+    window.scrollTo({ top: scrollPosition, behavior: 'smooth' });
+  };
+
   const handleResize = () => {
     setWindowWidth(window.innerWidth);
   };
 
+  useEffect(() => {
+    scrollView();
+  }, [pageGroup]);
   useEffect(() => {
     window.addEventListener('resize', handleResize);
 
@@ -36,34 +48,34 @@ const ProductsContainer = () => {
         windowWidth={windowWidth}
         setSearchParams={setSearchParams}
       />
-      <div className='page'>
-        <PageNationBtn
+      <PageNation ref={scrollRef} setScrollPosition={setScrollPosition}>
+        <PageNationPrevious
+          scrollRef={scrollRef}
+          scrollView={scrollView}
           searchParams={searchParams}
           pageGroup={pageGroup}
           setPageGroup={setPageGroup}
-          type='left'
         >
           {'<'}
-        </PageNationBtn>
-        <PageNationBtn searchParams={searchParams} type='default'>
-          {((pageGroup - 1) * 3 + 1).toString()}
-        </PageNationBtn>
-        <PageNationBtn searchParams={searchParams} type='default'>
-          {((pageGroup - 1) * 3 + 2).toString()}
-        </PageNationBtn>
-        <PageNationBtn searchParams={searchParams} type='default'>
-          {(pageGroup * 3).toString()}
-        </PageNationBtn>
+        </PageNationPrevious>
 
-        <PageNationBtn
+        <PageNationItem searchParams={searchParams}>
+          {((pageGroup - 1) * 3 + 1).toString()}
+        </PageNationItem>
+        <PageNationItem searchParams={searchParams}>
+          {((pageGroup - 1) * 3 + 2).toString()}
+        </PageNationItem>
+        <PageNationItem searchParams={searchParams}>
+          {((pageGroup - 1) * 3 + 3).toString()}
+        </PageNationItem>
+        <PageNationNext
           searchParams={searchParams}
           pageGroup={pageGroup}
           setPageGroup={setPageGroup}
-          type='right'
         >
           {'>'}
-        </PageNationBtn>
-      </div>
+        </PageNationNext>
+      </PageNation>
     </div>
   );
 };
