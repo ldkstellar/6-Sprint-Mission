@@ -40,12 +40,15 @@ const SignUpContainer = () => {
       setUserInfo({ ...userInfo, repeatPassWord: e.target.value });
   };
   useEffect(() => {
-    const email = document.querySelector<HTMLInputElement>('.emailInput');
-    const error = document.querySelector<HTMLDivElement>('.emailError');
+    const email = document.querySelector('.emailInput') as HTMLInputElement;
+    const error = document.querySelector('.emailError') as HTMLDivElement;
     email?.addEventListener('focusout', () => emailError(email, error));
-    const passwordError = document.querySelector<HTMLDivElement>('.pwError');
-    const passwordInput =
-      document.querySelector<HTMLInputElement>('.passwordInput');
+
+    const passwordError = document.querySelector('.pwError') as HTMLDivElement;
+    const passwordInput = document.querySelector(
+      '.passwordInput'
+    ) as HTMLInputElement;
+
     passwordInput?.addEventListener('focusout', () =>
       pwError(passwordInput, passwordError)
     );

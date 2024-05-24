@@ -1,7 +1,8 @@
-type E = HTMLInputElement;
-type D = HTMLDivElement | null;
+type I = HTMLInputElement;
+type D = HTMLDivElement;
 type A = any;
-export function emailError(input: E, errorMessage: D) {
+
+export function emailError(input: I, errorMessage: D) {
   let email = input.value.trim();
   if (!isValidEmail(email)) {
     showError('잘못된 이메일입니다', errorMessage, input);
@@ -10,20 +11,21 @@ export function emailError(input: E, errorMessage: D) {
     clearError(errorMessage, input);
   }
 }
-export function pwError(input: E, errorMessage: D) {
-  if (input.value.length < 8) {
+export function pwError(input: I, errorMessage: D) {
+  if (input?.value?.length < 8) {
     showError('비밀번호를 8자 이상 입력해주세요', errorMessage, input);
   } else {
     clearError(errorMessage, input);
   }
 }
 
-export function showError(message: A, div: A, input: A) {
+export function showError(message: string, div: D, input: I) {
   input.classList.add('error-border');
+
   div.textContent = message;
 }
 
-export function clearError(div: any, input: A) {
+export function clearError(div: any, input: I) {
   input.classList.remove('error-border');
   div.textContent = '';
 }
