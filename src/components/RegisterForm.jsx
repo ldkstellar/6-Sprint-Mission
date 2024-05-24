@@ -56,6 +56,7 @@ const RegisterForm = ({
                 >
                   X
                 </Button>
+
                 <img className='previewImage' src={previewImage} />
               </div>
             )}

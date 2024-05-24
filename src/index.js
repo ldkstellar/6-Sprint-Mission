@@ -5,6 +5,7 @@ import AddItem from './pages/AddItem';
 import Items from './pages/Items';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Main from './pages/Main';
+
 import ItemDetail from './pages/ItemDetail';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
         path: 'items',
         element: <Items />,
       },
+
       {
         path: 'signUp',
         element: <SignUp />,
