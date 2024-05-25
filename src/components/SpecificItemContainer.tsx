@@ -11,9 +11,7 @@ const SpecificItemContainer = () => {
   const [specificItem, setSpecificItem] = useState({});
   const [inquiries, setInquiries] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams({
-    limit: 5,
-  });
+  const [searchParams, setSearchParams] = useSearchParams('limit=5');
 
   const getSpecificProduct = async () => {
     try {
@@ -25,8 +23,10 @@ const SpecificItemContainer = () => {
       setInquiries(productComment);
       setSpecificItem(productInfo);
     } catch (error) {
-      if (error.name === 'httpError') {
-        window.alert(error.message);
+      if (error instanceof Error) {
+        if (error.name === 'httpError') {
+          window.alert(error.message);
+        }
       }
     } finally {
       setIsLoading(false);

@@ -8,7 +8,6 @@ import instagramIcon from '../icon/instagram.png';
 import facebookIcon from '../icon/facebook.png';
 import twitterIcon from '../icon/twitter.png';
 import youtubeIcon from '../icon/youtube.png';
-
 import '../style/Main.css';
 import { useNavigate } from 'react-router-dom';
 const Main = () => {
@@ -26,7 +25,6 @@ const Main = () => {
           </div>
           <img src={schoolPanda} alt='가방팬더' />
         </div>
-
         <div className='section'>
           <div className='confirmBox'>
             <img src={hotItem} alt='인기상품' />
@@ -43,7 +41,6 @@ const Main = () => {
             </div>
           </div>
         </div>
-
         <div className='section'>
           <div className='searchBox'>
             <div className='specific2'>
@@ -61,7 +58,6 @@ const Main = () => {
             <img src={search} alt='검색' />
           </div>
         </div>
-
         <div className='section'>
           <div className='registerBox'>
             <img src={registerImage} alt='등록이미지' />
@@ -70,7 +66,6 @@ const Main = () => {
                 판매를 원하는 <br />
                 상품을 등록하세요
               </h1>
-
               <p>
                 어떤 물건이든 판매하고 싶은 상품을
                 <br />
@@ -79,7 +74,6 @@ const Main = () => {
             </div>
           </div>
         </div>
-
         <div className='bottomCard'>
           <h2>
             믿을 수 있는
@@ -89,7 +83,7 @@ const Main = () => {
           <img src={bottomImage} alt='가방들고있는판다들' />
         </div>
       </main>
-
+      
       <footer>
         <div className='tag'>
           <div className='mark'>

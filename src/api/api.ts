@@ -1,4 +1,5 @@
 const URL = `https://panda-market-api.vercel.app/products/`;
+export interface Item {}
 
 const getProducts = async (searchParams = '') => {
   let response;
@@ -17,6 +18,7 @@ const getProducts = async (searchParams = '') => {
     throw error;
   }
   const result = await response.json();
+
   return result.list;
 };
 
@@ -37,7 +39,8 @@ const getProduct = async (searchParams = '') => {
     error.message = `httpCode:${response.status}`;
     throw error;
   }
-  const result = await response.json();
+  const result: string = await response.json();
+  console.log(result);
   return result;
 };
 

@@ -4,6 +4,7 @@ import '../style/RegisterForm.css';
 import Tag from './Tag';
 
 const RegisterForm = ({
+  list,
   tagList,
   registerTag,
   productData,
@@ -15,6 +16,7 @@ const RegisterForm = ({
   removeImage,
   removeTagItems,
 }) => {
+  console.log(list);
   return (
     <>
       <form
@@ -101,14 +103,14 @@ const RegisterForm = ({
           <input
             placeholder='태그를 입력해주세요'
             name='tag'
-            value={productData.productTag}
+            value={tagList}
             onChange={onChange}
             onKeyUp={registerTag}
           />
         </div>
 
         <div className='tagList'>
-          {tagList.map((element) => (
+          {list?.map((element) => (
             <Tag
               key={element.tagId}
               name={element.name}

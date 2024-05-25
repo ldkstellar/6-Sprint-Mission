@@ -5,13 +5,13 @@ const INITIAL_VALUE = {
   productName: '',
   productIntroduce: '',
   productPrice: 0,
-  productTag: '',
+  productTag: [],
 };
 const RegisterFormContainer = () => {
   const [productData, setProductData] = useState(INITIAL_VALUE);
   const [isFormFilled, setIsFillInput] = useState(false);
   const [previewImage, setPreviewImage] = useState(null);
-  const [tagList, setTagList] = useState([]);
+  const [tagName, setTagName] = useState('');
   const tagId = useRef(0);
 
   useEffect(() => {
@@ -19,12 +19,12 @@ const RegisterFormContainer = () => {
       productData.productIntroduce &&
       productData.productName &&
       productData.productPrice &&
-      tagList
+      productData.productTag.length != 0
     ) {
       return setIsFillInput(true);
     }
     setIsFillInput(false);
-  }, [productData, tagList]);
+  }, [productData]);
 
   const onChange = (e) => {
     if (e.target.name === 'file') {
@@ -37,24 +37,27 @@ const RegisterFormContainer = () => {
     } else if (e.target.name === 'introduce') {
       const value = e.target.value;
       setProductData((prev) => ({ ...prev, ['productIntroduce']: value }));
+    } else if (e.target.name === 'price') {
+      const value = e.target.value;
+      setProductData((prev) => ({ ...prev, ['productPrice']: value }));
     } else if (e.target.name === 'tag') {
       const value = e.target.value;
-      setProductData((prev) => ({ ...prev, ['productTag']: value }));
+      setTagName(value);
     }
   };
 
   const registerTag = (e) => {
     if (e.key === 'Enter' && productData.productTag !== '') {
       e.preventDefault();
-      setTagList((prev) => [
-        ...prev,
-        { name: productData.productTag, tagId: tagId.current },
-      ]);
+      setTagName('');
+      setProductData((prev) => {
+        const newArray = [
+          ...prev.productTag,
+          { name: tagName, tagId: tagId.current },
+        ];
+        return { ...prev, ['productTag']: newArray };
+      });
       tagId.current += 1;
-      setProductData((prev) => ({
-        ...prev,
-        ['productTag']: INITIAL_VALUE.productTag,
-      }));
     }
   };
 
@@ -64,8 +67,10 @@ const RegisterFormContainer = () => {
   };
 
   const removeTagItems = (id) => {
-    const remainList = tagList.filter((element) => element.tagId !== id);
-    setTagList(remainList);
+    const remainList = productData.productTag.filter(
+      (element) => element.tagId !== id
+    );
+    setProductData((prev) => ({ ...prev, ['productTag']: remainList }));
   };
   const handleKey = (e) => {
     if (e.key === 'Enter') {
@@ -83,7 +88,8 @@ const RegisterFormContainer = () => {
   };
   return (
     <RegisterForm
-      tagList={tagList}
+      list={productData.productTag}
+      tagList={tagName}
       handleKey={handleKey}
       handleSubmit={handleSubmit}
       onChange={onChange}
