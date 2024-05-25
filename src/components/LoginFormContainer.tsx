@@ -2,19 +2,27 @@ import React, { ChangeEvent, InputHTMLAttributes, useState } from 'react';
 import LoginForm from './LoginForm';
 
 export type OnChange = (e: ChangeEvent<HTMLInputElement>) => void;
-
+export type onClick = (
+  e: React.MouseEvent<HTMLImageElement, MouseEvent>
+) => void;
 const LoginFormContainer = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [isOpen, setIsOpen] = useState(false);
   const onChangeEmail: OnChange = (e) => {
     setEmail(e.target.value);
   };
   const onChangePassword: OnChange = (e) => {
     setPassword(e.target.value);
   };
+  const onClick: onClick = (e) => {
+    setIsOpen(!isOpen);
+  };
 
   return (
     <LoginForm
+      onClick={onClick}
+      isOpen={isOpen}
       email={email}
       password={password}
       onChangeEmail={onChangeEmail}

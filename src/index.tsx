@@ -5,12 +5,12 @@ import AddItem from './pages/AddItem';
 import Items from './pages/Items';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Main from './pages/Main';
-
 import ItemDetail from './pages/ItemDetail';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement
+);
 
 const router = createBrowserRouter([
   {

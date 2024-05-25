@@ -1,38 +1,46 @@
+import style from '../style/signup.module.css';
 type I = HTMLInputElement;
 type D = HTMLDivElement;
-type A = any;
 
-export function emailError(input: I, errorMessage: D) {
-  let email = input.value.trim();
+export function emailError(inputBox: I, errorBox: D) {
+  let email = inputBox.value.trim();
   if (!isValidEmail(email)) {
-    showError('잘못된 이메일입니다', errorMessage, input);
+    showError('잘못된 이메일입니다', inputBox, errorBox);
   } else {
-    showError('', errorMessage, input);
-    clearError(errorMessage, input);
+    showError('', inputBox, errorBox);
+    clearError(inputBox, errorBox);
   }
 }
-export function pwError(input: I, errorMessage: D) {
-  if (input?.value?.length < 8) {
-    showError('비밀번호를 8자 이상 입력해주세요', errorMessage, input);
+export function pwError(inputBox: I, errorBox: D) {
+  if (inputBox?.value?.length < 8) {
+    showError('비밀번호를 8자 이상 입력해주세요', inputBox, errorBox);
   } else {
-    clearError(errorMessage, input);
+    clearError(inputBox, errorBox);
   }
 }
 
-export function showError(message: string, div: D, input: I) {
-  input.classList.add('error-border');
+export function showError(message: string, inputBox: I, errorBox: D) {
+  inputBox.classList.add(`${style['error-border']}`);
 
-  div.textContent = message;
+  errorBox.textContent = message;
 }
 
-export function clearError(div: any, input: I) {
-  input.classList.remove('error-border');
-  div.textContent = '';
+export function clearError(inputBox: I, errorBox: D) {
+  inputBox.classList.remove('error-border');
+  errorBox.textContent = '';
 }
 
 export function isValidEmail(email: string) {
   // 이메일 형식을 정규표현식을 사용하여 검사
   let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
+}
+
+export function isPassword(inputBox: I, repeatInputBox: I, errorBox: D) {
+  if (inputBox.value !== repeatInputBox.value) {
+    showError('비밀번호가 일치하지 않습니다.', repeatInputBox, errorBox);
+  } else {
+    clearError(repeatInputBox, errorBox);
+  }
 }
 

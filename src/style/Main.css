@@ -193,13 +193,13 @@ footer .tag {
   align-items: center;
   justify-content: center;
 }
-footer .tag .mark{
+footer .tag .mark {
   flex-grow: 1;
   display: flex;
   justify-content: space-between;
 }
 
-footer .tag .mark .privacy-container{
+footer .tag .mark .privacy-container {
   margin-right: 50px;
   display: flex;
 }
@@ -230,10 +230,10 @@ footer .tag .mark .privacy-container{
   margin-right: 40px;
   flex-grow: 1;
   display: flex;
-  justify-content:end;
-  align-items:center;
+  justify-content: end;
+  align-items: center;
 }
-.social a{
+.social a {
   padding-right: 10px;
 }
 
@@ -461,7 +461,7 @@ footer .tag .mark .privacy-container{
   .section .searchBox .specific2 p {
     font-size: 16px;
   }
-  .section .registerBox >img{
+  .section .registerBox > img {
     margin-top: 50px;
     width: 344px;
     height: 259px;
@@ -469,38 +469,37 @@ footer .tag .mark .privacy-container{
   .section .registerBox .specific3 {
     padding-left: 350px;
   }
-  .section .registerBox .specific3 h1{
+  .section .registerBox .specific3 h1 {
     font-size: 24px;
   }
-  .bottomCard{
+  .bottomCard {
     height: 540px;
   }
-  .bottomCard h2{
-    font-size:32px ;
+  .bottomCard h2 {
+    font-size: 32px;
   }
-  .bottomCard img{
+  .bottomCard img {
     width: 497.91px;
     height: 269.95px;
   }
-  .footer .tag{
+  .footer .tag {
     display: flex;
     flex-direction: row-reverse;
   }
 
   .tag .mark {
     margin-left: 50px;
-  
+
     flex-direction: column-reverse;
     justify-content: space-around;
-    align-items:flex-start;
+    align-items: flex-start;
   }
-  .tag .privacy-container{
+  .tag .privacy-container {
     margin-top: 20%;
   }
-  .tag .mark .codeit{
+  .tag .mark .codeit {
     margin-left: 0px;
     margin-top: 50px;
   }
- 
 }
 

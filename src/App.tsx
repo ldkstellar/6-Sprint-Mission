@@ -5,7 +5,7 @@ import Header from './components/Header';
 import { useState } from 'react';
 import { LoginContext } from './context/LoginContext';
 
-function App({ token }: { token: any }) {
+function App({ token }: { token?: any }) {
   return (
     <LoginContext.Provider value={token}>
       <div className='App'>

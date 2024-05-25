@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from 'react';
 import { Show, SignUp } from './SignUpContainer';
-import '../style/signup.css';
+import styles from '../style/signup.module.css';
 import hideEyes from '../icon/hidePassword.png';
 import openEyes from '../icon/openPassword.png';
 import kakao from '../img/kakao.png';
@@ -24,24 +24,24 @@ const SignUpForm = ({
   repeatPasswordHideHandler,
 }: SignUpInfo & EyesButton) => {
   return (
-    <div className='section'>
-      <a className='logo' href='/'>
+    <div className={styles['section']}>
+      <Link className={styles['logo']} to='/main'>
         <img src={bigLogo} />
-      </a>
-      <div className='signUpTable'>
+      </Link>
+      <div className={styles['signUpTable']}>
         이메일
-        <label className='emailLabel'>
+        <label className={styles['emailLabel']}>
           <input
             value={userInfo?.email}
             onChange={onChangeHandler}
             name='email'
-            className='emailInput'
+            className={styles['emailInput']}
             title='이메일'
             placeholder='이메일을 입력해주세요'
             type='email'
           />
         </label>
-        <div className='emailError'></div>
+        <div className={styles['emailError']}></div>
         닉네임
         <label>
           <input
@@ -54,12 +54,12 @@ const SignUpForm = ({
           />
         </label>
         비밀번호
-        <label className='passwordLabel'>
+        <label className={styles['passwordLabel']}>
           <input
             value={userInfo?.password}
             name='password'
             onChange={onChangeHandler}
-            className='passwordInput'
+            className={styles['passwordInput']}
             type={isShow.passShow ? 'text' : 'password'}
             placeholder='비밀번호를 입력해주세요'
           />
@@ -70,30 +70,30 @@ const SignUpForm = ({
             alt=''
           />
         </label>
-        <div className='pwError'></div>
+        <div className={styles['pwError']}></div>
         비밀번호 확인
-        <label className='passwordLabel'>
+        <label className={styles['passwordLabel']}>
           <input
             name='repeatPassword'
             value={userInfo?.repeatPassWord}
             onChange={onChangeHandler}
-            className='passwordInput2'
+            className={styles['passwordRepeatInput']}
             type={isShow.repeatShow ? 'text' : 'password'}
             placeholder='비밀번호를 입력해주세요'
           />
           <img
-            id='passIcon'
+            id={'passIcon'}
             onClick={repeatPasswordHideHandler}
             src={isShow.repeatShow ? openEyes : hideEyes}
-            alt=''
+            alt='눈알'
           />
         </label>
-        <div className='pwRepeatError'></div>
-        <button className='signUpButton'>회원가입</button>
+        <div className={styles['pwRepeatError']}></div>
+        <button className={styles['signUpButton']}>회원가입</button>
       </div>
-      <div className='simpleLoginBox'>
+      <div className={styles['simpleLoginBox']}>
         <p>간편로그인하기</p>
-        <div className='simpleLoginIcons'>
+        <div className={styles['simpleLoginIcons']}>
           <a href='https://www.google.com/'>
             <img src={google} alt='구글' />
           </a>
@@ -102,7 +102,7 @@ const SignUpForm = ({
           </a>
         </div>
       </div>
-      <p className='login'>
+      <p className={styles['login']}>
         이미 회원이신가요? <Link to={'/login'}>로그인</Link>
       </p>
     </div>

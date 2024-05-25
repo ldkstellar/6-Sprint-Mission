@@ -1,13 +1,7 @@
-body {
-  --inputColor: #3692ff;
-  box-sizing: border-box;
-}
-
 .section {
   margin-top: 70px;
   display: flex;
   flex-direction: column;
-
   align-items: center;
 }
 
@@ -16,6 +10,10 @@ body {
   flex-direction: column;
   text-align: le;
   gap: 24px;
+}
+
+.emailInput {
+  /* 모듈 css */
 }
 
 .section .error-border {
@@ -41,7 +39,12 @@ body {
   font-size: 15px;
   color: #f74747;
 }
-
+.passwordInput {
+  /* 모듈 css */
+}
+.passwordRepeatInput {
+  /* 모듈 css */
+}
 .pwRepeatError {
   position: relative;
   left: 10px;

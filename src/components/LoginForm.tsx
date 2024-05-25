@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../style/Login.css';
 import bigLogo from '../img/bigLogo.png';
 import kakaoImage from '../img/kakao.png';
 import googleImage from '../img/google.png';
 import openPassword from '../icon/openPassword.png';
 import hidePassword from '../icon/hidePassword.png';
-import { OnChange } from './LoginFormContainer';
+import { OnChange, onClick } from './LoginFormContainer';
 import { Link } from 'react-router-dom';
 interface Login {
   email: string;
@@ -13,13 +13,18 @@ interface Login {
   onChangePassword: OnChange;
   onChangeEmail: OnChange;
 }
+interface isHide {
+  isOpen: boolean;
+  onClick: onClick;
+}
 const LoginForm = ({
   email,
   password,
   onChangeEmail,
   onChangePassword,
-}: Login) => {
-  const [isOpen, setIsOpen] = useState(false);
+  isOpen,
+  onClick,
+}: Login & isHide) => {
   return (
     <>
       <div className='section'>
@@ -50,7 +55,7 @@ const LoginForm = ({
             />
 
             <img
-              onClick={() => setIsOpen(!isOpen)}
+              onClick={onClick}
               id='eyeIcon'
               src={isOpen ? openPassword : hidePassword}
               alt='closeEyes'
@@ -73,7 +78,7 @@ const LoginForm = ({
         </div>
       </div>
       <div className='signUp'>
-        판다 마켓이 처음이신가요? <a href='/singup/signup.html'>회원가입</a>
+        판다 마켓이 처음이신가요? <Link to='/signUp'>회원가입</Link>
       </div>
     </>
   );
