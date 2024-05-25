@@ -1,17 +1,45 @@
 import React, { useState, useEffect, useRef } from 'react';
 import RegisterForm from './RegisterForm';
+
+export interface TagId {
+  name: string;
+  tagId: number;
+}
+
+export interface ProductData {
+  image: File | null;
+  productName: string;
+  productIntroduce: string;
+  productPrice: string;
+  productTag: TagId[];
+}
+
+export interface registerForm {
+  tagList: TagId[];
+  tagName: string;
+  handleKey: (e: React.KeyboardEvent<HTMLFormElement>) => void;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  removeImage: () => void;
+  removeTagItems: (id: number) => void;
+  registerTag: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  isFormFilled: boolean;
+  previewImage: File | null;
+  productData: ProductData;
+}
+
 const INITIAL_VALUE = {
   image: null,
   productName: '',
   productIntroduce: '',
-  productPrice: 0,
+  productPrice: '0',
   productTag: [],
 };
 const RegisterFormContainer = () => {
-  const [productData, setProductData] = useState(INITIAL_VALUE);
+  const [productData, setProductData] = useState<ProductData>(INITIAL_VALUE);
   const [isFormFilled, setIsFillInput] = useState(false);
-  const [previewImage, setPreviewImage] = useState(null);
-  const [tagName, setTagName] = useState('');
+  const [previewImage, setPreviewImage] = useState<File | null>(null);
+  const [tagName, setTagName] = useState<string>('');
   const tagId = useRef(0);
 
   useEffect(() => {
@@ -26,11 +54,13 @@ const RegisterFormContainer = () => {
     setIsFillInput(false);
   }, [productData]);
 
-  const onChange = (e) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === 'file') {
-      const value = e.target.files[0];
-      setProductData((prev) => ({ ...prev, ['image']: value }));
-      setPreviewImage(value);
+      if (e.target.files) {
+        const value = e.target.files[0];
+        setProductData((prev) => ({ ...prev, ['image']: value }));
+        setPreviewImage(value);
+      }
     } else if (e.target.name === 'title') {
       const value = e.target.value;
       setProductData((prev) => ({ ...prev, ['productName']: value }));
@@ -46,8 +76,8 @@ const RegisterFormContainer = () => {
     }
   };
 
-  const registerTag = (e) => {
-    if (e.key === 'Enter' && productData.productTag !== '') {
+  const registerTag = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && tagName !== '') {
       e.preventDefault();
       setTagName('');
       setProductData((prev) => {
@@ -66,30 +96,28 @@ const RegisterFormContainer = () => {
     setPreviewImage(INITIAL_VALUE.image);
   };
 
-  const removeTagItems = (id) => {
+  const removeTagItems = (id: number) => {
     const remainList = productData.productTag.filter(
       (element) => element.tagId !== id
     );
     setProductData((prev) => ({ ...prev, ['productTag']: remainList }));
   };
-  const handleKey = (e) => {
+
+  const handleKey = (e: React.KeyboardEvent<HTMLFormElement>) => {
     if (e.key === 'Enter') {
       e.preventDefault();
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const data = new FormData();
-    for (const key in productData) {
-      data.append(key, productData[key]);
-    }
-    console.log(data);
+    console.log(productData);
   };
+
   return (
     <RegisterForm
-      list={productData.productTag}
-      tagList={tagName}
+      tagList={productData.productTag}
+      tagName={tagName}
       handleKey={handleKey}
       handleSubmit={handleSubmit}
       onChange={onChange}

@@ -2,10 +2,11 @@ import React from 'react';
 import Button from './Button';
 import '../style/RegisterForm.css';
 import Tag from './Tag';
+import { registerForm } from './RegisterFormContainer';
 
 const RegisterForm = ({
-  list,
   tagList,
+  tagName,
   registerTag,
   productData,
   onChange,
@@ -15,8 +16,7 @@ const RegisterForm = ({
   handleKey,
   removeImage,
   removeTagItems,
-}) => {
-  console.log(list);
+}: registerForm) => {
   return (
     <>
       <form
@@ -59,7 +59,7 @@ const RegisterForm = ({
                   X
                 </Button>
 
-                <img className='previewImage' src={previewImage} />
+                <img className='previewImage' src={String(previewImage)} />
               </div>
             )}
           </div>
@@ -103,14 +103,14 @@ const RegisterForm = ({
           <input
             placeholder='태그를 입력해주세요'
             name='tag'
-            value={tagList}
+            value={tagName}
             onChange={onChange}
             onKeyUp={registerTag}
           />
         </div>
 
         <div className='tagList'>
-          {list?.map((element) => (
+          {tagList?.map((element) => (
             <Tag
               key={element.tagId}
               name={element.name}
