@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import InquiryFormContainer from './InquiryFormContainer';
 import CommentsContainer from './CommentsContainer';
-import Introduce from './Introduce';
+import ProductIntroduce from './ProductIntroduce';
 import '../style/item.css';
-import { getComments, getProduct } from '../api/api';
+import { getComments, getProduct, Product } from '../api/api';
 import { useParams, useSearchParams } from 'react-router-dom';
 
 const SpecificItemContainer = () => {
   const { id } = useParams();
-  const [specificItem, setSpecificItem] = useState({});
+  const [specificItem, setSpecificItem] = useState<Product | null>(null);
   const [inquiries, setInquiries] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams('limit=5');
@@ -20,8 +20,8 @@ const SpecificItemContainer = () => {
         getProduct(id),
         getComments(`${id}/comments/?${searchParams.toString()}`),
       ]);
-      setInquiries(productComment);
       setSpecificItem(productInfo);
+      setInquiries(productComment);
     } catch (error) {
       if (error instanceof Error) {
         if (error.name === 'httpError') {
@@ -45,7 +45,7 @@ const SpecificItemContainer = () => {
     <>
       {!isLoading && (
         <div className='itemContainer'>
-          <Introduce specificItem={specificItem} />
+          <ProductIntroduce specificItem={specificItem} />
           <InquiryFormContainer />
           <CommentsContainer inquiries={inquiries} />
         </div>

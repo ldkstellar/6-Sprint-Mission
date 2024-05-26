@@ -1,9 +1,18 @@
 import React, { useState } from 'react';
 import InquiryForm from './InquiryForm';
 
+type HTML = HTMLInputElement | HTMLTextAreaElement;
+type ChangeHandler = (e: React.ChangeEvent<HTML>) => void;
+
+export interface Inquiry {
+  inquiry: string;
+  textChangeHandler: ChangeHandler;
+  onSubmitHandler: () => void;
+}
 const InquiryFormContainer = () => {
   const [inquiry, setInquiry] = useState('');
-  const textChangeHandler = (e) => {
+
+  const textChangeHandler: ChangeHandler = (e) => {
     setInquiry(e.target.value);
   };
 
@@ -13,7 +22,6 @@ const InquiryFormContainer = () => {
   return (
     <InquiryForm
       inquiry={inquiry}
-      setInquiry={setInquiry}
       textChangeHandler={textChangeHandler}
       onSubmitHandler={onSubmitHandler}
     />
@@ -21,3 +29,4 @@ const InquiryFormContainer = () => {
 };
 
 export default InquiryFormContainer;
+

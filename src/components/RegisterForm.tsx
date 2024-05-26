@@ -1,5 +1,4 @@
 import React from 'react';
-import Button from './Button';
 import '../style/RegisterForm.css';
 import Tag from './Tag';
 import { registerForm } from './RegisterFormContainer';
@@ -50,14 +49,7 @@ const RegisterForm = ({
             ></input>
             {previewImage && (
               <div className='previewImageBox'>
-                <Button
-                  width={20}
-                  height={20}
-                  type='cancel'
-                  onClick={removeImage}
-                >
-                  X
-                </Button>
+                <button onClick={removeImage}>X</button>
 
                 <img className='previewImage' src={String(previewImage)} />
               </div>

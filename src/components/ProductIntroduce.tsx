@@ -1,7 +1,8 @@
 import React from 'react';
 import moreImg from '../img/moreBtn.png';
 import mediumHeart from '../img/mediumHeart.png';
-const Introduce = ({ specificItem }) => {
+import { Product } from '../api/api';
+const ProductIntroduce = ({ specificItem }: { specificItem: Product }) => {
   return (
     <div className='productContainer'>
       <img id='itemImage' src={specificItem.images} alt='물품상세이미지' />
@@ -35,5 +36,5 @@ const Introduce = ({ specificItem }) => {
     </div>
   );
 };
-export default Introduce;
+export default ProductIntroduce;
 

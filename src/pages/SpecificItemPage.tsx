@@ -7,9 +7,12 @@ import { useParams, useSearchParams } from 'react-router-dom';
 const SpecificItemPage = () => {
   const { id } = useParams();
   const [specificItem, setSpecificItem] = useState({});
-  const [inquiryList, setInquiryList] = useState([]);
+  const [inquiries, setInquiries] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams('limit=5');
+  useEffect(() => {
+    console.log(specificItem);
+  }, []);
 
   const getSpecificProduct = async () => {
     try {
@@ -18,7 +21,9 @@ const SpecificItemPage = () => {
       const productComment = await getComments(
         `${id}/comments/?${searchParams.toString()}`
       );
-      setInquiryList(productComment);
+      console.log(productInfo);
+
+      setInquiries(productComment);
       setSpecificItem(productInfo);
     } catch (error) {
     } finally {
@@ -36,8 +41,8 @@ const SpecificItemPage = () => {
 
   return (
     <div className='itemContainer'>
-      {isLoading || (
-        <ItemIntroduce specificItem={specificItem} inquiryList={inquiryList} />
+      {!isLoading && (
+        <ItemIntroduce specificItem={specificItem} inquiries={inquiries} />
       )}
     </div>
   );

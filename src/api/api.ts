@@ -1,5 +1,20 @@
+export interface Products {}
+export interface Product {
+  createdAt?: string;
+  description?: string;
+  id?: number;
+  images?: string;
+  name?: string;
+  favoriteCount?: number;
+  ownerId?: number;
+  price?: number;
+  tags?: string[];
+  updatedAt?: string;
+}
+
+export interface Comments {}
+
 const URL = `https://panda-market-api.vercel.app/products/`;
-export interface Item {}
 
 const getProducts = async (searchParams = '') => {
   let response;
@@ -39,8 +54,7 @@ const getProduct = async (searchParams = '') => {
     error.message = `httpCode:${response.status}`;
     throw error;
   }
-  const result: string = await response.json();
-  console.log(result);
+  const result: Product = await response.json();
   return result;
 };
 
