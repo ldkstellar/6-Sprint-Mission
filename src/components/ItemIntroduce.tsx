@@ -1,10 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { Inquiry, Product } from '../api/api';
 import InquiryContainer from './CommentsContainer';
-import InquiryForm from './InquiryForm';
+
 import InquiryFormContainer from './InquiryFormContainer';
 import ProductIntroduce from './ProductIntroduce';
 
-const ItemIntroduce = ({ specificItem, inquiries }) => {
+const ItemIntroduce = ({
+  specificItem,
+  inquiries,
+}: {
+  specificItem: Product;
+  inquiries: Inquiry[];
+}) => {
   return (
     <>
       <ProductIntroduce specificItem={specificItem} />

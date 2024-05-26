@@ -24,7 +24,7 @@ export interface registerForm {
   removeTagItems: (id: number) => void;
   registerTag: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   isFormFilled: boolean;
-  previewImage: File | null;
+  previewImage: string;
   productData: ProductData;
 }
 
@@ -38,7 +38,7 @@ const INITIAL_VALUE = {
 const RegisterFormContainer = () => {
   const [productData, setProductData] = useState<ProductData>(INITIAL_VALUE);
   const [isFormFilled, setIsFillInput] = useState(false);
-  const [previewImage, setPreviewImage] = useState<File | null>(null);
+  const [previewImage, setPreviewImage] = useState<string>('');
   const [tagName, setTagName] = useState<string>('');
   const tagId = useRef(0);
 
@@ -59,7 +59,8 @@ const RegisterFormContainer = () => {
       if (e.target.files) {
         const value = e.target.files[0];
         setProductData((prev) => ({ ...prev, ['image']: value }));
-        setPreviewImage(value);
+        const objectURL = URL.createObjectURL(value);
+        setPreviewImage(objectURL);
       }
     } else if (e.target.name === 'title') {
       const value = e.target.value;
@@ -93,7 +94,8 @@ const RegisterFormContainer = () => {
 
   const removeImage = () => {
     setProductData((prev) => ({ ...prev, ['image']: null }));
-    setPreviewImage(INITIAL_VALUE.image);
+    URL.revokeObjectURL(previewImage);
+    setPreviewImage('');
   };
 
   const removeTagItems = (id: number) => {

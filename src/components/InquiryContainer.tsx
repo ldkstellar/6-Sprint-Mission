@@ -1,25 +1,26 @@
 import React from 'react';
 import NoInquiry from './NoInquiry';
-import Comments from './Comments';
+import Comment from './Comments';
 import '../style/BackButton.css';
 import backImage from '../img/backImage.png';
 import { useNavigate } from 'react-router-dom';
-const CommentsContainer = ({ inquiries }) => {
+import { Inquiry } from '../api/api';
+const InquiryContainer = ({ inquiryList }: { inquiryList: Inquiry[] }) => {
+  const now = new Date();
   const navigation = useNavigate();
   const backButtonHandler = () => {
     navigation('/items');
   };
-
-  if (inquiries.length === 0) {
+  if (inquiryList.length === 0) {
     return <NoInquiry />;
   }
   return (
     <div>
-      {inquiries.length === 0 ? (
+      {inquiryList.length === 0 ? (
         <NoInquiry />
       ) : (
-        inquiries.map((element) => (
-          <Comments key={element.id} element={element} />
+        inquiryList.map((element) => (
+          <Comment key={element.id} element={element} />
         ))
       )}
       <div className='backBtnContainer'>
@@ -36,5 +37,5 @@ const CommentsContainer = ({ inquiries }) => {
   );
 };
 
-export default CommentsContainer;
+export default InquiryContainer;
 

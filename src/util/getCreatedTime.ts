@@ -1,7 +1,9 @@
-export const getCreatedTime = (element) => {
+import { Inquiry } from '../api/api';
+
+export const getCreatedTime = (element: Inquiry) => {
   const now = new Date();
   const before = new Date(element.createdAt);
-  const time = now - before;
+  const time = now.getTime() - before.getTime();
   const timeDifferenceInSeconds = Math.floor(time / 1000);
   // 초를 시, 분, 초로 변환
   const day = Math.floor(timeDifferenceInSeconds / 86400);

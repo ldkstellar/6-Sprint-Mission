@@ -1,22 +1,26 @@
-export interface Products {}
-export interface Product {
-  createdAt?: string;
-  description?: string;
-  id?: number;
-  images?: string;
-  name?: string;
-  favoriteCount?: number;
-  ownerId?: number;
-  price?: number;
-  tags?: string[];
-  updatedAt?: string;
-}
-
-export interface Comments {}
-
 const URL = `https://panda-market-api.vercel.app/products/`;
 
-const getProducts = async (searchParams = '') => {
+export interface Product {
+  createdAt: string;
+  description: string;
+  id: number;
+  images: string[];
+  name: string;
+  favoriteCount: number;
+  ownerId: number;
+  price: number;
+  tags: string[];
+  updatedAt: string;
+}
+export interface Inquiry {
+  id: number;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+  writer: { id: number; image: string; nickname: string };
+}
+
+const getProducts = async (searchParams = ''): Promise<Product[]> => {
   let response;
   try {
     response = await fetch(`${URL}?${searchParams}`, {
@@ -33,11 +37,10 @@ const getProducts = async (searchParams = '') => {
     throw error;
   }
   const result = await response.json();
-
   return result.list;
 };
 
-const getProduct = async (searchParams = '') => {
+const getProduct = async (searchParams = ''): Promise<Product> => {
   let response;
   try {
     response = await fetch(`${URL}${searchParams}`, {
@@ -54,11 +57,11 @@ const getProduct = async (searchParams = '') => {
     error.message = `httpCode:${response.status}`;
     throw error;
   }
-  const result: Product = await response.json();
+  const result = await response.json();
   return result;
 };
 
-const getComments = async (searchParams = '') => {
+const getComments = async (searchParams = ''): Promise<Inquiry[]> => {
   let response;
   try {
     response = await fetch(`${URL}${searchParams}`, {
@@ -75,6 +78,7 @@ const getComments = async (searchParams = '') => {
     throw error;
   }
   const result = await response.json();
+
   return result.list;
 };
 

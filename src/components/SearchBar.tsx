@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Search } from './TotalProductsContainer';
 
-const SearchBar = ({ windowWidth, registerClick, newOption, selectValue }) => {
+const SearchBar = ({ windowWidth, newOption, selectValue }: Search) => {
   return (
     <div className='totalProduct'>
       <div className='titleAndSearch'>

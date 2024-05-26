@@ -3,7 +3,7 @@ import '../style/Header.css';
 import { LoginContext } from '../context/LoginContext';
 import logo from '../img/panda.png';
 import profile from '../img/profile.png';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 const Header = () => {
   const isLogin = useContext(LoginContext);
   const navigation = useNavigate();
@@ -11,7 +11,9 @@ const Header = () => {
   return (
     <div className='nav'>
       <div className='leftBtn'>
-        <img className='logo' src={logo} />
+        <Link to={'/main'}>
+          <img className='logo' src={logo} />
+        </Link>
         <p>자유게시판</p>
         <p id='presentPage'>중고마켓</p>
       </div>

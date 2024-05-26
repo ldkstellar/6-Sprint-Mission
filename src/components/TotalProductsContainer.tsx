@@ -2,21 +2,30 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import '../style/TotalProduct.css';
 import TotalProduct from './TotalProduct';
-import { getProducts } from '../api/api';
+import { getProducts, Product } from '../api/api';
 import SearchBar from './SearchBar';
 
-const TotalProductsContainer = ({ windowWidth, searchParams }) => {
+type NewOption = (e: React.ChangeEvent<HTMLSelectElement>) => void;
+
+export interface Search {
+  windowWidth: number;
+  newOption: NewOption;
+  selectValue: string;
+}
+
+const TotalProductsContainer = ({
+  windowWidth,
+  searchParams,
+}: {
+  windowWidth: number;
+  searchParams: URLSearchParams;
+}) => {
   const location = useLocation();
   const params = location.search;
   const [selectValue, setSelectValue] = useState('1');
-  const [totalProducts, setTotalProducts] = useState([]);
+  const [totalProducts, setTotalProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const navigation = useNavigate();
-
-  const registerClick = () => {
-    navigation('/addItem');
-  };
-
   const getProductsData = async () => {
     try {
       setIsLoading(true);
@@ -24,15 +33,17 @@ const TotalProductsContainer = ({ windowWidth, searchParams }) => {
       const result = await getProducts(query);
       setTotalProducts(result);
     } catch (error) {
-      if (error.name === 'httpError') {
-        window.alert(error.message);
+      if (error instanceof Error) {
+        if (error.name === 'httpError') {
+          window.alert(error.message);
+        }
       }
     } finally {
       setIsLoading(false);
     }
   };
 
-  const newOption = (e) => {
+  const newOption: NewOption = (e) => {
     if (e.target.value === '1') {
       setSelectValue('1');
       const value = 'recent';
@@ -50,17 +61,17 @@ const TotalProductsContainer = ({ windowWidth, searchParams }) => {
   useEffect(() => {
     if (windowWidth > 1200) {
       if (totalProducts.length !== 10) {
-        searchParams.set('pageSize', 10);
+        searchParams.set('pageSize', '10');
         getProductsData();
       }
     } else if (windowWidth <= 1200 && windowWidth > 767) {
       if (totalProducts.length !== 6) {
-        searchParams.set('pageSize', 6);
+        searchParams.set('pageSize', '6');
         getProductsData();
       }
     } else if (windowWidth <= 767) {
       if (totalProducts.length !== 4) {
-        searchParams.set('pageSize', 4);
+        searchParams.set('pageSize', '4');
         getProductsData();
       }
     }
@@ -69,11 +80,11 @@ const TotalProductsContainer = ({ windowWidth, searchParams }) => {
   useEffect(() => {
     getProductsData();
   }, [location]);
+
   return !isLoading ? (
     <div className='totalProductContainer'>
       <SearchBar
         windowWidth={windowWidth}
-        registerClick={registerClick}
         newOption={newOption}
         selectValue={selectValue}
       />

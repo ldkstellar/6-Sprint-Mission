@@ -51,7 +51,7 @@ const RegisterForm = ({
               <div className='previewImageBox'>
                 <button onClick={removeImage}>X</button>
 
-                <img className='previewImage' src={String(previewImage)} />
+                <img className='previewImage' src={previewImage} />
               </div>
             )}
           </div>

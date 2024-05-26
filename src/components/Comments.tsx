@@ -2,7 +2,8 @@ import React from 'react';
 import '../style/Comments.css';
 import moreBtn from '../img/moreBtn.png';
 import { getCreatedTime } from '../util/getCreatedTime';
-const Comments = ({ element }) => {
+import { Inquiry } from '../api/api';
+const Comments = ({ element }: { element: Inquiry }) => {
   const { day, hours } = getCreatedTime(element);
 
   return (

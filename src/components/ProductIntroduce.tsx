@@ -5,7 +5,7 @@ import { Product } from '../api/api';
 const ProductIntroduce = ({ specificItem }: { specificItem: Product }) => {
   return (
     <div className='productContainer'>
-      <img id='itemImage' src={specificItem.images} alt='물품상세이미지' />
+      <img id='itemImage' src={specificItem.images[0]} alt='물품상세이미지' />
       <div className='informationContainer'>
         <div className='info'>
           <div>

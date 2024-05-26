@@ -3,13 +3,13 @@ import InquiryFormContainer from './InquiryFormContainer';
 import CommentsContainer from './CommentsContainer';
 import ProductIntroduce from './ProductIntroduce';
 import '../style/item.css';
-import { getComments, getProduct, Product } from '../api/api';
+import { getComments, getProduct, Product, Inquiry } from '../api/api';
 import { useParams, useSearchParams } from 'react-router-dom';
 
 const SpecificItemContainer = () => {
   const { id } = useParams();
   const [specificItem, setSpecificItem] = useState<Product | null>(null);
-  const [inquiries, setInquiries] = useState([]);
+  const [inquiries, setInquiries] = useState<Inquiry[] | []>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams('limit=5');
 

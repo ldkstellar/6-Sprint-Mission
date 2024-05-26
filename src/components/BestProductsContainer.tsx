@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import '../style/BestProduct.css';
-import { getProducts } from '../api/api';
+import { getProducts, Product } from '../api/api';
 import BestProducts from './BestProducts';
-const BestProductsContainer = ({ windowWidth }) => {
-  const [bestProducts, setBestProduct] = useState([]);
+const BestProductsContainer = ({ windowWidth }: { windowWidth: number }) => {
+  const [bestProducts, setBestProduct] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const getBestProductsData = async () => {
     try {
@@ -12,7 +12,9 @@ const BestProductsContainer = ({ windowWidth }) => {
       const result = await getProducts(query);
       setBestProduct(result);
     } catch (error) {
-      window.alert(error.message);
+      if (error instanceof Error) {
+        window.alert(error.message);
+      }
     } finally {
       setIsLoading(false);
     }

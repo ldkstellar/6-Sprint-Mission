@@ -9,6 +9,7 @@ export interface Inquiry {
   textChangeHandler: ChangeHandler;
   onSubmitHandler: () => void;
 }
+
 const InquiryFormContainer = () => {
   const [inquiry, setInquiry] = useState('');
 
