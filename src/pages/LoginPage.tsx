@@ -1,9 +1,9 @@
 import React from 'react';
 import LoginFormContainer from '../components/LoginFormContainer';
 
-const Login = () => {
+const LoginPage = () => {
   return <LoginFormContainer />;
 };
 
-export default Login;
+export default LoginPage;
 

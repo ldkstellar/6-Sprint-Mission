@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import AddItem from './pages/AddItem';
-import Items from './pages/Items';
+import AddItemPage from './pages/AddItemPage';
+import ItemsPage from './pages/ItemsPage';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Main from './pages/Main';
-import ItemDetail from './pages/ItemDetail';
-import Login from './pages/Login';
-import SignUp from './pages/SignUp';
+import MainPage from './pages/MainPage';
+import ItemDetailPage from './pages/ItemDetailPage';
+import LoginPage from './pages/LoginPage';
+import SignUpPage from './pages/SignUpPage';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
@@ -17,22 +17,22 @@ const router = createBrowserRouter([
     path: '/',
     element: <App />,
     children: [
-      { path: 'main', element: <Main /> },
+      { path: 'main', element: <MainPage /> },
 
       {
         path: 'items',
-        element: <Items />,
+        element: <ItemsPage />,
       },
 
       {
         path: 'signUp',
-        element: <SignUp />,
+        element: <SignUpPage />,
       },
-      { path: 'login', element: <Login /> },
+      { path: 'login', element: <LoginPage /> },
 
-      { path: 'items/:id', element: <ItemDetail /> },
+      { path: 'items/:id', element: <ItemDetailPage /> },
 
-      { path: 'addItem', element: <AddItem /> },
+      { path: 'addItem', element: <AddItemPage /> },
     ],
   },
 ]);

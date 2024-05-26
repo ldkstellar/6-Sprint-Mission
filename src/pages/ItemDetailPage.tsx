@@ -1,9 +1,9 @@
 import React from 'react';
 import SpecificItemContainer from '../components/SpecificItemContainer';
 
-const ItemDetail = () => {
+const ItemDetailPage = () => {
   return <SpecificItemContainer />;
 };
 
-export default ItemDetail;
+export default ItemDetailPage;
 

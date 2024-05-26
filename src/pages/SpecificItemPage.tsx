@@ -4,14 +4,12 @@ import '../style/item.css';
 import { getComments, getProduct } from '../api/api';
 import { useParams, useSearchParams } from 'react-router-dom';
 
-const SpecificItem = () => {
+const SpecificItemPage = () => {
   const { id } = useParams();
   const [specificItem, setSpecificItem] = useState({});
   const [inquiryList, setInquiryList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams({
-    limit: 5,
-  });
+  const [searchParams, setSearchParams] = useSearchParams('limit=5');
 
   const getSpecificProduct = async () => {
     try {
@@ -45,5 +43,5 @@ const SpecificItem = () => {
   );
 };
 
-export default SpecificItem;
+export default SpecificItemPage;
 

@@ -1,8 +1,8 @@
 import RegisterForm from '../components/RegisterForm';
 import RegisterFormContainer from '../components/RegisterFormContainer';
-const AddItem = () => {
+const AddItemPage = () => {
   return <RegisterFormContainer />;
 };
 
-export default AddItem;
+export default AddItemPage;
 

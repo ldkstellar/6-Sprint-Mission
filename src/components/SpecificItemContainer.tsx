@@ -42,13 +42,15 @@ const SpecificItemContainer = () => {
   }
 
   return (
-    !isLoading && (
-      <div className='itemContainer'>
-        <Introduce specificItem={specificItem} />
-        <InquiryFormContainer />
-        <CommentsContainer inquiries={inquiries} />
-      </div>
-    )
+    <>
+      {!isLoading && (
+        <div className='itemContainer'>
+          <Introduce specificItem={specificItem} />
+          <InquiryFormContainer />
+          <CommentsContainer inquiries={inquiries} />
+        </div>
+      )}
+    </>
   );
 };
 

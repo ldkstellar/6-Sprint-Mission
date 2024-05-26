@@ -1,9 +1,9 @@
 import React from 'react';
 import ProductsContainer from '../components/ProductsContainer';
 
-const Items = () => {
+const ItemsPage = () => {
   return <ProductsContainer />;
 };
 
-export default Items;
+export default ItemsPage;
 

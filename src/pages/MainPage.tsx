@@ -10,7 +10,7 @@ import twitterIcon from '../icon/twitter.png';
 import youtubeIcon from '../icon/youtube.png';
 import '../style/Main.css';
 import { useNavigate } from 'react-router-dom';
-const Main = () => {
+const MainPage = () => {
   const navigation = useNavigate();
   return (
     <>
@@ -83,7 +83,7 @@ const Main = () => {
           <img src={bottomImage} alt='가방들고있는판다들' />
         </div>
       </main>
-      
+
       <footer>
         <div className='tag'>
           <div className='mark'>
@@ -113,5 +113,5 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default MainPage;
 
