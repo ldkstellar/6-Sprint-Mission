@@ -1,8 +1,34 @@
 import React from 'react';
-import '../style/RegisterForm.css';
-import Tag from './Tag';
-import { registerForm } from './RegisterFormContainer';
 
+import style from '../style/RegisterForm.module.css';
+import Tag from './Tag';
+
+export interface TagIdData {
+  name: string;
+  tagId: number;
+}
+
+export interface ProductData {
+  image: File | null;
+  productName: string;
+  productIntroduce: string;
+  productPrice: string;
+  productTag: TagIdData[];
+}
+
+interface RegisterFormData {
+  tagList: TagIdData[];
+  tagName: string;
+  handleKey: (e: React.KeyboardEvent<HTMLFormElement>) => void;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  removeImage: () => void;
+  removeTagItems: (id: number) => void;
+  registerTag: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  isFormFilled: boolean;
+  previewImage: string;
+  productData: ProductData;
+}
 const RegisterForm = ({
   tagList,
   tagName,
@@ -15,49 +41,51 @@ const RegisterForm = ({
   handleKey,
   removeImage,
   removeTagItems,
-}: registerForm) => {
+}: RegisterFormData) => {
   return (
     <>
       <form
-        className='formContainer'
+        className={style['formContainer']}
         onSubmit={handleSubmit}
         onKeyDown={handleKey}
       >
-        <div className='header'>
+        <div className={style['header']}>
           <h2>상품등록하기</h2>
           <button
             disabled={!isFormFilled}
             type='submit'
-            className={`submitBtn ${isFormFilled ? 'on' : 'off'}`}
+            className={`${style['submitBtn']} ${
+              isFormFilled ? style['on'] : style['off']
+            }`}
           >
             등록
           </button>
         </div>
 
-        <div className='productImage'>
-          <p className='productImageTitle'>상품 이미지</p>
-          <div className='filePreview'>
-            <label htmlFor='fileInput' className='imageRegister'>
+        <div className={style['productImage']}>
+          <p className={style['productImageTitle']}>상품 이미지</p>
+          <div className={style['filePreview']}>
+            <label htmlFor='fileInputId' className={style['imageRegister']}>
               <p>+</p>
               <p>이미지등록</p>
             </label>
             <input
+              id='fileInputId'
+              className={style['fileInput']}
               type='file'
-              id='fileInput'
               name='file'
               onChange={onChange}
             ></input>
             {previewImage && (
-              <div className='previewImageBox'>
+              <div className={style['previewImageBox']}>
                 <button onClick={removeImage}>X</button>
-
-                <img className='previewImage' src={previewImage} />
+                <img className={style['previewImage']} src={previewImage} />
               </div>
             )}
           </div>
         </div>
 
-        <div className='productName'>
+        <div className={style['productName']}>
           <p>상품명</p>
           <input
             type='text'
@@ -68,7 +96,7 @@ const RegisterForm = ({
           />
         </div>
 
-        <div className='productIntroduce'>
+        <div className={style['productIntroduce']}>
           <p>상품 소개</p>
           <input
             type='text'
@@ -79,7 +107,7 @@ const RegisterForm = ({
           />
         </div>
 
-        <div className='productPrice'>
+        <div className={style['productPrice']}>
           <p>판매가격</p>
           <input
             type='number'
@@ -90,7 +118,7 @@ const RegisterForm = ({
           />
         </div>
 
-        <div className='productTag'>
+        <div className={style['productTag']}>
           <p>태그</p>
           <input
             placeholder='태그를 입력해주세요'
@@ -101,7 +129,7 @@ const RegisterForm = ({
           />
         </div>
 
-        <div className='tagList'>
+        <div className={style['tagList']}>
           {tagList?.map((element) => (
             <Tag
               key={element.tagId}

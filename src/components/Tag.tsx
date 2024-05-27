@@ -1,6 +1,6 @@
 import React from 'react';
 import x from '../img/x.png';
-
+import style from '../style/RegisterForm.module.css';
 interface TagMember {
   name: string;
   tagId: number;
@@ -8,9 +8,9 @@ interface TagMember {
 }
 const Tag = ({ name, tagId, onclick }: TagMember) => {
   return (
-    <div className='tagFrame' style={{ width: name.length * 43 }}>
+    <div className={style['tagFrame']} style={{ width: name.length * 43 }}>
       {name}
-      <button className='tagCancel' onClick={() => onclick(tagId)}>
+      <button className={style['tagCancel']} onClick={() => onclick(tagId)}>
         <img src={x} />
       </button>
     </div>

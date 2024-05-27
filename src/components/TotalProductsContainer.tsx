@@ -4,6 +4,7 @@ import '../style/TotalProduct.css';
 import TotalProduct from './TotalProduct';
 import { getProducts, Product } from '../api/api';
 import SearchBar from './SearchBar';
+import { deviceSize } from '../util/deviceSize';
 
 type NewOption = (e: React.ChangeEvent<HTMLSelectElement>) => void;
 
@@ -59,17 +60,20 @@ const TotalProductsContainer = ({
   };
 
   useEffect(() => {
-    if (windowWidth > 1200) {
+    if (windowWidth > deviceSize.tablet) {
       if (totalProducts.length !== 10) {
         searchParams.set('pageSize', '10');
         getProductsData();
       }
-    } else if (windowWidth <= 1200 && windowWidth > 767) {
+    } else if (
+      windowWidth <= deviceSize.tablet &&
+      windowWidth > deviceSize.mobile
+    ) {
       if (totalProducts.length !== 6) {
         searchParams.set('pageSize', '6');
         getProductsData();
       }
-    } else if (windowWidth <= 767) {
+    } else if (windowWidth <= deviceSize.mobile) {
       if (totalProducts.length !== 4) {
         searchParams.set('pageSize', '4');
         getProductsData();

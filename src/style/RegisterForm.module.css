@@ -1,7 +1,7 @@
 .formContainer {
   margin: 20px 360px 100px;
 }
-#fileInput {
+.fileInput {
   display: none;
 }
 .header {

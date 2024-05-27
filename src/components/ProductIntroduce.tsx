@@ -2,6 +2,7 @@ import React from 'react';
 import moreImg from '../img/moreBtn.png';
 import mediumHeart from '../img/mediumHeart.png';
 import { Product } from '../api/api';
+import style from '../style/productIntroduce.module.css';
 const ProductIntroduce = ({ specificItem }: { specificItem: Product }) => {
   return (
     <div className='productContainer'>

@@ -8,6 +8,7 @@ import MainPage from './pages/MainPage';
 import ItemDetailPage from './pages/ItemDetailPage';
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
+import './style/Reset.css';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );

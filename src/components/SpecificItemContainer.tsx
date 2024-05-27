@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import InquiryFormContainer from './InquiryFormContainer';
-import CommentsContainer from './CommentsContainer';
-import ProductIntroduce from './ProductIntroduce';
-import '../style/item.css';
+
 import { getComments, getProduct, Product, Inquiry } from '../api/api';
 import { useParams, useSearchParams } from 'react-router-dom';
+import SpecificItem from './SpecificItem';
 
 const SpecificItemContainer = () => {
   const { id } = useParams();
@@ -44,11 +42,7 @@ const SpecificItemContainer = () => {
   return (
     <>
       {!isLoading && (
-        <div className='itemContainer'>
-          <ProductIntroduce specificItem={specificItem} />
-          <InquiryFormContainer />
-          <CommentsContainer inquiries={inquiries} />
-        </div>
+        <SpecificItem specificItem={specificItem} inquiries={inquiries} />
       )}
     </>
   );

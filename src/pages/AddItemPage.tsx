@@ -1,4 +1,4 @@
-import RegisterForm from '../components/RegisterForm';
+import React from 'react';
 import RegisterFormContainer from '../components/RegisterFormContainer';
 const AddItemPage = () => {
   return <RegisterFormContainer />;

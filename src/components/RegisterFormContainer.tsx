@@ -1,33 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { ChangeEvent, useState, useEffect, useRef } from 'react';
 import RegisterForm from './RegisterForm';
-
-export interface TagId {
-  name: string;
-  tagId: number;
-}
-
-export interface ProductData {
-  image: File | null;
-  productName: string;
-  productIntroduce: string;
-  productPrice: string;
-  productTag: TagId[];
-}
-
-export interface registerForm {
-  tagList: TagId[];
-  tagName: string;
-  handleKey: (e: React.KeyboardEvent<HTMLFormElement>) => void;
-  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  removeImage: () => void;
-  removeTagItems: (id: number) => void;
-  registerTag: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-  isFormFilled: boolean;
-  previewImage: string;
-  productData: ProductData;
-}
-
+import { ProductData } from './RegisterForm';
 const INITIAL_VALUE = {
   image: null,
   productName: '',
@@ -54,7 +27,7 @@ const RegisterFormContainer = () => {
     setIsFillInput(false);
   }, [productData]);
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === 'file') {
       if (e.target.files) {
         const value = e.target.files[0];
