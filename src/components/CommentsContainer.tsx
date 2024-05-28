@@ -6,12 +6,6 @@ import backImage from '../img/backImage.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { Inquiry } from '../api/api';
 const CommentsContainer = ({ inquiries }: { inquiries: Inquiry[] }) => {
-  const navigation = useNavigate();
-  const backButtonHandler = () => {
-    navigation('/items');
-  };
-  const star = 0;
-
   if (inquiries.length === 0) {
     return <NoInquiry />;
   }

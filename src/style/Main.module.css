@@ -37,7 +37,7 @@ main {
 .card {
   display: flex;
   justify-content: center;
-  align-items: end;
+  align-items: flex-end;
   height: 540px;
   width: 100%;
 }
@@ -233,7 +233,7 @@ footer .tag .mark .privacy-container {
   margin-right: 40px;
   flex-grow: 1;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
 }
 .social a {
@@ -398,7 +398,7 @@ footer .tag .mark .privacy-container {
     height: 927px;
     display: flex;
     flex-direction: column;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
     text-align: center;
   }
