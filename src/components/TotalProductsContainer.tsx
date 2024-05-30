@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import '../style/TotalProduct.css';
 import TotalProduct from './TotalProduct';
-import { getProducts, Product } from '../api/api';
+import { getProducts, Product, handleUnknownError } from '../api/api';
 import SearchBar from './SearchBar';
 import { deviceSize } from '../util/deviceSize';
 
@@ -34,11 +34,7 @@ const TotalProductsContainer = ({
       const result = await getProducts(query);
       setTotalProducts(result);
     } catch (error) {
-      if (error instanceof Error) {
-        if (error.name === 'httpError') {
-          window.alert(error.message);
-        }
-      }
+      handleUnknownError(error);
     } finally {
       setIsLoading(false);
     }
@@ -49,7 +45,6 @@ const TotalProductsContainer = ({
       setSelectValue('1');
       const value = 'recent';
       searchParams.set('orderBy', value);
-
       navigation(`/items${params}`);
     } else if (e.target.value === '2') {
       setSelectValue('2');

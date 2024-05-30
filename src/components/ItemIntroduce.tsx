@@ -3,7 +3,7 @@ import { Inquiry, Product } from '../api/api';
 import InquiryContainer from './CommentsContainer';
 
 import InquiryFormContainer from './InquiryFormContainer';
-import ProductIntroduce from './ProductIntroduce';
+import Product-detail from './ProductIntroduce';
 
 const ItemIntroduce = ({
   specificItem,
@@ -14,7 +14,7 @@ const ItemIntroduce = ({
 }) => {
   return (
     <>
-      <ProductIntroduce specificItem={specificItem} />
+      <Product-detail specificItem={specificItem} />
       <InquiryFormContainer />
       <InquiryContainer inquiries={inquiries} />
     </>

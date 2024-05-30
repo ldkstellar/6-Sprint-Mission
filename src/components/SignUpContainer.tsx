@@ -36,57 +36,53 @@ const SignUpContainer = () => {
   };
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.name === 'email')
-      setUserInfo({ ...userInfo, email: e.target.value });
-    else if (e.target.name === 'nickName')
-      setUserInfo({ ...userInfo, nickName: e.target.value });
-    else if (e.target.name === 'password')
-      setUserInfo({ ...userInfo, password: e.target.value });
-    else if (e.target.name === 'repeatPassword')
-      setUserInfo({ ...userInfo, repeatPassWord: e.target.value });
+    const { name, value } = e.target;
+    setUserInfo((prev) => ({ ...prev, [name]: value }));
   };
 
   useEffect(() => {
-    const email = document.querySelector(
+    const onEmailFocus = document.querySelector(
       `.${style.emailInput}`
     ) as HTMLInputElement;
     const emailErrorBox = document.querySelector(
       `.${style.emailError}`
     ) as HTMLDivElement;
 
-    email.addEventListener('focusout', () => emailError(email, emailErrorBox));
+    onEmailFocus.addEventListener('focusout', () =>
+      emailError(onEmailFocus, emailErrorBox)
+    );
 
-    const passwordInput = document.querySelector(
+    const onPasswordFocus = document.querySelector(
       `.${style.passwordInput}`
     ) as HTMLInputElement;
     const passwordErrorBox = document.querySelector(
       `.${style.pwError}`
     ) as HTMLDivElement;
 
-    const passwordRepeatInput = document.querySelector(
+    const passwordRepeatFocus = document.querySelector(
       `.${style.passwordRepeatInput}`
     ) as HTMLInputElement;
     const passwordRepeatErrorBox = document.querySelector(
       `.${style.pwRepeatError}`
     ) as HTMLInputElement;
 
-    passwordInput.addEventListener('focusout', () =>
-      pwError(passwordInput, passwordErrorBox)
+    onPasswordFocus.addEventListener('focusout', () =>
+      pwError(onPasswordFocus, passwordErrorBox)
     );
 
-    passwordRepeatInput.addEventListener('focusout', () =>
-      isPassword(passwordInput, passwordRepeatInput, passwordRepeatErrorBox)
+    passwordRepeatFocus.addEventListener('focusout', () =>
+      isPassword(onPasswordFocus, passwordRepeatFocus, passwordRepeatErrorBox)
     );
 
     return () => {
-      email.removeEventListener('focusout', () =>
-        emailError(email, emailErrorBox)
+      onEmailFocus.removeEventListener('focusout', () =>
+        emailError(onEmailFocus, emailErrorBox)
       );
-      passwordInput.removeEventListener('focusout', () =>
-        isPassword(passwordInput, passwordRepeatInput, passwordRepeatErrorBox)
+      onPasswordFocus.removeEventListener('focusout', () =>
+        isPassword(onPasswordFocus, passwordRepeatFocus, passwordRepeatErrorBox)
       );
-      passwordRepeatInput.removeEventListener('focusout', () =>
-        isPassword(passwordInput, passwordRepeatInput, passwordRepeatErrorBox)
+      passwordRepeatFocus.removeEventListener('focusout', () =>
+        isPassword(onPasswordFocus, passwordRepeatFocus, passwordRepeatErrorBox)
       );
     };
   }, []);

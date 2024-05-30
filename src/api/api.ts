@@ -20,6 +20,13 @@ export interface Inquiry {
   updatedAt: string;
   writer: { id: number; image: string; nickname: string };
 }
+const handleUnknownError = (error: unknown) => {
+  if (error instanceof Error) {
+    window.alert(`Error: ${error.message}`);
+  } else {
+    window.alert('Unknown error type');
+  }
+};
 
 const getProducts = async (searchParams = ''): Promise<Product[]> => {
   let response;
@@ -83,5 +90,5 @@ const getComments = async (searchParams = ''): Promise<Inquiry[]> => {
   return result.list;
 };
 
-export { getProduct, getProducts, getComments };
+export { getProduct, getProducts, getComments, handleUnknownError };
 

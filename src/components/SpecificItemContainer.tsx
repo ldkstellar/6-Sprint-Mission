@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
-import { getComments, getProduct, Product, Inquiry } from '../api/api';
+import {
+  getComments,
+  getProduct,
+  Product,
+  Inquiry,
+  handleUnknownError,
+} from '../api/api';
 import { useParams, useSearchParams } from 'react-router-dom';
 import SpecificItem from './SpecificItem';
 
@@ -21,11 +27,7 @@ const SpecificItemContainer = () => {
       setSpecificItem(productInfo);
       setInquiries(productComment);
     } catch (error) {
-      if (error instanceof Error) {
-        if (error.name === 'httpError') {
-          window.alert(error.message);
-        }
-      }
+      handleUnknownError(error);
     } finally {
       setIsLoading(false);
     }

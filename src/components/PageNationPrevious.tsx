@@ -17,6 +17,7 @@ const PageNationPrevious = ({
   setPageGroup,
 }: PageNationLeftBtn) => {
   const navigation = useNavigate();
+
   const onClick = () => {
     if (parseInt(searchParams.get('page') as string) > 1) {
       const id = parseInt(searchParams.get('page') as string) - 1;

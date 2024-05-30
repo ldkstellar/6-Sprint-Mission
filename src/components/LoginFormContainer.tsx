@@ -3,7 +3,7 @@ import LoginForm from './LoginForm';
 
 export type OnChange = (e: ChangeEvent<HTMLInputElement>) => void;
 export type onClick = (
-  e: React.MouseEvent<HTMLImageElement, MouseEvent>
+ 
 ) => void;
 const LoginFormContainer = () => {
   const [email, setEmail] = useState<string>('');
@@ -15,7 +15,7 @@ const LoginFormContainer = () => {
   const onChangePassword: OnChange = (e) => {
     setPassword(e.target.value);
   };
-  const onClick: onClick = (e) => {
+  const onClick: onClick = () => {
     setIsOpen(!isOpen);
   };
 

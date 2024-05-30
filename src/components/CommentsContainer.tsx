@@ -3,21 +3,19 @@ import NoInquiry from './NoInquiry';
 import Comments from './Comments';
 import '../style/BackButton.css';
 import backImage from '../img/backImage.png';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Inquiry } from '../api/api';
 const CommentsContainer = ({ inquiries }: { inquiries: Inquiry[] }) => {
   if (inquiries.length === 0) {
     return <NoInquiry />;
   }
+  
   return (
     <div>
-      {inquiries.length === 0 ? (
-        <NoInquiry />
-      ) : (
-        inquiries.map((element) => (
-          <Comments key={element.id} element={element} />
-        ))
-      )}
+      {inquiries.map((element) => (
+        <Comments key={element.id} element={element} />
+      ))}
+
       <div className='backBtnContainer'>
         <Link className='backBtnContainer-btn' to={'/items'}>
           목록으로 돌아가기

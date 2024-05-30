@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../style/BestProduct.css';
-import { getProducts, Product } from '../api/api';
+import { getProducts, Product, handleUnknownError } from '../api/api';
 import BestProducts from './BestProducts';
 const BestProductsContainer = ({ windowWidth }: { windowWidth: number }) => {
   const [bestProducts, setBestProduct] = useState<Product[]>([]);
@@ -12,9 +12,7 @@ const BestProductsContainer = ({ windowWidth }: { windowWidth: number }) => {
       const result = await getProducts(query);
       setBestProduct(result);
     } catch (error) {
-      if (error instanceof Error) {
-        window.alert(error.message);
-      }
+      handleUnknownError(error);
     } finally {
       setIsLoading(false);
     }
@@ -36,7 +34,7 @@ const BestProductsContainer = ({ windowWidth }: { windowWidth: number }) => {
   if (isLoading) {
     return <div>베스트상품 로딩중</div>;
   }
-  return <BestProducts goodProducts={goodProducts} />;
+  return <BestProducts products={goodProducts} />;
 };
 
 export default BestProductsContainer;

@@ -5,7 +5,7 @@ import '../style/BackButton.css';
 import backImage from '../img/backImage.png';
 import { useNavigate } from 'react-router-dom';
 import { Inquiry } from '../api/api';
-const InquiryContainer = ({ inquiryList }: { inquiryList: Inquiry[] }) => {
+const Inquiries = ({ inquiryList }: { inquiryList: Inquiry[] }) => {
   const now = new Date();
   const navigation = useNavigate();
   const backButtonHandler = () => {
@@ -16,13 +16,9 @@ const InquiryContainer = ({ inquiryList }: { inquiryList: Inquiry[] }) => {
   }
   return (
     <div>
-      {inquiryList.length === 0 ? (
-        <NoInquiry />
-      ) : (
-        inquiryList.map((element) => (
-          <Comment key={element.id} element={element} />
-        ))
-      )}
+      {inquiryList.map((element) => (
+        <Comment key={element.id} element={element} />
+      ))}
       <div className='backBtnContainer'>
         <button className='backBtnContainer-btn' onClick={backButtonHandler}>
           목록으로 돌아가기
@@ -37,5 +33,5 @@ const InquiryContainer = ({ inquiryList }: { inquiryList: Inquiry[] }) => {
   );
 };
 
-export default InquiryContainer;
+export default Inquiries;
 

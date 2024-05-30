@@ -3,15 +3,15 @@ import moreImg from '../img/moreBtn.png';
 import mediumHeart from '../img/mediumHeart.png';
 import { Product } from '../api/api';
 import style from '../style/ProductIntroduce.module.css';
-const ProductIntroduce = ({ specificItem }: { specificItem: Product }) => {
+const ProductDetail = ({ product }: { product: Product }) => {
   return (
     <div className={style['productContainer']}>
-      <img id='itemImage' src={specificItem.images[0]} alt='물품상세이미지' />
+      <img id='itemImage' src={product.images[0]} alt='물품상세이미지' />
       <div className={style['informationContainer']}>
         <div className={style['info']}>
           <div>
-            <p className={style['titleInfo']}>{specificItem.name}</p>
-            <p className={style['priceInfo']}>{specificItem.price}원</p>
+            <p className={style['titleInfo']}>{product.name}</p>
+            <p className={style['priceInfo']}>{product.price}원</p>
           </div>
           <button className={style['moreBtn']}>
             <img src={moreImg} alt='더보기버튼' />
@@ -20,7 +20,7 @@ const ProductIntroduce = ({ specificItem }: { specificItem: Product }) => {
 
         <div className={style['introduceContainer']}>
           <p className={style['introduce']}>상품 소개</p>
-          {specificItem?.description}
+          {product?.description}
         </div>
 
         <div className={style['tagContainer']}>
@@ -31,11 +31,11 @@ const ProductIntroduce = ({ specificItem }: { specificItem: Product }) => {
           <button className={style['likeBtn']}>
             <img className={style['likeImg']} src={mediumHeart} />
           </button>
-          {specificItem.favoriteCount}
+          {product.favoriteCount}
         </div>
       </div>
     </div>
   );
 };
-export default ProductIntroduce;
+export default ProductDetail;
 

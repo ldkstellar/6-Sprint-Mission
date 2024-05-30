@@ -4,6 +4,7 @@ import { AutoContext } from '../context/AutoContext';
 import logo from '../img/panda.png';
 import profile from '../img/profile.png';
 import { Link, useNavigate } from 'react-router-dom';
+
 const Header = () => {
   const isLogin = useContext(AutoContext);
   const navigation = useNavigate();
@@ -12,7 +13,7 @@ const Header = () => {
     <div className='nav'>
       <div className='leftBtn'>
         <Link to={'/main'}>
-          <img className='logo' src={logo} />
+          <img className='logo' src={logo} alt='로고' />
         </Link>
         <p>자유게시판</p>
         <p id='presentPage'>중고마켓</p>
