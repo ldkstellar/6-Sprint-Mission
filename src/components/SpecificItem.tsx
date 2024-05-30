@@ -1,5 +1,5 @@
 import React from 'react';
-import Product-detail from './ProductIntroduce';
+import ProductDetail from './ProductIntroduce';
 import InquiryFormContainer from './InquiryFormContainer';
 import CommentsContainer from './CommentsContainer';
 import { Inquiry, Product } from '../api/api';
@@ -13,7 +13,7 @@ const SpecificItem = ({
 }) => {
   return (
     <div className={style['itemContainer']}>
-      <Product-detail specificItem={specificItem} />
+      <ProductDetail product={specificItem} />
       <InquiryFormContainer />
       <CommentsContainer inquiries={inquiries} />
     </div>

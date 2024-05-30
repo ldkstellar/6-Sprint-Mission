@@ -3,6 +3,7 @@ import moreImg from '../img/moreBtn.png';
 import mediumHeart from '../img/mediumHeart.png';
 import { Product } from '../api/api';
 import style from '../style/ProductIntroduce.module.css';
+
 const ProductDetail = ({ product }: { product: Product }) => {
   return (
     <div className={style['productContainer']}>
