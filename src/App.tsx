@@ -1,15 +1,15 @@
 import { Outlet } from 'react-router-dom';
 import Header from './components/Header';
-import { LoginContext } from './context/LoginContext';
+import { AutoContext } from './context/AutoContext';
 
 function App({ token }: { token?: any }) {
   return (
-    <LoginContext.Provider value={token}>
+    <AutoContext.Provider value={token}>
       <div>
         <Header />
         <Outlet />
       </div>
-    </LoginContext.Provider>
+    </AutoContext.Provider>
   );
 }
 

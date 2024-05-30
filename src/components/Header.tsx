@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import '../style/Header.css';
-import { LoginContext } from '../context/LoginContext';
+import { AutoContext } from '../context/AutoContext';
 import logo from '../img/panda.png';
 import profile from '../img/profile.png';
 import { Link, useNavigate } from 'react-router-dom';
 const Header = () => {
-  const isLogin = useContext(LoginContext);
+  const isLogin = useContext(AutoContext);
   const navigation = useNavigate();
 
   return (

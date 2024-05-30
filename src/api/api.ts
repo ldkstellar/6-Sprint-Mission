@@ -12,6 +12,7 @@ export interface Product {
   tags: string[];
   updatedAt: string;
 }
+
 export interface Inquiry {
   id: number;
   content: string;
@@ -31,9 +32,9 @@ const getProducts = async (searchParams = ''): Promise<Product[]> => {
     throw error;
   }
   if (!response.ok) {
-    const error = new Error();
+    const httpError = await response.json();
+    const error = new Error(httpError.message);
     error.name = `httpError`;
-    error.message = `httpCode:${response.status}`;
     throw error;
   }
   const result = await response.json();
@@ -52,9 +53,9 @@ const getProduct = async (searchParams = ''): Promise<Product> => {
   }
 
   if (!response.ok) {
-    const error = new Error();
+    const httpError = await response.json();
+    const error = new Error(httpError.message);
     error.name = `httpError`;
-    error.message = `httpCode:${response.status}`;
     throw error;
   }
   const result = await response.json();
@@ -72,9 +73,9 @@ const getComments = async (searchParams = ''): Promise<Inquiry[]> => {
     throw error;
   }
   if (!response.ok) {
-    const error = new Error();
+    const httpError = await response.json();
+    const error = new Error(httpError.message);
     error.name = `httpError`;
-    error.message = `httpCode:${response.status}`;
     throw error;
   }
   const result = await response.json();
