@@ -5,10 +5,10 @@ import { AutoContext } from './context/AutoContext';
 function App({ token }: { token?: any }) {
   return (
     <AutoContext.Provider value={token}>
-      <div>
+      <>
         <Header />
         <Outlet />
-      </div>
+      </>
     </AutoContext.Provider>
   );
 }
