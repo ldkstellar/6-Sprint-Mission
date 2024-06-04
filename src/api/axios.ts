@@ -1,6 +1,6 @@
 import axios from 'axios';
 const instance = axios.create({
-  baseURL: 'https://panda-market-api.vercel.app',
+  baseURL: process.env.NEXT_PUBLIC_API,
 });
 
 export default instance;
