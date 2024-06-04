@@ -1,21 +1,11 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import instance from './axios';
-
-export interface writing {
-  id: number;
-  title: string;
-  image: string | null;
-  likeCount: number;
-  createdAt: string;
-  updateAt: string;
-  content: string;
-  writer: { id: number; nickname: string };
-}
+import { articles, writing } from './apiType';
 
 export const getBestPosts = async (params: string): Promise<writing[]> => {
   const URL = `/articles?${params}`;
   try {
-    const response: AxiosResponse<any> = await instance.get(URL);
+    const response: AxiosResponse<articles> = await instance.get(URL);
     return response.data.list;
   } catch (error) {
     const err = error as AxiosError;
@@ -32,7 +22,7 @@ export const getBestPosts = async (params: string): Promise<writing[]> => {
 export const getTotalPosts = async (params: string): Promise<writing[]> => {
   const URL = `/articles?${params}`;
   try {
-    const response: AxiosResponse<any> = await instance.get(URL);
+    const response: AxiosResponse<articles> = await instance.get(URL);
     return response.data.list;
   } catch (error) {
     const err = error as AxiosError;
