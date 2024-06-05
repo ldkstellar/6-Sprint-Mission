@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import { getTotalPosts, writing } from '../api/api';
+import { getTotalPosts } from '../api/api';
+import { writing } from '../api/apiType';
 import Post from './Post';
 import { AxiosError } from 'axios';
 export const URL = `page=1&pageSize=5`;
@@ -17,8 +18,7 @@ const TotalPostsContainer = () => {
       } catch (error) {
         const err = error as AxiosError;
       }
-    }
-    if (keyword) {
+    } else if (keyword) {
       try {
         const result = await getTotalPosts(`${URL}&keyword=${keyword}`);
         setPosts(result);
