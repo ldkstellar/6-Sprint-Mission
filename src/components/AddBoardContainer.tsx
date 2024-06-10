@@ -1,13 +1,15 @@
-import { log } from 'console';
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
+import { tempSignUP } from '../api/api';
 import AddBoardForm from './AddBoardForm';
 import { form } from './AddBoardForm';
+
 const AddBoardContainer = () => {
   const [formData, setFormData] = useState<form>({
     title: '',
     content: '',
     image: null,
   });
+
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === 'title') {
       setFormData((prev) => ({ ...prev, ['title']: e.target.value }));
@@ -22,6 +24,9 @@ const AddBoardContainer = () => {
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
+  useEffect(() => {
+    tempSignUP();
+  }, []);
 
   return (
     <>
