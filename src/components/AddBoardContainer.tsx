@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import { tempSignUP } from '../api/api';
+import { postArticles, postImage, tempSignUP } from '../api/api';
 import AddBoardForm from './AddBoardForm';
 import { form } from './AddBoardForm';
 
@@ -21,8 +21,12 @@ const AddBoardContainer = () => {
     }
   };
 
-  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const url = await postImage(formData.image);
+    console.log(url);
+
+    // postArticles(formData, url);
   };
   useEffect(() => {
     tempSignUP();
@@ -30,7 +34,11 @@ const AddBoardContainer = () => {
 
   return (
     <>
-      <AddBoardForm onChangeHandler={onChangeHandler} formData={formData} />
+      <AddBoardForm
+        onChangeHandler={onChangeHandler}
+        formData={formData}
+        onSubmitHandler={onSubmitHandler}
+      />
     </>
   );
 };

@@ -8,11 +8,16 @@ export interface form {
 interface AddBoardFormProps {
   formData: form;
   onChangeHandler: (e: ChangeEvent<HTMLInputElement>) => void;
+  onSubmitHandler: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
-const AddBoardForm = ({ formData, onChangeHandler }: AddBoardFormProps) => {
+const AddBoardForm = ({
+  formData,
+  onChangeHandler,
+  onSubmitHandler,
+}: AddBoardFormProps) => {
   return (
-    <form className={style.formFrame}>
+    <form className={style.formFrame} onSubmit={onSubmitHandler}>
       <div className={style.registerFrame}>
         <p>게시글 쓰기</p>
         <button
@@ -50,7 +55,7 @@ const AddBoardForm = ({ formData, onChangeHandler }: AddBoardFormProps) => {
         <p>이미지 등록</p>
       </label>
       <input
-        name='Image'
+        name='image'
         id='file'
         type='file'
         onChange={onChangeHandler}

@@ -3,6 +3,8 @@ import instance from './axios';
 import { articles, writing } from './apiType';
 import { url } from 'inspector';
 import Cookies from 'js-cookie';
+import { form } from '../components/AddBoardForm';
+import { title } from 'process';
 
 export const getBestPosts = async (params: string): Promise<writing[]> => {
   const URL = `/articles?${params}`;
@@ -52,12 +54,27 @@ export const tempSignUP = async () => {
   } catch (error) {}
 };
 
-export const postImage = async () => {
+export const postImage = async (image: File | null) => {
   const URL = '/images/upload';
 
   try {
-    const response = await instance.post(URL);
-    response.data();
+    if (image) {
+      const response = await instance.post(URL, { image: image });
+      const imageUrl = response.data.url;
+      return imageUrl;
+    }
+    return '';
+  } catch (error) {}
+};
+
+export const postArticles = async (formData: form, imageUrl: string) => {
+  const URL = '/articles';
+  try {
+    const response = await instance.post(URL, {
+      image: imageUrl,
+      content: formData.content,
+      title: formData.title,
+    });
   } catch (error) {}
 };
 
