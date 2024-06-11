@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { getTotalPosts } from '../api/api';
-import { writing } from '../api/apiType';
+import { writingType } from '../api/apiType';
 import Post from './Post';
 import { AxiosError } from 'axios';
 export const URL = `page=1&pageSize=5`;
@@ -9,7 +9,7 @@ const TotalPostsContainer = () => {
   const router = useRouter();
   const { orderBy, keyword } = router.query;
 
-  const [posts, setPosts] = useState<writing[]>([]);
+  const [posts, setPosts] = useState<writingType[]>([]);
   const getPosts = async () => {
     if (orderBy) {
       try {

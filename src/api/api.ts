@@ -1,15 +1,15 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import instance from './axios';
-import { articles, writing } from './apiType';
+import { articlesType, writingType } from './apiType';
 import { url } from 'inspector';
 import Cookies from 'js-cookie';
 import { form } from '../components/AddBoardForm';
 import { title } from 'process';
 
-export const getBestPosts = async (params: string): Promise<writing[]> => {
+export const getBestPosts = async (params: string): Promise<writingType[]> => {
   const URL = `/articles?${params}`;
   try {
-    const response: AxiosResponse<articles> = await instance.get(URL);
+    const response: AxiosResponse<articlesType> = await instance.get(URL);
     return response.data.list;
   } catch (error) {
     const err = error as AxiosError;
@@ -23,10 +23,10 @@ export const getBestPosts = async (params: string): Promise<writing[]> => {
   }
 };
 
-export const getTotalPosts = async (params: string): Promise<writing[]> => {
+export const getTotalPosts = async (params: string): Promise<writingType[]> => {
   const URL = `/articles?${params}`;
   try {
-    const response: AxiosResponse<articles> = await instance.get(URL);
+    const response: AxiosResponse<articlesType> = await instance.get(URL);
     return response.data.list;
   } catch (error) {
     const err = error as AxiosError;

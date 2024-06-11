@@ -1,4 +1,4 @@
-export interface articles {
+export interface articlesType {
   totalCount?: number;
   list: [
     {
@@ -17,7 +17,7 @@ export interface articles {
   ];
 }
 
-export interface writing {
+export interface writingType {
   updatedAt: string;
   createdAt: string;
   likeCount: number;

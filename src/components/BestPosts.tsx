@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import style from '@/styles/BestPosts.module.css';
-import { writing } from '../api/apiType';
+import { writingType } from '../api/apiType';
 import BestPost from './BestPost';
 interface bestPostsProps {
-  posts: writing[];
+  posts: writingType[];
 }
 const BestPosts = ({ posts }: bestPostsProps) => {
   return (
