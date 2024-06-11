@@ -35,6 +35,7 @@ const TotalPostsContainer = () => {
       {posts.map((element) => (
         <Post
           key={element.id}
+          id={element.id}
           image={element.image}
           content={element.title}
           likeCount={element.likeCount}

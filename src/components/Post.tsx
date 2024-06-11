@@ -3,6 +3,7 @@ import style from '@/styles/Post.module.css';
 import profile from '@/src/img/profile.png';
 import heart from '@/src/img/heart.png';
 import { convertTime } from '../util/convertTime';
+import Link from 'next/link';
 
 interface postItem {
   image: string | null;
@@ -10,12 +11,20 @@ interface postItem {
   likeCount: number;
   nickName: string;
   createdAt: string;
+  id: number;
 }
 
-const Post = ({ image, content, likeCount, nickName, createdAt }: postItem) => {
+const Post = ({
+  image,
+  content,
+  likeCount,
+  nickName,
+  createdAt,
+  id,
+}: postItem) => {
   const contentDate = convertTime(createdAt);
   return (
-    <div className={style.postFrame}>
+    <Link href={`/addboard/${id}`} className={style.postFrame}>
       <div className={style.contentFrame}>
         <p className={style.content}>{content}</p>
         {image ? (
@@ -39,7 +48,7 @@ const Post = ({ image, content, likeCount, nickName, createdAt }: postItem) => {
           <p>{likeCount}+</p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

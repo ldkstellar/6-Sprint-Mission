@@ -3,7 +3,7 @@ import instance from './axios';
 import { articlesType, writingType } from './apiType';
 import { url } from 'inspector';
 import Cookies from 'js-cookie';
-import { form } from '../components/AddBoardForm';
+import { formType } from '../components/AddBoardForm';
 import { title } from 'process';
 
 export const getBestPosts = async (params: string): Promise<writingType[]> => {
@@ -39,7 +39,7 @@ export const getTotalPosts = async (params: string): Promise<writingType[]> => {
     throw error;
   }
 };
-export const tempSignUP = async () => {
+export const tempSignIn = async () => {
   const TEMP_URL = '/auth/signIn';
   try {
     if (!Cookies.get('accessToken')) {
@@ -59,7 +59,11 @@ export const postImage = async (image: File | null) => {
 
   try {
     if (image) {
-      const response = await instance.post(URL, { image: image });
+      const response = await instance.post(
+        URL,
+        { image: image },
+        { headers: { 'Content-Type': 'multipart/form-data' } }
+      );
       const imageUrl = response.data.url;
       return imageUrl;
     }
@@ -67,14 +71,23 @@ export const postImage = async (image: File | null) => {
   } catch (error) {}
 };
 
-export const postArticles = async (formData: form, imageUrl: string) => {
+export const postArticles = async (formData: formType, imageUrl: string) => {
   const URL = '/articles';
   try {
-    const response = await instance.post(URL, {
-      image: imageUrl,
-      content: formData.content,
-      title: formData.title,
-    });
+    const response = await instance.post(
+      URL,
+      {
+        image: imageUrl,
+        content: formData.content,
+        title: formData.title,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          accept: 'application/json',
+        },
+      }
+    );
   } catch (error) {}
 };
 
