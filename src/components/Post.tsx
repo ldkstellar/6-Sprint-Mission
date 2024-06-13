@@ -24,7 +24,7 @@ const Post = ({
 }: postItem) => {
   const contentDate = convertTime(createdAt);
   return (
-    <Link href={`/addboard/${id}`} className={style.postFrame}>
+    <Link href={`/board/${id}`} className={style.postFrame}>
       <div className={style.contentFrame}>
         <p className={style.content}>{content}</p>
         {image ? (

@@ -1,20 +1,21 @@
 .postFrame {
   margin-bottom: 30px;
   height: 112px;
-  border-bottom: 1px solid #e5e7eb;
+
   text-decoration: none;
 }
+
 .contentFrame {
   display: flex;
   justify-content: space-between;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #e5e7eb;
 }
-
 .content {
   font-weight: 600;
   font-size: 20px;
   color: #1f2937;
 }
-
 .contentImage {
   width: 72px;
   height: 72px;

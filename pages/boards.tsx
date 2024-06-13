@@ -18,7 +18,8 @@ const boards: React.FC<bestPosts> = ({ bestPosts }) => {
     </div>
   );
 };
-export const getServerSideProps: GetServerSideProps<bestPosts> = async () => {
+
+export const getServerSideProps: GetServerSideProps<bestPosts> = async() => {
   const URL = 'page=1&pageSize=3&orderBy=like';
   try {
     const bestPosts = await getBestPosts(URL);

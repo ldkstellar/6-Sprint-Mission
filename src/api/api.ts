@@ -1,10 +1,8 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import instance from './axios';
-import { articlesType, writingType } from './apiType';
-import { url } from 'inspector';
+import { articlesType, articleType, writingType } from './apiType';
 import Cookies from 'js-cookie';
 import { formType } from '../components/AddBoardForm';
-import { title } from 'process';
 
 export const getBestPosts = async (params: string): Promise<writingType[]> => {
   const URL = `/articles?${params}`;
@@ -89,5 +87,23 @@ export const postArticles = async (formData: formType, imageUrl: string) => {
       }
     );
   } catch (error) {}
+};
+
+export const getArticle = async (articleId: string): Promise<articleType> => {
+  const URL = `/articles/${articleId}`;
+  try {
+    const response: AxiosResponse<articleType> = await instance.get(URL);
+    const articleData = response.data;
+    return articleData;
+  } catch (error) {
+    const err = error as AxiosError;
+    if (err.response) {
+      console.error('Response error:', err.response.status);
+      console.error('Response data:', err.response.data);
+      throw err;
+    }
+    console.error(error);
+    throw error;
+  }
 };
 

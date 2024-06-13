@@ -27,7 +27,11 @@ const AddBoardForm = ({
         <button
           type='submit'
           disabled={!(formData.title && formData.content)}
-          className={style.registerBtn}
+          className={
+            formData.title && formData.content
+              ? `${style.registerBtn} ${style.ableBtn}`
+              : `${style.registerBtn} ${style.disableBtn}`
+          }
         >
           등록
         </button>
