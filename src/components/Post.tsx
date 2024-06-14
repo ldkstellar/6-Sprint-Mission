@@ -12,6 +12,7 @@ interface postItem {
   nickName: string;
   createdAt: string;
   id: number;
+  onClickHandler: (id: number) => void;
 }
 
 const Post = ({
@@ -21,10 +22,11 @@ const Post = ({
   nickName,
   createdAt,
   id,
+  onClickHandler,
 }: postItem) => {
   const contentDate = convertTime(createdAt);
   return (
-    <Link href={`/board/${id}`} className={style.postFrame}>
+    <div className={style.postFrame} onClick={() => onClickHandler(id)}>
       <div className={style.contentFrame}>
         <p className={style.content}>{content}</p>
         {image ? (
@@ -48,7 +50,7 @@ const Post = ({
           <p>{likeCount}+</p>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

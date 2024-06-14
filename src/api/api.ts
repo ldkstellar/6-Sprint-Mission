@@ -1,6 +1,12 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import instance from './axios';
-import { articlesType, articleType, writingType } from './apiType';
+import {
+  articlesType,
+  articleType,
+  commentsType,
+  commentType,
+  writingType,
+} from './apiType';
 import Cookies from 'js-cookie';
 import { formType } from '../components/AddBoardForm';
 
@@ -95,6 +101,29 @@ export const getArticle = async (articleId: string): Promise<articleType> => {
     const response: AxiosResponse<articleType> = await instance.get(URL);
     const articleData = response.data;
     return articleData;
+  } catch (error) {
+    const err = error as AxiosError;
+    if (err.response) {
+      console.error('Response error:', err.response.status);
+      console.error('Response data:', err.response.data);
+      throw err;
+    }
+    console.error(error);
+    throw error;
+  }
+};
+
+export const getComments = async (
+  articleId: string,
+  limit: number,
+  cursor?: number
+): Promise<[commentType]> => {
+  const URL = `/articles/${articleId}/comments?limit=${limit}${
+    cursor ? `&cursor=${cursor}` : ''
+  }`;
+  try {
+    const response: AxiosResponse<commentsType> = await instance.get(URL);
+    return response.data.list;
   } catch (error) {
     const err = error as AxiosError;
     if (err.response) {

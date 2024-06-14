@@ -4,11 +4,12 @@ import { AxiosError } from 'axios';
 import React from 'react';
 import { getArticle } from '@/src/api/api';
 import { useRouter } from 'next/router';
+import Board from '@/src/components/Board';
 interface articleProps {
   article: articleType;
 }
 const board: React.FC<articleProps> = ({ article }) => {
-  return <div></div>;
+  return <Board article={article} />;
 };
 
 export const getServerSideProps: GetServerSideProps<articleProps> = async (

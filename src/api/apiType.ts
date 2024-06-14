@@ -31,3 +31,20 @@ export interface articleType {
   id: number;
 }
 
+export interface commentsType extends commentType {
+  list: [commentType];
+  nextCursor: number;
+}
+
+export interface commentType {
+  id: number;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+  writer: {
+    id: number;
+    nickname: string;
+    image: string | null;
+  };
+}
+

@@ -8,7 +8,6 @@ export const URL = `page=1&pageSize=5`;
 const TotalPostsContainer = () => {
   const router = useRouter();
   const { orderBy, keyword } = router.query;
-
   const [posts, setPosts] = useState<writingType[]>([]);
   const getPosts = async () => {
     if (orderBy) {
@@ -27,6 +26,10 @@ const TotalPostsContainer = () => {
       }
     }
   };
+
+  const onClickHandler = (id: number) => {
+    router.push(`/board/${id}`);
+  };
   useEffect(() => {
     getPosts();
   }, [orderBy, keyword]);
@@ -34,6 +37,7 @@ const TotalPostsContainer = () => {
     <>
       {posts.map((element) => (
         <Post
+          onClickHandler={onClickHandler}
           key={element.id}
           id={element.id}
           image={element.image}
