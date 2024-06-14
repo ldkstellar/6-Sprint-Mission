@@ -4,6 +4,7 @@ import { getComments } from '../api/api';
 import { commentsType, commentType } from '../api/apiType';
 import Comment from './Comment';
 import CommentInput from './CommentInput';
+import NoComment from './NoComment';
 
 const CommentContainer = () => {
   const router = useRouter();
@@ -18,17 +19,23 @@ const CommentContainer = () => {
   useEffect(() => {
     saveComment();
   }, []);
+  console.log(comments);
+
   return (
     <>
       <CommentInput />
-      {comments.map((element) => (
-        <Comment
-          content={element.content}
-          image={element.writer.image}
-          createdAt={element.createdAt}
-          nickName={element.writer.nickname}
-        />
-      ))}
+      {comments.length !== 0 ? (
+        comments.map((element) => (
+          <Comment
+            content={element.content}
+            image={element.writer.image}
+            createdAt={element.createdAt}
+            nickName={element.writer.nickname}
+          />
+        ))
+      ) : (
+        <NoComment />
+      )}
     </>
   );
 };
