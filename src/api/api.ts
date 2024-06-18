@@ -10,6 +10,8 @@ import {
 import Cookies from 'js-cookie';
 import { formType } from '../components/AddBoardForm';
 
+const E_MAIL = 'leedong0225@icloud.com';
+const PASS_WORD = 'abcd1234';
 export const getBestPosts = async (params: string): Promise<writingType[]> => {
   const URL = `/articles?${params}`;
   try {
@@ -48,8 +50,8 @@ export const tempSignIn = async () => {
   try {
     if (!Cookies.get('accessToken')) {
       const response = await instance.post(TEMP_URL, {
-        email: 'leedong0225@icloud.com',
-        password: 'abcd1234',
+        email: E_MAIL,
+        password: PASS_WORD,
       });
       const { accessToken, refreshToken } = response.data;
       Cookies.set('accessToken', accessToken);
