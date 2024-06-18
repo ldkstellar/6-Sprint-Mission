@@ -1,6 +1,6 @@
 export interface articlesType extends articleType {
   totalCount?: number;
-  list: [articleType];
+  list: articleType[];
 }
 
 export interface writingType {
@@ -32,7 +32,7 @@ export interface articleType {
 }
 
 export interface commentsType extends commentType {
-  list: [commentType];
+  list: commentType[];
   nextCursor: number;
 }
 

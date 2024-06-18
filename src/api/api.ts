@@ -121,7 +121,7 @@ export const getComments = async (
   articleId: string,
   limit: number,
   cursor?: number
-): Promise<[commentType]> => {
+): Promise<commentType[]> => {
   const URL = `/articles/${articleId}/comments?limit=${limit}${
     cursor ? `&cursor=${cursor}` : ''
   }`;

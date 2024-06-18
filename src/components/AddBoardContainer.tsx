@@ -20,11 +20,12 @@ const AddBoardContainer = () => {
   };
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.name === 'title') {
+    const targetName = e.target.name;
+    if (targetName === 'title') {
       setFormData((prev) => ({ ...prev, ['title']: e.target.value }));
-    } else if (e.target.name === 'content') {
+    } else if (targetName === 'content') {
       setFormData((prev) => ({ ...prev, ['content']: e.target.value }));
-    } else if (e.target.name === 'image') {
+    } else if (targetName === 'image') {
       const file = e.target.files?.[0];
       if (file) {
         setFormData((prev) => ({ ...prev, ['image']: file }));
