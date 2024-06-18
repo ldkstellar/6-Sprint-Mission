@@ -51,7 +51,7 @@ export const tempSignIn = async () => {
   const TEMP_URL = '/auth/signIn';
   try {
     if (!Cookies.get('accessToken')) {
-      await instance.post(TEMP_URL, {
+      const response = await instance.post(TEMP_URL, {
         email: E_MAIL,
         password: PASS_WORD,
       });
@@ -67,7 +67,7 @@ export const postImage = async (image: File | null) => {
 
   try {
     if (image) {
-      await instance.post(
+      const response = await instance.post(
         URL,
         { image: image },
         { headers: { 'Content-Type': 'multipart/form-data' } }
