@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
-import { getComments } from '../api/api';
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { getComments, postComment } from '../api/api';
 import { commentsType, commentType } from '../api/apiType';
 import Comment from './Comment';
 import CommentInput from './CommentInput';
@@ -8,22 +8,40 @@ import NoComment from './NoComment';
 
 const CommentContainer = () => {
   const router = useRouter();
-  const [comments, setComments] = useState<[commentType] | []>([]);
+  const [comments, setComments] = useState<commentType[] | []>([]);
   const id = router.query['id'];
+  const ref = useRef<HTMLInputElement>(null);
   const saveComment = async () => {
     try {
       const result = await getComments(id as string, 5);
       setComments(result);
     } catch (error) {}
   };
+  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (ref.current) {
+      ref.current.value = e.target.value;
+    }
+  };
+  const registerCommentHandler = async () => {
+    const content = ref.current?.value;
+    try {
+      await postComment(id as string, content as string);
+    } catch (error) {
+    } finally {
+      window.location.reload();
+    }
+  };
   useEffect(() => {
     saveComment();
   }, []);
-  console.log(comments);
 
   return (
     <>
-      <CommentInput />
+      <CommentInput
+        ref={ref}
+        registerCommentHandler={registerCommentHandler}
+        onChangeHandler={onChangeHandler}
+      />
       {comments.length !== 0 ? (
         comments.map((element) => (
           <Comment

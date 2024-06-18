@@ -126,7 +126,9 @@ export const getComments = async (
     cursor ? `&cursor=${cursor}` : ''
   }`;
   try {
-    const response: AxiosResponse<commentsType> = await instance.get(URL);
+    const response: AxiosResponse<commentsType> = await instance.get(URL, {
+      headers: {},
+    });
     return response.data.list;
   } catch (error) {
     const err = error as AxiosError;
@@ -138,5 +140,19 @@ export const getComments = async (
     console.error(error);
     throw error;
   }
+};
+
+export const postComment = async (articleId: string, content: string) => {
+  const URL = `/articles/${articleId}/comments`;
+  await instance.post(
+    URL,
+    { content: content },
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+    }
+  );
 };
 
