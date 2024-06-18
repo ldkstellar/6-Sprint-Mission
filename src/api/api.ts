@@ -12,6 +12,7 @@ import { formType } from '../components/AddBoardForm';
 
 const E_MAIL = 'leedong0225@icloud.com';
 const PASS_WORD = 'abcd1234';
+
 export const getBestPosts = async (params: string): Promise<writingType[]> => {
   const URL = `/articles?${params}`;
   try {
@@ -45,11 +46,12 @@ export const getTotalPosts = async (params: string): Promise<writingType[]> => {
     throw error;
   }
 };
+
 export const tempSignIn = async () => {
   const TEMP_URL = '/auth/signIn';
   try {
     if (!Cookies.get('accessToken')) {
-      const response = await instance.post(TEMP_URL, {
+      await instance.post(TEMP_URL, {
         email: E_MAIL,
         password: PASS_WORD,
       });
@@ -65,7 +67,7 @@ export const postImage = async (image: File | null) => {
 
   try {
     if (image) {
-      const response = await instance.post(
+      await instance.post(
         URL,
         { image: image },
         { headers: { 'Content-Type': 'multipart/form-data' } }
@@ -80,7 +82,7 @@ export const postImage = async (image: File | null) => {
 export const postArticles = async (formData: formType, imageUrl: string) => {
   const URL = '/articles';
   try {
-    const response = await instance.post(
+    await instance.post(
       URL,
       {
         image: imageUrl,
