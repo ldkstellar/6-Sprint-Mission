@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { getComments, postComment } from '../api/api';
-import { commentsType, commentType } from '../api/apiType';
+import { commentType } from '../api/apiType';
 import Comment from './Comment';
 import CommentInput from './CommentInput';
 import NoComment from './NoComment';
@@ -11,17 +11,20 @@ const CommentContainer = () => {
   const [comments, setComments] = useState<commentType[] | []>([]);
   const id = router.query['id'];
   const ref = useRef<HTMLInputElement>(null);
+
   const saveComment = async () => {
     try {
       const result = await getComments(id as string, 5);
       setComments(result);
     } catch (error) {}
   };
+
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (ref.current) {
       ref.current.value = e.target.value;
     }
   };
+
   const registerCommentHandler = async () => {
     const content = ref.current?.value;
     try {
@@ -31,6 +34,7 @@ const CommentContainer = () => {
       window.location.reload();
     }
   };
+
   useEffect(() => {
     saveComment();
   }, []);

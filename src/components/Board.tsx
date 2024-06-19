@@ -6,7 +6,8 @@ import profile from '@/src/img/profile.png';
 import heart from '@/src/img/heart.png';
 import { convertTime } from '../util/convertTime';
 import CommentContainer from './CommentContainer';
-
+import Link from 'next/link';
+import backButton from '@/src/img/back.png';
 const Board = ({ article }: { article: articleType }) => {
   const createdAt = convertTime(article.createdAt);
 
@@ -18,7 +19,6 @@ const Board = ({ article }: { article: articleType }) => {
           <img className={style.kebabImage} src={kebab.src} alt='케밥버튼' />
         </button>
       </div>
-
       <div className={style.boardDataFrame}>
         <img
           className={style.profileImage}
@@ -32,6 +32,11 @@ const Board = ({ article }: { article: articleType }) => {
       </div>
       <p className={style.content}>{article.content}</p>
       <CommentContainer />
+
+      <Link className={style.backButton} href={'/boards'}>
+        목록으로 돌아가기
+        <img className={style.backButtonImage} src={backButton.src} />
+      </Link>
     </div>
   );
 };

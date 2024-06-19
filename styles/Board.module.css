@@ -2,17 +2,20 @@
   margin: 0px auto;
   width: 1200px;
 }
+
 .articleFrame {
   margin-top: 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .title {
   font-weight: 700;
   font-size: 20px;
   color: #1f2937;
 }
+
 .kebabImage {
   width: 24px;
   height: 24px;
@@ -32,24 +35,29 @@
   padding-bottom: 10px;
   border-bottom: 1px solid #e5e7eb;
 }
+
 .profileImage {
   width: 24px;
   height: 24px;
 }
+
 .nickName {
   font-weight: 400;
   font-size: 14px;
   color: #4b5563;
 }
+
 .createdAt {
   font-weight: 400;
   font-size: 12px;
   color: #9ca3af;
 }
+
 .likeImage {
   width: 24px;
   height: 24px;
 }
+
 .likeCount {
   font-weight: 400;
   font-size: 14px;
@@ -88,6 +96,27 @@
   color: #ffffffff;
   border: none;
 }
+.backButton {
+  position: relative;
+  width: 240px;
+  height: 48px;
+  border-radius: 40px;
+  text-align: center;
+  line-height: 48px;
+  background-color: #3692ff;
+  display: block;
+  margin: 30px auto;
+  text-decoration: none;
+  color: #ffffffff;
+}
+.backButtonImage {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 12px;
+  right: 24px;
+}
+
 @media (max-width: 1199px) {
   .boardFrame {
     width: 696px;
