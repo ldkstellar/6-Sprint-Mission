@@ -1,15 +1,16 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import SignUpForm from './SignUpForm';
 import { emailError, pwError, isPassword } from '@/src/util/loginCheck';
-import style from '@/styles/signup.module.css';
+import style from '@/styles/signUp.module.css';
+import { postSignUp } from '../api/api';
+import { useRouter } from 'next/navigation';
 
 export interface SignUp {
   email: string;
   nickName: string;
   password: string;
-  repeatPassWord: string;
+  repeatPassword: string;
 }
-
 export interface Show {
   passShow: boolean;
   repeatShow: boolean;
@@ -20,12 +21,15 @@ const SignUpContainer = () => {
     email: '',
     nickName: '',
     password: '',
-    repeatPassWord: '',
+    repeatPassword: '',
   });
+
   const [isShow, setIsShow] = useState<Show>({
     passShow: false,
     repeatShow: false,
   });
+
+  const route = useRouter();
 
   const passwordHideHandler = () => {
     setIsShow({ ...isShow, passShow: !isShow.passShow });
@@ -39,7 +43,17 @@ const SignUpContainer = () => {
     const { name, value } = e.target;
     setUserInfo((prev) => ({ ...prev, [name]: value }));
   };
-
+  const serveSignUp = async () => {
+    try {
+      await postSignUp(
+        userInfo.email,
+        userInfo.nickName,
+        userInfo.password,
+        userInfo.repeatPassword
+      );
+      route.push('/login');
+    } catch (error) {}
+  };
   useEffect(() => {
     const onEmailFocus = document.querySelector(
       `.${style.emailInput}`
@@ -93,6 +107,7 @@ const SignUpContainer = () => {
       isShow={isShow}
       passwordHideHandler={passwordHideHandler}
       repeatPasswordHideHandler={repeatPasswordHideHandler}
+      serveSignUp={serveSignUp}
     />
   );
 };

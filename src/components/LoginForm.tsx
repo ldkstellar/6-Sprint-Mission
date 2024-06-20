@@ -1,30 +1,32 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import style from '@/styles/Login.module.css';
 import bigLogo from '@/src/img/bigLogo.png';
 import kakaoImage from '@/src/img/kakao.png';
 import googleImage from '@/src/img/google.png';
 import openPassword from '@/src/img/openPassword.png';
 import hidePassword from '@/src/img/hidePassword.png';
-import { OnChange, onClick } from './LoginFormContainer';
 import Link from 'next/link';
 
 interface Login {
   email: string;
   password: string;
-  onChangePassword: OnChange;
-  onChangeEmail: OnChange;
+  onChangePassword: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChangeEmail: (e: ChangeEvent<HTMLInputElement>) => void;
+  loginClickHandler: () => void;
 }
 interface isHide {
   isOpen: boolean;
-  onClick: onClick;
+  eyeButtonClickHandler: () => void;
 }
+
 const LoginForm = ({
   email,
   password,
   onChangeEmail,
   onChangePassword,
   isOpen,
-  onClick,
+  eyeButtonClickHandler: onClick,
+  loginClickHandler,
 }: Login & isHide) => {
   return (
     <>
@@ -65,7 +67,9 @@ const LoginForm = ({
           <div className={style['pw-error-message']}></div>
         </div>
 
-        <button className={style['loginButton']}>로그인</button>
+        <button className={style['loginButton']} onClick={loginClickHandler}>
+          로그인
+        </button>
         <div className={style['simpleLoginBox']}>
           <p>간편 로그인 하기</p>
           <div className='simpleLoginIcons'>

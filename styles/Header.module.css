@@ -38,7 +38,10 @@
   border: 1px solid;
   width: 88px;
   height: 42px;
+  text-align: center;
+  text-decoration: none;
   border-radius: 8px;
+  line-height: 42px;
   background-color: #3692ff;
   color: #ffffff;
   font-size: 16px;

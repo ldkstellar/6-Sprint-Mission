@@ -1,10 +1,7 @@
-import axios, {
-  Axios,
-  AxiosRequestConfig,
-  InternalAxiosRequestConfig,
-} from 'axios';
-
+import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import Cookies from 'js-cookie';
+import { postRefreshToken } from './api';
+
 const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API,
 });
@@ -17,8 +14,11 @@ instance.interceptors.request.use(
     }
     return config;
   },
-  (error) => {
+  async (error: AxiosError) => {
     // 요청이 실패할 경우 실행됩니다.
+    if (error.status === 401) {
+      await postRefreshToken();
+    }
     return Promise.reject(error);
   }
 );

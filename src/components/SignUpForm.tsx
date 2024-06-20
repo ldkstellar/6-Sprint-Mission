@@ -11,6 +11,7 @@ import Link from 'next/link';
 interface SignUpInfo {
   userInfo?: SignUp;
   onChangeHandler: (e: ChangeEvent<HTMLInputElement>) => void;
+  serveSignUp: () => void;
 }
 interface EyesButton {
   isShow: Show;
@@ -24,6 +25,7 @@ const SignUpForm = ({
   isShow,
   passwordHideHandler,
   repeatPasswordHideHandler,
+  serveSignUp,
 }: SignUpInfo & EyesButton) => {
   return (
     <div className={styles['section']}>
@@ -43,7 +45,7 @@ const SignUpForm = ({
             type='email'
           />
         </label>
-        <div className={styles['emailError']}></div>
+        <div className={styles['emailError']} />
         닉네임
         <label>
           <input
@@ -52,6 +54,7 @@ const SignUpForm = ({
             name='nickName'
             id='shown'
             type='text'
+            className={styles['inputContainer']}
             placeholder='닉네임을 입력해주세요'
           />
         </label>
@@ -61,7 +64,7 @@ const SignUpForm = ({
             value={userInfo?.password}
             name='password'
             onChange={onChangeHandler}
-            className={styles['passwordInput']}
+            className={`${styles['passwordInput']} ${styles['inputContainer']}`}
             type={isShow.passShow ? 'text' : 'password'}
             placeholder='비밀번호를 입력해주세요'
           />
@@ -72,14 +75,14 @@ const SignUpForm = ({
             alt=''
           />
         </label>
-        <div className={styles['pwError']}></div>
+        <div className={styles['pwError']} />
         비밀번호 확인
         <label className={styles['passwordLabel']}>
           <input
             name='repeatPassword'
-            value={userInfo?.repeatPassWord}
+            value={userInfo?.repeatPassword}
             onChange={onChangeHandler}
-            className={styles['passwordRepeatInput']}
+            className={`${styles['passwordRepeatInput']} ${styles['inputContainer']}`}
             type={isShow.repeatShow ? 'text' : 'password'}
             placeholder='비밀번호를 입력해주세요'
           />
@@ -91,7 +94,9 @@ const SignUpForm = ({
           />
         </label>
         <div className={styles['pwRepeatError']}></div>
-        <button className={styles['signUpButton']}>회원가입</button>
+        <button className={styles['signUpButton']} onClick={serveSignUp}>
+          회원가입
+        </button>
       </div>
       <div className={styles['simpleLoginBox']}>
         <p>간편로그인하기</p>

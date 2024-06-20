@@ -10,9 +10,6 @@ import {
 import Cookies from 'js-cookie';
 import { formType } from '../components/AddBoardForm';
 
-const E_MAIL = 'leedong0225@icloud.com';
-const PASS_WORD = 'abcd1234';
-
 export const getBestPosts = async (params: string): Promise<writingType[]> => {
   const URL = `/articles?${params}`;
   try {
@@ -45,21 +42,6 @@ export const getTotalPosts = async (params: string): Promise<writingType[]> => {
     console.error(error);
     throw error;
   }
-};
-
-export const tempSignIn = async () => {
-  const TEMP_URL = '/auth/signIn';
-  try {
-    if (!Cookies.get('accessToken')) {
-      const response = await instance.post(TEMP_URL, {
-        email: E_MAIL,
-        password: PASS_WORD,
-      });
-      const { accessToken, refreshToken } = response.data;
-      Cookies.set('accessToken', accessToken);
-      Cookies.set('refreshToken', refreshToken);
-    }
-  } catch (error) {}
 };
 
 export const postImage = async (image: File | null) => {
@@ -144,15 +126,105 @@ export const getComments = async (
 
 export const postComment = async (articleId: string, content: string) => {
   const URL = `/articles/${articleId}/comments`;
-  await instance.post(
-    URL,
-    { content: content },
-    {
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
+  try {
+    await instance.post(
+      URL,
+      { content: content },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+      }
+    );
+  } catch (error) {
+    const err = error as AxiosError;
+    if (err.response) {
+      console.error('Response error:', err.response.status);
+      console.error('Response data:', err.response.data);
+      throw err;
     }
-  );
+    console.error(error);
+    throw error;
+  }
+};
+
+export const postSignUp = async (
+  email: string,
+  nickname: string,
+  password: string,
+  passwordConfirmation: string
+) => {
+  const URL = `auth/signUp`;
+
+  try {
+    await instance.post(
+      URL,
+      {
+        email: email,
+        nickname: nickname,
+        password: password,
+        passwordConfirmation: passwordConfirmation,
+      },
+      { headers: { 'Content-Type': 'application/json' } }
+    );
+  } catch (error) {
+    const err = error as AxiosError;
+    if (err.response) {
+      console.error('Response error:', err.response.status);
+      console.error('Response data:', err.response.data);
+      throw err;
+    }
+    console.error(error);
+    throw error;
+  }
+};
+
+export const postSignIn = async (email: string, password: string) => {
+  const URL = `auth/signIn`;
+  try {
+    const response = await instance.post(
+      URL,
+      {
+        email: email,
+        password: password,
+      },
+      { headers: { 'Content-Type': 'application/json' } }
+    );
+    Cookies.set('accessToken', response.data.accessToken);
+    Cookies.set('refreshToken', response.data.refreshToken);
+  } catch (error) {
+    const err = error as AxiosError;
+    if (err.response) {
+      console.error('Response error:', err.response.status);
+      console.error('Response data:', err.response.data);
+      throw err;
+    }
+    console.error(error);
+    throw error;
+  }
+};
+
+export const postRefreshToken = async () => {
+  const URL = `auth/refresh-token`;
+  try {
+    const response = await instance.post(
+      URL,
+      {
+        refreshToken: Cookies.get('refreshToken'),
+      },
+      { headers: { 'Content-Type': 'application/json' } }
+    );
+    Cookies.set('accessToken', response.data.accessToken);
+  } catch (error) {
+    const err = error as AxiosError;
+    if (err.response) {
+      console.error('Response error:', err.response.status);
+      console.error('Response data:', err.response.data);
+      throw err;
+    }
+    console.error(error);
+    throw error;
+  }
 };
 

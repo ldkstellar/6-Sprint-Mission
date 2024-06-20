@@ -1,30 +1,38 @@
+import { useRouter } from 'next/router';
 import React, { ChangeEvent, useState } from 'react';
+import { postRefreshToken, postSignIn } from '../api/api';
 import LoginForm from './LoginForm';
 
-export type OnChange = (e: ChangeEvent<HTMLInputElement>) => void;
-export type onClick = () => void;
 const LoginFormContainer = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [isOpen, setIsOpen] = useState(false);
-  const onChangeEmail: OnChange = (e) => {
+  const route = useRouter();
+
+  const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
-  const onChangePassword: OnChange = (e) => {
+  const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
-  const onClick: onClick = () => {
+  const eyeButtonClickHandler = () => {
     setIsOpen(!isOpen);
   };
-
+  const loginClickHandler = async () => {
+    try {
+      await postSignIn(email, password);
+      route.push('/');
+    } catch (error) {}
+  };
   return (
     <LoginForm
-      onClick={onClick}
+      eyeButtonClickHandler={eyeButtonClickHandler}
       isOpen={isOpen}
       email={email}
       password={password}
       onChangeEmail={onChangeEmail}
       onChangePassword={onChangePassword}
+      loginClickHandler={loginClickHandler}
     />
   );
 };

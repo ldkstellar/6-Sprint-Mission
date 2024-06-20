@@ -1,9 +1,7 @@
 // api.test.js
-
 import axios from 'axios';
 import { getBestPosts } from './api';
 import instance from './axios';
-
 describe('Integration tests with actual server', () => {
   it('fetchData returns data successfully from the server', async () => {
     // 예제 API 엔드포인트로 요청을 보냅니다.

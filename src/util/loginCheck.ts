@@ -7,7 +7,6 @@ export function emailError(inputBox: I, errorBox: D) {
   if (!isValidEmail(email)) {
     showError('잘못된 이메일입니다', inputBox, errorBox);
   } else {
-    showError('', inputBox, errorBox);
     clearError(inputBox, errorBox);
   }
 }
@@ -21,12 +20,11 @@ export function pwError(inputBox: I, errorBox: D) {
 
 export function showError(message: string, inputBox: I, errorBox: D) {
   inputBox.classList.add(`${style['error-border']}`);
-
   errorBox.textContent = message;
 }
 
 export function clearError(inputBox: I, errorBox: D) {
-  inputBox.classList.remove('error-border');
+  inputBox.classList.remove(`${style['error-border']}`);
   errorBox.textContent = '';
 }
 
