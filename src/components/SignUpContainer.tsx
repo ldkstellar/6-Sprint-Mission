@@ -1,11 +1,10 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import SignUpForm from './SignUpForm';
-import { emailError, pwError, isPassword } from '@/src/util/loginCheck';
-import styles from '@/styles/signup.module.css';
+
 import { postSignUp } from '../api/api';
 import { useRouter } from 'next/navigation';
 import { AxiosError } from 'axios';
-
+import { useForm } from 'react-hook-form';
 export interface SignUp {
   email: string;
   nickName: string;
@@ -19,12 +18,14 @@ export interface Show {
 }
 
 const SignUpContainer = () => {
-  const [userInfo, setUserInfo] = useState<SignUp>({
-    email: '',
-    nickName: '',
-    password: '',
-    repeatPassword: '',
-  });
+  const {
+    watch,
+    register,
+    formState: { errors },
+    setError,
+    clearErrors,
+    handleSubmit,
+  } = useForm<SignUp>({ mode: 'onChange' });
 
   const [isShow, setIsShow] = useState<Show>({
     passShow: false,
@@ -41,17 +42,13 @@ const SignUpContainer = () => {
     setIsShow({ ...isShow, repeatShow: !isShow.repeatShow });
   };
 
-  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setUserInfo((prev) => ({ ...prev, [name]: value }));
-  };
-  const serveSignUp = async () => {
+  const serveSignUp = async (data: SignUp) => {
     try {
       await postSignUp(
-        userInfo.email,
-        userInfo.nickName,
-        userInfo.password,
-        userInfo.repeatPassword
+        data.email,
+        data.nickName,
+        data.password,
+        data.repeatPassword
       );
       route.push('/login');
     } catch (error) {
@@ -63,61 +60,17 @@ const SignUpContainer = () => {
     }
   };
 
-  useEffect(() => {
-    const onEmailFocus = document.querySelector(
-      `.${styles.emailInput}`
-    ) as HTMLInputElement;
-    const emailErrorBox = document.querySelector(
-      `.${styles.emailError}`
-    ) as HTMLDivElement;
-
-    onEmailFocus.addEventListener('focusout', () =>
-      emailError(onEmailFocus, emailErrorBox)
-    );
-
-    const onPasswordFocus = document.querySelector(
-      `.${styles.passwordInput}`
-    ) as HTMLInputElement;
-    const passwordErrorBox = document.querySelector(
-      `.${styles.pwError}`
-    ) as HTMLDivElement;
-
-    const passwordRepeatFocus = document.querySelector(
-      `.${styles.passwordRepeatInput}`
-    ) as HTMLInputElement;
-    const passwordRepeatErrorBox = document.querySelector(
-      `.${styles.pwRepeatError}`
-    ) as HTMLInputElement;
-
-    onPasswordFocus.addEventListener('focusout', () =>
-      pwError(onPasswordFocus, passwordErrorBox)
-    );
-
-    passwordRepeatFocus.addEventListener('focusout', () =>
-      isPassword(onPasswordFocus, passwordRepeatFocus, passwordRepeatErrorBox)
-    );
-
-    return () => {
-      onEmailFocus.removeEventListener('focusout', () =>
-        emailError(onEmailFocus, emailErrorBox)
-      );
-      onPasswordFocus.removeEventListener('focusout', () =>
-        isPassword(onPasswordFocus, passwordRepeatFocus, passwordRepeatErrorBox)
-      );
-      passwordRepeatFocus.removeEventListener('focusout', () =>
-        isPassword(onPasswordFocus, passwordRepeatFocus, passwordRepeatErrorBox)
-      );
-    };
-  }, []);
-
   return (
     <SignUpForm
-      userInfo={userInfo}
-      onChangeHandler={onChangeHandler}
+      watch={watch}
+      setError={setError}
+      clearErrors={clearErrors}
+      register={register}
+      errors={errors}
       isShow={isShow}
       passwordHideHandler={passwordHideHandler}
       repeatPasswordHideHandler={repeatPasswordHideHandler}
-      serveSignUp={serveSignUp}
+      handleSubmit={handleSubmit(serveSignUp)}
     />
   );
 };
