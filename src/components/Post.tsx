@@ -3,7 +3,6 @@ import style from '@/styles/Post.module.css';
 import profile from '@/src/img/profile.png';
 import heart from '@/src/img/heart.png';
 import { convertTime } from '../util/convertTime';
-import Link from 'next/link';
 
 interface postItem {
   image: string | null;

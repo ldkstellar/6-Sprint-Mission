@@ -1,38 +1,67 @@
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { getTotalPosts } from '../api/api';
 import { writingType } from '../api/apiType';
 import Post from './Post';
 import { AxiosError } from 'axios';
-export const URL = `page=1&pageSize=5`;
+import style from '@/styles/Post.module.css';
 const TotalPostsContainer = () => {
   const router = useRouter();
   const { orderBy, keyword } = router.query;
   const [posts, setPosts] = useState<writingType[]>([]);
+  const target = useRef<HTMLDivElement>(null);
+  const [limit, setLimit] = useState(6);
+
+  let preventFirst = 0;
+
+  const callback = (entry: IntersectionObserverEntry[]) => {
+    if (entry[0].isIntersecting && preventFirst > 0) {
+      setLimit((prev) => prev + 6);
+    }
+    preventFirst++;
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(callback, { threshold: 1 });
+    if (target.current !== null) {
+      observer.observe(target.current);
+    }
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   const getPosts = async () => {
-    if (orderBy) {
+    if (keyword && orderBy) {
       try {
-        const result = await getTotalPosts(`${URL}&orderBy=${orderBy}`);
+        const result = await getTotalPosts(
+          `page=1&pageSize=${limit}&orderBy=${orderBy}&keyword=${keyword}`
+        );
         setPosts(result);
       } catch (error) {
         const err = error as AxiosError;
       }
-    } else if (keyword) {
-      try {
-        const result = await getTotalPosts(`${URL}&keyword=${keyword}`);
-        setPosts(result);
-      } catch (error) {
-        const err = error as AxiosError;
-      }
+      return;
+    }
+
+    try {
+      const result = await getTotalPosts(
+        `page=1&pageSize=${limit}&orderBy=${orderBy}`
+      );
+      setPosts(result);
+    } catch (error) {
+      const err = error as AxiosError;
     }
   };
 
   const onClickHandler = (id: number) => {
     router.push(`/board/${id}`);
   };
+
   useEffect(() => {
     getPosts();
-  }, [orderBy, keyword]);
+  }, [router.query, limit]);
+
   return (
     <>
       {posts.map((element) => (
@@ -47,6 +76,7 @@ const TotalPostsContainer = () => {
           createdAt={element.createdAt}
         />
       ))}
+      <div className={style['observer']} ref={target} />
     </>
   );
 };

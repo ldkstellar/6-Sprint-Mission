@@ -56,7 +56,7 @@ const SignUpForm = ({
 
   return (
     <div className={styles['section']}>
-      <Link className={styles['logo']} href='/main'>
+      <Link className={styles['logo']} href='/'>
         <img src={bigLogo.src} />
       </Link>
 

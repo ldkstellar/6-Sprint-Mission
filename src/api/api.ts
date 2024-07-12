@@ -9,6 +9,7 @@ import {
 } from './apiType';
 import Cookies from 'js-cookie';
 import { formType } from '../components/AddBoardForm';
+import { url } from 'inspector';
 
 export const getBestPosts = async (params: string): Promise<writingType[]> => {
   const URL = `/articles?${params}`;
@@ -30,6 +31,8 @@ export const getBestPosts = async (params: string): Promise<writingType[]> => {
 export const getTotalPosts = async (params: string): Promise<writingType[]> => {
   const URL = `/articles?${params}`;
   try {
+    console.log(URL);
+
     const response: AxiosResponse<articlesType> = await instance.get(URL);
     return response.data.list;
   } catch (error) {
