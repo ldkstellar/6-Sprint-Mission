@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import style from '../../styles/Header.module.css';
 import logo from '../img/panda.png';
 import profile from '../img/profile.png';
@@ -31,13 +31,13 @@ const Header = ({ children }: headerProps) => {
           <Link href={'/'}>
             <img className='logo' src={logo.src} alt='로고' />
           </Link>
-          <p>자유게시판</p>
-          <p id='presentPage'>중고마켓</p>
+          <Link href={'/boards'}>자유게시판</Link>
+          <Link href={'/'}>중고마켓</Link>
         </div>
         <div className={style['rightBtn']}>
           {isLoggedIn ? (
-            <button>
-              <img src={profile.src} alt='profile'></img>
+            <button className={style['profile']}>
+              <img src={profile.src} alt='profile' />
             </button>
           ) : (
             <Link href={'/login'} className={style['loginBtn']}>

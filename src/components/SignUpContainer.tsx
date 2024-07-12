@@ -1,9 +1,10 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import SignUpForm from './SignUpForm';
 import { emailError, pwError, isPassword } from '@/src/util/loginCheck';
-import style from '@/styles/signUp.module.css';
+import styles from '@/styles/signup.module.css';
 import { postSignUp } from '../api/api';
 import { useRouter } from 'next/navigation';
+import { AxiosError } from 'axios';
 
 export interface SignUp {
   email: string;
@@ -11,6 +12,7 @@ export interface SignUp {
   password: string;
   repeatPassword: string;
 }
+
 export interface Show {
   passShow: boolean;
   repeatShow: boolean;
@@ -52,14 +54,21 @@ const SignUpContainer = () => {
         userInfo.repeatPassword
       );
       route.push('/login');
-    } catch (error) {}
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        if (error.response?.status === 400) {
+          alert(error.response.data.message);
+        }
+      }
+    }
   };
+
   useEffect(() => {
     const onEmailFocus = document.querySelector(
-      `.${style.emailInput}`
+      `.${styles.emailInput}`
     ) as HTMLInputElement;
     const emailErrorBox = document.querySelector(
-      `.${style.emailError}`
+      `.${styles.emailError}`
     ) as HTMLDivElement;
 
     onEmailFocus.addEventListener('focusout', () =>
@@ -67,17 +76,17 @@ const SignUpContainer = () => {
     );
 
     const onPasswordFocus = document.querySelector(
-      `.${style.passwordInput}`
+      `.${styles.passwordInput}`
     ) as HTMLInputElement;
     const passwordErrorBox = document.querySelector(
-      `.${style.pwError}`
+      `.${styles.pwError}`
     ) as HTMLDivElement;
 
     const passwordRepeatFocus = document.querySelector(
-      `.${style.passwordRepeatInput}`
+      `.${styles.passwordRepeatInput}`
     ) as HTMLInputElement;
     const passwordRepeatErrorBox = document.querySelector(
-      `.${style.pwRepeatError}`
+      `.${styles.pwRepeatError}`
     ) as HTMLInputElement;
 
     onPasswordFocus.addEventListener('focusout', () =>
@@ -100,6 +109,7 @@ const SignUpContainer = () => {
       );
     };
   }, []);
+
   return (
     <SignUpForm
       userInfo={userInfo}

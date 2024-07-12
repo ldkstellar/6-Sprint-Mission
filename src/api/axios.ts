@@ -1,4 +1,4 @@
-import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
+import axios, { AxiosError } from 'axios';
 import Cookies from 'js-cookie';
 import { postRefreshToken } from './api';
 
@@ -7,18 +7,23 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use(
-  (config: InternalAxiosRequestConfig<any>) => {
+  (config) => {
     const token = Cookies.get('accessToken');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
   },
+
   async (error: AxiosError) => {
-    // 요청이 실패할 경우 실행됩니다.
-    if (error.status === 401) {
-      await postRefreshToken();
+    const originalRequest = error.config;
+    if (typeof originalRequest !== 'undefined') {
+      if (error.response?.status === 401) {
+        await postRefreshToken();
+        return instance.request(originalRequest);
+      }
     }
+    // 요청이 실패할 경우 실행됩니다.
     return Promise.reject(error);
   }
 );
