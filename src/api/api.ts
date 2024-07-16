@@ -9,7 +9,6 @@ import {
 } from './apiType';
 import Cookies from 'js-cookie';
 import { formType } from '../components/AddBoardForm';
-import { url } from 'inspector';
 
 export const getBestPosts = async (params: string): Promise<writingType[]> => {
   const URL = `/articles?${params}`;
@@ -31,8 +30,6 @@ export const getBestPosts = async (params: string): Promise<writingType[]> => {
 export const getTotalPosts = async (params: string): Promise<writingType[]> => {
   const URL = `/articles?${params}`;
   try {
-    console.log(URL);
-
     const response: AxiosResponse<articlesType> = await instance.get(URL);
     return response.data.list;
   } catch (error) {
@@ -142,6 +139,7 @@ export const postComment = async (articleId: string, content: string) => {
     );
   } catch (error) {
     const err = error as AxiosError;
+
     if (err.response) {
       console.error('Response error:', err.response.status);
       console.error('Response data:', err.response.data);
@@ -194,6 +192,7 @@ export const postSignIn = async (email: string, password: string) => {
       },
       { headers: { 'Content-Type': 'application/json' } }
     );
+
     Cookies.set('accessToken', response.data.accessToken);
     Cookies.set('refreshToken', response.data.refreshToken);
   } catch (error) {

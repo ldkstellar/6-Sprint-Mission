@@ -5,31 +5,13 @@ import { writingType } from '../api/apiType';
 import Post from './Post';
 import { AxiosError } from 'axios';
 import style from '@/styles/Post.module.css';
+import useInfiniteScroll from '../hook/useInfiniteScroll';
+
 const TotalPostsContainer = () => {
   const router = useRouter();
   const { orderBy, keyword } = router.query;
   const [posts, setPosts] = useState<writingType[]>([]);
-  const target = useRef<HTMLDivElement>(null);
-  const [limit, setLimit] = useState(6);
-
-  let preventFirst = 0;
-
-  const callback = (entry: IntersectionObserverEntry[]) => {
-    if (entry[0].isIntersecting && preventFirst > 0) {
-      setLimit((prev) => prev + 6);
-    }
-    preventFirst++;
-  };
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(callback, { threshold: 1 });
-    if (target.current !== null) {
-      observer.observe(target.current);
-    }
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
+  const { scrollRef, limit } = useInfiniteScroll();
 
   const getPosts = async () => {
     if (keyword && orderBy) {
@@ -76,7 +58,7 @@ const TotalPostsContainer = () => {
           createdAt={element.createdAt}
         />
       ))}
-      <div className={style['observer']} ref={target} />
+      <div className={style['observer']} ref={scrollRef} />
     </>
   );
 };

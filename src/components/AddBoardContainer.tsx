@@ -1,21 +1,11 @@
 import { useRouter } from 'next/router';
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import { postArticles, postImage } from '../api/api';
 import AddBoardForm from './AddBoardForm';
 import { formType } from './AddBoardForm';
-import Cookies from 'js-cookie';
 
-const ACCESS_TOKEN = Cookies.get('accessToken');
 const AddBoardContainer = () => {
   const routes = useRouter();
-
-  useEffect(() => {
-    if (!ACCESS_TOKEN) {
-      alert('로그인이 필요합니다.');
-      routes.replace('/boards');
-    }
-  }, []);
-
   const [previewImage, setPreviewImage] = useState<string>('');
   const [formData, setFormData] = useState<formType>({
     title: '',

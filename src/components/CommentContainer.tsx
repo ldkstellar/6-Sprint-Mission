@@ -14,8 +14,10 @@ const CommentContainer = () => {
 
   const saveComment = async () => {
     try {
-      const result = await getComments(id as string, 5);
-      setComments(result);
+      if (typeof id === 'string') {
+        const result = await getComments(id as string, 5);
+        setComments(result);
+      }
     } catch (error) {}
   };
 

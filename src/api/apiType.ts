@@ -1,3 +1,6 @@
+export const ACCESS_TOKEN = 'accessToken';
+export const REFRESH_TOKEN = 'refreshToken';
+
 export interface articlesType extends articleType {
   totalCount?: number;
   list: articleType[];
