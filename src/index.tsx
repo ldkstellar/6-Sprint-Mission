@@ -9,10 +9,11 @@ import ItemDetailPage from './pages/ItemDetailPage';
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import './style/Reset.css';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
-
+const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
     path: '/',
@@ -38,5 +39,9 @@ const router = createBrowserRouter([
   },
 ]);
 
-root.render(<RouterProvider router={router} />);
+root.render(
+  <QueryClientProvider client={queryClient}>
+    <RouterProvider router={router} />
+  </QueryClientProvider>
+);
 

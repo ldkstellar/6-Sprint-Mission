@@ -1,40 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import '../style/BestProduct.css';
-import { getProducts, Product, handleUnknownError } from '../api/api';
+import { getProducts } from '../api/api';
 import BestProducts from './BestProducts';
+import { useQuery } from '@tanstack/react-query';
 const BestProductsContainer = ({ windowWidth }: { windowWidth: number }) => {
-  const [bestProducts, setBestProduct] = useState<Product[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const getBestProductsData = async () => {
-    try {
-      setIsLoading(true);
-      const query = `?orderBy=favorite`;
-      const result = await getProducts(query);
-      setBestProduct(result);
-    } catch (error) {
-      handleUnknownError(error);
-    } finally {
-      setIsLoading(false);
+  const query = `?orderBy=favorite`;
+  const { data, isPending } = useQuery({
+    queryKey: ['bestProudcts'],
+    queryFn: () => getProducts(query),
+  });
+
+  if (!isPending && data) {
+    let goodProducts = [];
+    if (windowWidth < 1199 && windowWidth > 767) {
+      goodProducts = [...data.slice(0, 2)];
+    } else if (windowWidth < 767) {
+      goodProducts = [...data.slice(0, 1)];
+    } else {
+      goodProducts = [...data.slice(0, 4)];
     }
-  };
-  useEffect(() => {
-    getBestProductsData();
-  }, []);
-
-  let goodProducts = [];
-
-  if (windowWidth < 1199 && windowWidth > 767) {
-    goodProducts = [...bestProducts.slice(0, 2)];
-  } else if (windowWidth < 767) {
-    goodProducts = [...bestProducts.slice(0, 1)];
-  } else {
-    goodProducts = [...bestProducts.slice(0, 4)];
+    return <BestProducts products={goodProducts} />;
   }
-
-  if (isLoading) {
-    return <div>베스트상품 로딩중</div>;
-  }
-  return <BestProducts products={goodProducts} />;
 };
 
 export default BestProductsContainer;

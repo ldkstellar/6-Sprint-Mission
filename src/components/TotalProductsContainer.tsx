@@ -5,6 +5,7 @@ import TotalProduct from './TotalProduct';
 import { getProducts, Product, handleUnknownError } from '../api/api';
 import SearchBar from './SearchBar';
 import { deviceSize } from '../util/deviceSize';
+import { useQuery } from '@tanstack/react-query';
 
 type NewOption = (e: React.ChangeEvent<HTMLSelectElement>) => void;
 
@@ -27,6 +28,14 @@ const TotalProductsContainer = ({
   const [totalProducts, setTotalProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const navigation = useNavigate();
+  const query = searchParams.toString();
+  console.log(query);
+
+  const { data, isPending, error } = useQuery({
+    queryKey: ['products', query],
+    queryFn: () => getProducts(query),
+  });
+
   const getProductsData = async () => {
     try {
       setIsLoading(true);
@@ -80,7 +89,7 @@ const TotalProductsContainer = ({
     getProductsData();
   }, [location]);
 
-  return !isLoading ? (
+  return !isLoading && data ? (
     <div className='totalProductContainer'>
       <SearchBar
         windowWidth={windowWidth}
@@ -88,7 +97,7 @@ const TotalProductsContainer = ({
         selectValue={selectValue}
       />
       <div className='productList'>
-        {totalProducts.map((element) => {
+        {data.map((element) => {
           return <TotalProduct key={element.id} element={element} />;
         })}
       </div>
