@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import { Link } from 'react-router-dom';
-import { Search } from './TotalProductsContainer';
 
-const SearchBar = ({ windowWidth, newOption, selectValue }: Search) => {
+interface searchBarProps {
+  windowWidth: number;
+  selectValue: string;
+  newOption: (e: ChangeEvent<HTMLSelectElement>) => void;
+}
+const SearchBar = ({ windowWidth, newOption, selectValue }: searchBarProps) => {
   return (
     <div className='totalProduct'>
       <div className='titleAndSearch'>

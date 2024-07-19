@@ -4,13 +4,17 @@ import Comment from './Comments';
 import '../style/BackButton.css';
 import backImage from '../img/backImage.png';
 import { useNavigate } from 'react-router-dom';
-import { Inquiry } from '../api/api';
-const Inquiries = ({ inquiryList }: { inquiryList: Inquiry[] }) => {
-  const now = new Date();
+import { inquiryType } from '../api/apiTypes';
+
+interface inquiriesProps {
+  inquiryList: inquiryType[];
+}
+const Inquiries = ({ inquiryList }: inquiriesProps) => {
   const navigation = useNavigate();
   const backButtonHandler = () => {
     navigation('/items');
   };
+
   if (inquiryList.length === 0) {
     return <NoInquiry />;
   }

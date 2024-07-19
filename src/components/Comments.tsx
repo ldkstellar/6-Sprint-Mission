@@ -2,9 +2,9 @@ import React, { ChangeEvent, useRef, useState } from 'react';
 import '../style/Comments.css';
 import moreBtn from '../img/moreBtn.png';
 import { getCreatedTime } from '../util/getCreatedTime';
-import { Inquiry } from '../api/api';
+import { inquiryType } from '../api/apiTypes';
 
-const Comments = ({ element }: { element: Inquiry }) => {
+const Comments = ({ element }: { element: inquiryType }) => {
   const { day, hours } = getCreatedTime(element);
   const [isOpen, setIsOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);

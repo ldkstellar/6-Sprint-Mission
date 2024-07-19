@@ -3,12 +3,18 @@ import '../style/BestProduct.css';
 import { getProducts } from '../api/api';
 import BestProducts from './BestProducts';
 import { useQuery } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
+
 const BestProductsContainer = ({ windowWidth }: { windowWidth: number }) => {
+  const navigate = useNavigate();
   const query = `?orderBy=favorite`;
   const { data, isPending } = useQuery({
     queryKey: ['bestProudcts'],
     queryFn: () => getProducts(query),
   });
+  const onClick = (id: number) => {
+    navigate(`/items/${id}`);
+  };
 
   if (!isPending && data) {
     let goodProducts = [];
@@ -19,7 +25,7 @@ const BestProductsContainer = ({ windowWidth }: { windowWidth: number }) => {
     } else {
       goodProducts = [...data.slice(0, 4)];
     }
-    return <BestProducts products={goodProducts} />;
+    return <BestProducts products={goodProducts} onClick={onClick} />;
   }
 };
 

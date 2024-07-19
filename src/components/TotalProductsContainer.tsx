@@ -2,18 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import '../style/TotalProduct.css';
 import TotalProduct from './TotalProduct';
-import { getProducts, Product, handleUnknownError } from '../api/api';
+import { getProducts } from '../api/api';
 import SearchBar from './SearchBar';
 import { deviceSize } from '../util/deviceSize';
 import { useQuery } from '@tanstack/react-query';
-
-type NewOption = (e: React.ChangeEvent<HTMLSelectElement>) => void;
-
-export interface Search {
-  windowWidth: number;
-  newOption: NewOption;
-  selectValue: string;
-}
 
 const TotalProductsContainer = ({
   windowWidth,
@@ -25,31 +17,15 @@ const TotalProductsContainer = ({
   const location = useLocation();
   const params = location.search;
   const [selectValue, setSelectValue] = useState('1');
-  const [totalProducts, setTotalProducts] = useState<Product[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const navigation = useNavigate();
   const query = searchParams.toString();
-  console.log(query);
+  const navigation = useNavigate();
 
   const { data, isPending, error } = useQuery({
     queryKey: ['products', query],
     queryFn: () => getProducts(query),
   });
 
-  const getProductsData = async () => {
-    try {
-      setIsLoading(true);
-      const query = `${searchParams.toString()}`;
-      const result = await getProducts(query);
-      setTotalProducts(result);
-    } catch (error) {
-      handleUnknownError(error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const newOption: NewOption = (e) => {
+  const newOption = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value === '1') {
       setSelectValue('1');
       const value = 'recent';
@@ -59,37 +35,35 @@ const TotalProductsContainer = ({
       setSelectValue('2');
       const value = 'favorite';
       searchParams.set('orderBy', value);
-      navigation(`/items?${searchParams.toString()}`);
+      navigation(`/items${params}`);
     }
+  };
+
+  const onClick = (id: number) => {
+    const URL = `/items/${id}`;
+    navigation(URL);
   };
 
   useEffect(() => {
     if (windowWidth > deviceSize.tablet) {
-      if (totalProducts.length !== 10) {
+      if (data?.length !== 10) {
         searchParams.set('pageSize', '10');
-        getProductsData();
       }
     } else if (
       windowWidth <= deviceSize.tablet &&
       windowWidth > deviceSize.mobile
     ) {
-      if (totalProducts.length !== 6) {
+      if (data?.length !== 6) {
         searchParams.set('pageSize', '6');
-        getProductsData();
       }
     } else if (windowWidth <= deviceSize.mobile) {
-      if (totalProducts.length !== 4) {
+      if (data?.length !== 4) {
         searchParams.set('pageSize', '4');
-        getProductsData();
       }
     }
   }, [windowWidth]);
 
-  useEffect(() => {
-    getProductsData();
-  }, [location]);
-
-  return !isLoading && data ? (
+  return !isPending && data ? (
     <div className='totalProductContainer'>
       <SearchBar
         windowWidth={windowWidth}
@@ -98,7 +72,13 @@ const TotalProductsContainer = ({
       />
       <div className='productList'>
         {data.map((element) => {
-          return <TotalProduct key={element.id} element={element} />;
+          return (
+            <TotalProduct
+              key={element.id}
+              element={element}
+              onClick={onClick}
+            />
+          );
         })}
       </div>
     </div>

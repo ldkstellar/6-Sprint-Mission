@@ -10,38 +10,43 @@ import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import './style/Reset.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+
 const queryClient = new QueryClient();
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <App />,
-    children: [
-      { path: 'main', element: <MainPage /> },
+const rootElement = document.getElementById('root');
 
-      {
-        path: 'items',
-        element: <ItemsPage />,
-      },
+if (rootElement) {
+  const root = ReactDOM.createRoot(rootElement);
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <App />,
+      children: [
+        { path: 'main', element: <MainPage /> },
 
-      {
-        path: 'signUp',
-        element: <SignUpPage />,
-      },
-      { path: 'login', element: <LoginPage /> },
+        {
+          path: 'items',
+          element: <ItemsPage />,
+        },
 
-      { path: 'items/:id', element: <ItemDetailPage /> },
+        {
+          path: 'signUp',
+          element: <SignUpPage />,
+        },
+        { path: 'login', element: <LoginPage /> },
 
-      { path: 'addItem', element: <AddItemPage /> },
-    ],
-  },
-]);
+        { path: 'items/:id', element: <ItemDetailPage /> },
 
-root.render(
-  <QueryClientProvider client={queryClient}>
-    <RouterProvider router={router} />
-  </QueryClientProvider>
-);
+        { path: 'addItem', element: <AddItemPage /> },
+      ],
+    },
+  ]);
+
+  root.render(
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+  );
+} else {
+  console.error('Failed to find the root element');
+}
 
