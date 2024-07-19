@@ -63,27 +63,32 @@ const TotalProductsContainer = ({
     }
   }, [windowWidth]);
 
-  return !isPending && data ? (
-    <div className='totalProductContainer'>
-      <SearchBar
-        windowWidth={windowWidth}
-        newOption={newOption}
-        selectValue={selectValue}
-      />
-      <div className='productList'>
-        {data.map((element) => {
-          return (
-            <TotalProduct
-              key={element.id}
-              element={element}
-              onClick={onClick}
-            />
-          );
-        })}
+  if (isPending) {
+    return <div>로딩중</div>;
+  }
+
+  return (
+    !isPending &&
+    data && (
+      <div className='totalProductContainer'>
+        <SearchBar
+          windowWidth={windowWidth}
+          newOption={newOption}
+          selectValue={selectValue}
+        />
+        <div className='productList'>
+          {data.map((element) => {
+            return (
+              <TotalProduct
+                key={element.id}
+                element={element}
+                onClick={onClick}
+              />
+            );
+          })}
+        </div>
       </div>
-    </div>
-  ) : (
-    <div>전체 상품 로딩중</div>
+    )
   );
 };
 
