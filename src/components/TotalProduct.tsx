@@ -5,6 +5,7 @@ interface totalProductProps {
   element: productType;
   onClick: (id: number) => void;
 }
+
 const TotalProduct = ({ element, onClick }: totalProductProps) => {
   return (
     <div

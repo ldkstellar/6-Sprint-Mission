@@ -1,4 +1,4 @@
-import { inquiryType } from '../api/api';
+import { inquiryType } from '../api/apiTypes';
 
 export const getCreatedTime = (element: inquiryType) => {
   const now = new Date();

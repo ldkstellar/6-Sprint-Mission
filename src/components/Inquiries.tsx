@@ -9,6 +9,7 @@ import { inquiryType } from '../api/apiTypes';
 interface inquiriesProps {
   inquiryList: inquiryType[];
 }
+
 const Inquiries = ({ inquiryList }: inquiriesProps) => {
   const navigation = useNavigate();
   const backButtonHandler = () => {

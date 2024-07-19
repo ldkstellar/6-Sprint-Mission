@@ -6,6 +6,7 @@ interface searchBarProps {
   selectValue: string;
   newOption: (e: ChangeEvent<HTMLSelectElement>) => void;
 }
+
 const SearchBar = ({ windowWidth, newOption, selectValue }: searchBarProps) => {
   return (
     <div className='totalProduct'>

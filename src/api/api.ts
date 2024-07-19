@@ -58,9 +58,7 @@ const getComments = async (searchParams = ''): Promise<inquiryType[]> => {
     error.name = `httpError`;
     throw error;
   }
-
   const result = await response.json();
-
   return result.list;
 };
 

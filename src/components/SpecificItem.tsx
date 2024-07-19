@@ -4,6 +4,7 @@ import InquiryFormContainer from './InquiryFormContainer';
 import CommentsContainer from './CommentsContainer';
 import { inquiryType, productType } from '../api/apiTypes';
 import style from '../style/item.module.css';
+
 const SpecificItem = ({
   specificItem,
   inquiries,

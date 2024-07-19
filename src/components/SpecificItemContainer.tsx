@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { getComments, getProduct } from '../api/api';
-import { productType, inquiryType } from '../api/apiTypes';
+
 import { useParams, useSearchParams } from 'react-router-dom';
 import SpecificItem from './SpecificItem';
 import { useQueries } from '@tanstack/react-query';

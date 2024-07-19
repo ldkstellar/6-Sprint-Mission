@@ -5,11 +5,11 @@ import '../style/BackButton.css';
 import backImage from '../img/backImage.png';
 import { Link } from 'react-router-dom';
 import { inquiryType } from '../api/apiTypes';
+
 const CommentsContainer = ({ inquiries }: { inquiries: inquiryType[] }) => {
   if (inquiries.length === 0) {
     return <NoInquiry />;
   }
-
   return (
     <div>
       {inquiries.map((element) => (

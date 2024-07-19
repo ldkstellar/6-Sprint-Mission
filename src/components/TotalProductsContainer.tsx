@@ -35,6 +35,7 @@ const TotalProductsContainer = ({
       setSelectValue('2');
       const value = 'favorite';
       searchParams.set('orderBy', value);
+
       navigation(`/items${params}`);
     }
   };

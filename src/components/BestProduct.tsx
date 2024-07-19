@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { productType } from '../api/apiTypes';
 import heart from '../img/smallHeart.png';
 interface bestProductProps {

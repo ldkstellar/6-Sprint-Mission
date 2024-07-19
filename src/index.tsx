@@ -9,6 +9,7 @@ import ItemDetailPage from './pages/ItemDetailPage';
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import './style/Reset.css';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const queryClient = new QueryClient();
