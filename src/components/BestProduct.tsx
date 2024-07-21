@@ -1,11 +1,12 @@
 import React from 'react';
-
 import { productType } from '../api/apiTypes';
 import heart from '../img/smallHeart.png';
+
 interface bestProductProps {
   product: productType;
   onClick: (id: number) => void;
 }
+
 const BestProduct = ({ product, onClick }: bestProductProps) => {
   return (
     <div className='bestProduct' onClick={() => onClick(product.id)}>

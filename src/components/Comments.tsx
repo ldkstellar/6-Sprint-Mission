@@ -1,8 +1,8 @@
 import React, { ChangeEvent, useRef, useState } from 'react';
-import '../style/Comments.css';
-import moreBtn from '../img/moreBtn.png';
 import { getCreatedTime } from '../util/getCreatedTime';
 import { inquiryType } from '../api/apiTypes';
+import moreBtn from '../img/moreBtn.png';
+import '../style/Comments.css';
 
 const Comments = ({ element }: { element: inquiryType }) => {
   const { day, hours } = getCreatedTime(element);

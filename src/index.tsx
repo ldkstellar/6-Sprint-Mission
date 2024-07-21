@@ -19,25 +19,29 @@ if (rootElement) {
   const root = ReactDOM.createRoot(rootElement);
   const router = createBrowserRouter([
     {
-      path: '/',
       element: <App />,
       children: [
-        { path: 'main', element: <MainPage /> },
-
         {
-          path: 'items',
-          element: <ItemsPage />,
+          path: '/',
+          element: <MainPage />,
+          children: [
+            {
+              path: 'items',
+              element: <ItemsPage />,
+            },
+
+            {
+              path: 'signUp',
+              element: <SignUpPage />,
+            },
+
+            { path: 'login', element: <LoginPage /> },
+
+            { path: 'items/:id', element: <ItemDetailPage /> },
+
+            { path: 'addItem', element: <AddItemPage /> },
+          ],
         },
-
-        {
-          path: 'signUp',
-          element: <SignUpPage />,
-        },
-        { path: 'login', element: <LoginPage /> },
-
-        { path: 'items/:id', element: <ItemDetailPage /> },
-
-        { path: 'addItem', element: <AddItemPage /> },
       ],
     },
   ]);

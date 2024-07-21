@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 interface searchBarProps {
   windowWidth: number;
   selectValue: string;
-  newOption: (e: ChangeEvent<HTMLSelectElement>) => void;
+  onChange: (e: ChangeEvent<HTMLSelectElement>) => void;
 }
 
-const SearchBar = ({ windowWidth, newOption, selectValue }: searchBarProps) => {
+const SearchBar = ({ windowWidth, onChange, selectValue }: searchBarProps) => {
   return (
     <div className='totalProduct'>
       <div className='titleAndSearch'>
@@ -23,7 +23,7 @@ const SearchBar = ({ windowWidth, newOption, selectValue }: searchBarProps) => {
         <Link to={'/addItem'} className='submit'>
           상품 등록하기
         </Link>
-        <select onChange={newOption} value={selectValue} className='filter'>
+        <select onChange={onChange} value={selectValue} className='filter'>
           <option value={'1'}>최신순</option>
           <option value={'2'}>좋아요순</option>
         </select>

@@ -25,7 +25,9 @@ const TotalProductsContainer = ({
     queryFn: () => getProducts(query),
   });
 
-  const newOption = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleChangeSortProducts = (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
     if (e.target.value === '1') {
       setSelectValue('1');
       const value = 'recent';
@@ -74,7 +76,7 @@ const TotalProductsContainer = ({
       <div className='totalProductContainer'>
         <SearchBar
           windowWidth={windowWidth}
-          newOption={newOption}
+          onChange={handleChangeSortProducts}
           selectValue={selectValue}
         />
         <div className='productList'>

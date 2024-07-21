@@ -1,4 +1,5 @@
 import { inquiryType, productType } from './apiTypes';
+
 const URL = `https://panda-market-api.vercel.app/products/`;
 
 const getProducts = async (searchParams = ''): Promise<productType[]> => {

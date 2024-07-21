@@ -1,11 +1,12 @@
 import React from 'react';
-
 import { productType } from '../api/apiTypes';
 import BestProduct from './BestProduct';
+
 interface bestProductsProps {
   products: productType[];
   onClick: (id: number) => void;
 }
+
 const BestProducts = ({ products, onClick }: bestProductsProps) => {
   return (
     <div className='bestContainer'>
