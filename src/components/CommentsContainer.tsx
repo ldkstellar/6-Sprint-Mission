@@ -4,7 +4,7 @@ import Comments from './Comments';
 import '../style/BackButton.css';
 import backImage from '../img/backImage.png';
 import { Link } from 'react-router-dom';
-import { inquiryType } from '../api/apiTypes';
+import { inquiryType } from '../api/type';
 
 const CommentsContainer = ({ inquiries }: { inquiries: inquiryType[] }) => {
   if (inquiries.length === 0) {

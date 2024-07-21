@@ -1,5 +1,5 @@
 import React from 'react';
-import { productType } from '../api/apiTypes';
+import { productType } from '../api/type';
 import heart from '../img/smallHeart.png';
 interface totalProductProps {
   element: productType;

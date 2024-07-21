@@ -21,27 +21,22 @@ if (rootElement) {
     {
       element: <App />,
       children: [
+        { path: '/', element: <MainPage /> },
+
         {
-          path: '/',
-          element: <MainPage />,
-          children: [
-            {
-              path: 'items',
-              element: <ItemsPage />,
-            },
-
-            {
-              path: 'signUp',
-              element: <SignUpPage />,
-            },
-
-            { path: 'login', element: <LoginPage /> },
-
-            { path: 'items/:id', element: <ItemDetailPage /> },
-
-            { path: 'addItem', element: <AddItemPage /> },
-          ],
+          path: 'items',
+          element: <ItemsPage />,
         },
+
+        {
+          path: 'signUp',
+          element: <SignUpPage />,
+        },
+        { path: 'login', element: <LoginPage /> },
+
+        { path: 'items/:id', element: <ItemDetailPage /> },
+
+        { path: 'addItem', element: <AddItemPage /> },
       ],
     },
   ]);

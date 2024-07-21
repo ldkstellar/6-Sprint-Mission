@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useRef, useState } from 'react';
 import { getCreatedTime } from '../util/getCreatedTime';
-import { inquiryType } from '../api/apiTypes';
+import { inquiryType } from '../api/type';
 import moreBtn from '../img/moreBtn.png';
 import '../style/Comments.css';
 

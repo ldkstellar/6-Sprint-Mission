@@ -1,5 +1,5 @@
 import React from 'react';
-import { productType } from '../api/apiTypes';
+import { productType } from '../api/type';
 import BestProduct from './BestProduct';
 
 interface bestProductsProps {

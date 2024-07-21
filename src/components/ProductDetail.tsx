@@ -1,7 +1,7 @@
 import React from 'react';
 import moreImg from '../img/moreBtn.png';
 import mediumHeart from '../img/mediumHeart.png';
-import { productType } from '../api/apiTypes';
+import { productType } from '../api/type';
 import style from '../style/ProductIntroduce.module.css';
 
 const ProductDetail = ({ product }: { product: productType }) => {

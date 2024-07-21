@@ -1,4 +1,4 @@
-import { inquiryType, productType } from './apiTypes';
+import { inquiryType, productType } from './type';
 
 const URL = `https://panda-market-api.vercel.app/products/`;
 
