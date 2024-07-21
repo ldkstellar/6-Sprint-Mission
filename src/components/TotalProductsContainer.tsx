@@ -42,7 +42,7 @@ const TotalProductsContainer = ({
     }
   };
 
-  const onClick = (id: number) => {
+  const handleClickNavigateProductDetail = (id: number) => {
     const URL = `/items/${id}`;
     navigation(URL);
   };
@@ -85,7 +85,7 @@ const TotalProductsContainer = ({
               <TotalProduct
                 key={element.id}
                 element={element}
-                onClick={onClick}
+                onClick={handleClickNavigateProductDetail}
               />
             );
           })}
